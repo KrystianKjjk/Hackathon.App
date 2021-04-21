@@ -1,8 +1,8 @@
-import * as mongoose from 'mongoose';
-import * as express from 'express';
+import  mongoose from 'mongoose';
+import express from 'express';
 import 'dotenv/config.js';
 import 'express-async-errors';
-import * as cors from 'cors';
+import  cors from 'cors';
 
 import Sample from './src/models/sample.model';
 import SampleService from './src/services/sampleService';
@@ -32,7 +32,7 @@ mongoose
 
 if (!process.env.JWT_PRIVATE_KEY) {
   console.error('FATAL ERROR: No JWT key present');
-  process.exit(null);
+  process.exit(0);
 }
 
 app.use(cors());
