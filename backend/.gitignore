@@ -1,8 +1,3 @@
 node_modules
 .cache
 Coverage
-Dist
-./Api/Dist
-launch.json
-./.env
-.env
