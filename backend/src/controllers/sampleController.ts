@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import SampleSchema from "../models/sample.model";
 import SampleService from '../services/sampleService';
 
@@ -22,6 +22,7 @@ export default class SampleController {
         res: express.Response
     ) => {
         const id = new mongoose.Types.ObjectId(req.params.id);
+        console.log(id)
         const sampleData = await this.service.getById(id);
         return res.status(200).json(sampleData);
     };
