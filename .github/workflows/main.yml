@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm ci
+      - run: cd backend
+      - run: npm ci     
       - run: npm run build --if-present
       - run: npm test
   build-frontend:
@@ -40,23 +41,23 @@ jobs:
         with:
           name: frontend-dist
           path: ./frontend/build
-  deploy-frontend-on-github-pages:
-    name: "Deploy app to GitHub Pages from main branch source code"
-    if: github.ref == 'refs/heads/main'
-    needs: build-frontend
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: frontend-dist
-          path: ./frontend/build
-      - name: Deploy app as GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3.7.0-6
-        if: ${{ github.event_name != 'pull_request' && always() }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: "./frontend/build"
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          force_orphan: true
-          keep_files: true
+  # deploy-frontend-on-github-pages:
+  #   name: "Deploy app to GitHub Pages from main branch source code"
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: build-frontend
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: frontend-dist
+  #         path: ./frontend/build
+  #     - name: Deploy app as GitHub Pages
+  #       uses: peaceiris/actions-gh-pages@v3.7.0-6
+  #       if: ${{ github.event_name != 'pull_request' && always() }}
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: "./frontend/build"
+  #         user_name: 'github-actions[bot]'
+  #         user_email: 'github-actions[bot]@users.noreply.github.com'
+  #         force_orphan: true
+  #         keep_files: true
