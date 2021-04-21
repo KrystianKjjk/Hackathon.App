@@ -1,7 +1,7 @@
 import * as express from 'express';
 import SampleController from '../controllers/sampleController';
 
-const sampleRoutes = (sampleController: SampleController, router) => {
+const sampleRoutes = (sampleController: SampleController, router: express.Router) => {
 
     return () => {
         router.route("/sample").get(sampleController.getAll);
