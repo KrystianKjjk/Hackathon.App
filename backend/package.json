@@ -1,0 +1,43 @@
+{
+  "name": "krystian_kijak-coders_camp_2021-hackathon-backend",
+  "version": "1.0.0",
+  "description": "Hackathon project from group led by Krystian Kijak - backend application",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "start": "npx nodemon ./index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrystianKjjk/App.git"
+  },
+  "keywords": [
+    "CodersCamp",
+    "Hackathon"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KrystianKjjk/App/issues"
+  },
+  "homepage": "https://github.com/KrystianKjjk/App#readme",
+  "dependencies": {
+    "@babel/core": "^7.13.16",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "jest": "^26.6.3"
+  }
+}
