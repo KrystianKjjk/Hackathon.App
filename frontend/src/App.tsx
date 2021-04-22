@@ -1,8 +1,9 @@
 import React from "react";
-import "./App.css";
+import style from "./App.module.css";
+import Routing from "./Pages/Routing/Routing";
 
 function App() {
-    return <div>App</div>;
+    return <Routing />;
 }
 
 export default App;
