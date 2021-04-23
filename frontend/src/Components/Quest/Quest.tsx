@@ -43,7 +43,19 @@ const Quest: React.FC<QuestProps> = () => {
         console.log("Teraz trzeba wysłać zapytanie");
     }
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://hackathon-backend-application.herokuapp.com/api/scenarios');
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
+        fetchData();
+
         setLoading(true);
         
         /*here we will send api request for a particular quest*/
