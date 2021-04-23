@@ -1,23 +1,19 @@
-const auth = require('../middleware/authorization');
-// const { User, validateUser } = require('../models/user.model');
-// import { User, validateUser } from '../models/user.model'
-const userController = require('../controllers/user');
-// const { upload } = require('../middleware/upload')
-const express = require('express');
-const router = express.Router();
-// const mail = require('../middleware/mail');
+import * as express from 'express';
+import * as auth from '../middleware/authorization';
+import UserController from '../controllers/userController';
 
+const userRoutes = (userController: UserController, router: express.Router) => {
 
-router.get('/me', auth.loggedUser, userController.usersGetMe);
-// router.get('/', [auth.loggedUser ,auth.isAdmin], userController.usersGetAll);
-router.get('/', userController.usersGetAll);
-router.get('/:id', [auth.loggedUser ,auth.isAdmin], userController.usersGetUser);
-router.post('/', userController.usersAddUser);
-// router.post('/addEmployee', [auth.loggedUser, auth.isSuperAdmin], userController.usersAddEmployee,mail.registrationMail);
-router.patch('/me', auth.loggedUser, userController.usersUpdateMe);
-router.patch('/:id', userController.usersUpdateUser);
-router.delete('/me', auth.loggedUser, userController.usersDeleteMe);
-router.delete('/:id', [auth.loggedUser, auth.isAdmin], userController.usersDeleteUser);
-
-
-module.exports = router;
+    return () => {
+        router.get('/users/me', auth.loggedUser, userController.getMe)
+        router.get('/users', auth.loggedUser, userController.getAll)
+        router.get('/users/:id', [auth.loggedUser, auth.isAdmin], userController.getUser)
+        router.post('/users', userController.addUser)
+        router.patch("/users/me", auth.loggedUser, userController.updateUser);
+        router.patch("/users/:id", [auth.loggedUser, auth.isAdmin], userController.updateUser);
+        router.delete("/users/me", auth.loggedUser, userController.deleteUser);
+        router.delete("/users/:id", [auth.loggedUser, auth.isAdmin], userController.deleteUser);
+        return router;
+    }
+};
+export default userRoutes;

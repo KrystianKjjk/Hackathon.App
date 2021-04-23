@@ -13,6 +13,12 @@ import ScenarioRouter from './src/routes/scenarioRouter';
 
 // import users from './src/routes/userRoute';
 const users = require('./src/routes/userRoute');
+import UserController from './src/controllers/userController';
+import userRoutes from './src/routes/userRoute';
+
+import LoginController from './src/controllers/loginController';
+import loginRoutes from './src/routes/loginRoute';
+// const users = require('./src/routes/userRoute');
 
 const app = express();
 const router = express.Router();
@@ -49,7 +55,18 @@ const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
 app.use('/api', scenarioRouter());
 
-app.use('/api/users', users);
+//user route setup
+const userController = new UserController();
+const userRouter = userRoutes(userController, router);
+
+//login route setup
+const loginController = new LoginController();
+const loginRouter = loginRoutes(loginController, router);
+
+
+app.use("/api", userRouter());
+app.use("/api", loginRouter());
+
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
