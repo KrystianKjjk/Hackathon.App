@@ -1,5 +1,6 @@
 import * as express from 'express';
 import ScenarioController from '../controllers/scenarioController';
+const { loggedUser, isAdmin } = require('../middleware/authorization');
 
 const scenarioRoutes = (scenarioController: ScenarioController, router: express.Router) => {
 
@@ -8,7 +9,7 @@ const scenarioRoutes = (scenarioController: ScenarioController, router: express.
         router.route("/scenarios/:id").get(scenarioController.getById);
         router.route("/scenarios").post(scenarioController.create);
         router.route("/scenarios/:id").patch(scenarioController.update);
-        router.route("/scenarios/:id/quest/:questName/take/decision/:decisionName").patch(scenarioController.takeDecision);
+        router.route("/scenarios/:id/quest/:questName/take/decision/:decisionName").patch(loggedUser, scenarioController.takeDecision);
         router.route("/scenarios/:id").delete(scenarioController.delete);
         return router;
     }
