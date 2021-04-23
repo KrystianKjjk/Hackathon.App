@@ -1,0 +1,20 @@
+.container{
+   width: 50vw;
+   border: 4px solid rgba(214, 194, 194, 0.863);
+}
+
+.imgContainer img{
+    width: 100%;
+}
+
+.instruction{
+    
+}
+
+.optionsContainer{
+    display: flex;
+}
+
+.optionsContainer > *{
+    width: 100%;
+}
