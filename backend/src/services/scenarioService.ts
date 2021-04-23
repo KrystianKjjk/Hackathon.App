@@ -43,16 +43,14 @@ export default class ScenarioService {
     if (!decision) return null;
 
     for (let i in quest.decisions) {
-      console.log(quest.decisions[i].users);
-      const userIdx = quest.decisions[i].users.findIndex(id => `${id}` === `${userId}`);
+      const userIdx = quest.decisions[i].users.findIndex(user => `${user._id}` === `${userId}`);
       if (userIdx >= 0)
         quest.decisions[i].users.splice(userIdx, 1);
     }
 
     scenario.quests[questId].decisions[decisionId].users.push(userId);
-    console.log(decision);
     scenario.markModified('quests');
-    this.scenarioRepository.save(scenario);
+    await this.scenarioRepository.save(scenario);
     return scenario;
   }
 
@@ -69,14 +67,13 @@ export default class ScenarioService {
     const decision = quest.decisions[decisionId];
     if (!decision) return null;
     
-    const userIdx = decision.users.findIndex(id => `${id}` === `${userId}`);
+    const userIdx = decision.users.findIndex(user => `${user._id}` === `${userId}`);
     if (userIdx < 0)
       return null;
     
     scenario.quests[questId].decisions[decisionId].users.splice(userIdx, 1);
-    console.log(decision);
     scenario.markModified('quests');
-    this.scenarioRepository.save(scenario);
+    await this.scenarioRepository.save(scenario);
     return scenario;
   }
 

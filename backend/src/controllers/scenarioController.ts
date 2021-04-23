@@ -22,7 +22,6 @@ export default class SampleController {
         res: express.Response
     ) => {
         const id = new mongoose.Types.ObjectId(req.params.id);
-        console.log(id)
         const scenario = await this.service.getById(id);
         return res.status(200).json(scenario);
     };
@@ -80,7 +79,6 @@ export default class SampleController {
             const questIdx = req.params.questIdx;
             const decisionIdx = req.params.decisionIdx;
             const userId = new mongoose.Types.ObjectId(req?.user._id);
-            console.log({userId});
             const updatedData = await this.service.takeDecision(id, questIdx, decisionIdx, userId);
 
             if (!updatedData) {
@@ -106,7 +104,6 @@ export default class SampleController {
             const questIdx = req.params.questIdx;
             const decisionIdx = req.params.decisionIdx;
             const userId = new mongoose.Types.ObjectId(req?.user._id);
-            console.log({userId});
             const updatedData = await this.service.untakeDecision(id, questIdx, decisionIdx, userId);
 
             if (!updatedData) {
