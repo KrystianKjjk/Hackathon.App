@@ -13,7 +13,7 @@ const groupRoutes = (groupController: GroupController, router: express.Router) =
         router.route("/group").post(groupController.create);
         router.route("/group/:id").patch(groupController.update);
         router.route("/group/:id").delete(groupController.delete);
-        router.route("/group/me/:id").delete(groupController.getByUserId);
+        router.route("/group/me/:id").get(groupController.getByUserId);
         return router;
     }
 };

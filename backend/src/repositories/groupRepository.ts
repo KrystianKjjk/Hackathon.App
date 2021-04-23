@@ -1,8 +1,9 @@
-import  Repository from "./repository";
+import Repository from "./repository";
 import * as mongoose from 'mongoose';
 
 export default class GroupRepository extends Repository {
     async getByUserId(id: mongoose.Types.ObjectId) {
-        return this.model.find({user: id});
+        const newId = String(id);
+        return this.model.findOne({"users.id": newId});
     };
 }
