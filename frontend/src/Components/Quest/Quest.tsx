@@ -37,6 +37,12 @@ const Quest: React.FC<QuestProps> = () => {
     const [quest, setQuest] = useState<QuestInterface | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const handleOptionClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        console.log("Teraz trzeba wysłać zapytanie");
+    }
+
     useEffect(() => {
         setLoading(true);
         
@@ -62,7 +68,7 @@ const Quest: React.FC<QuestProps> = () => {
             
             <div className={style.optionsContainer}>
             {options.map((option, index) => {
-                return <div key={index} className={style.singleOption}>
+                return <div key={index} className={style.singleOption} onClick={handleOptionClick}>
                     <p className={style.optionTitle}>{option.title}</p>
                     <ul className={style.chosenByList}>
                         {option.chosenBy.map((item, index) => {
