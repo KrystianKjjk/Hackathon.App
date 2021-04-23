@@ -16,7 +16,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.7rem;
     font-size: 1.125rem;
     cursor: default;
     user-select: none; /* supported by Chrome and Opera */
@@ -28,4 +28,11 @@
 
 .nameSpan{
     margin-left: 1rem;
+}
+
+@media (max-width: 768px){
+    .container{ 
+        width: 90vw;
+        padding: 0.8rem 1.75rem;
+    }
 }
