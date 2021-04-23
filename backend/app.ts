@@ -21,6 +21,7 @@ import LoginController from './src/controllers/loginController';
 import loginRoutes from './src/routes/loginRoute';
 
 import Scenario from './src/models/scenario.model';
+import ScenarioRepository from './src/repositories/scenarioRepository';
 import ScenarioService from './src/services/scenarioService';
 import ScenarioController from './src/controllers/scenarioController';
 import ScenarioRouter from './src/routes/scenarioRouter';
@@ -72,7 +73,7 @@ const GroupRoutes = groupRoutes(groupController, router);
 app.use('/api', GroupRoutes());
 
 //scenario router setup
-const scenarioRepository = new Repository(Scenario);
+const scenarioRepository = new ScenarioRepository(Scenario);
 const scenarioService = new ScenarioService(scenarioRepository);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
