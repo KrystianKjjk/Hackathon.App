@@ -1,16 +1,14 @@
-import  mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import express from 'express';
 import 'dotenv/config.js';
 import 'express-async-errors';
 import  cors from 'cors';
 
-import Sample from './src/models/sample.model';
-import SampleService from './src/services/sampleService';
-import Repository from './src/repositories/repository';
-import SampleController from './src/controllers/sampleController';
-import sampleRoutes from './src/routes/sampleRoute';
-// import users from './src/routes/userRoute';
-const users = require('./src/routes/userRoute');
+import Group from './src/models/group.model';
+import GroupService from './src/services/groupService';
+import GroupRepository from './src/repositories/groupRepository';
+import GroupController from './src/controllers/groupController';
+import groupRoutes from './src/routes/groupRoute'
 
 const app = express();
 const router = express.Router();
@@ -40,14 +38,12 @@ if (!process.env.JWT_PRIVATE_KEY) {
 app.use(cors());
 app.use(express.json());
 
-//sample route setup
-const sampleRepository = new Repository(Sample);
-const sampleService = new SampleService(sampleRepository);
-const sampleController = new SampleController(sampleService);
-const sampleRouter = sampleRoutes(sampleController, router);
-app.use('/api', sampleRouter());
-
-app.use('/api/users', users);
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService);
+const GroupRoutes = groupRoutes(groupController, router);
+app.use('/api', GroupRoutes());
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
