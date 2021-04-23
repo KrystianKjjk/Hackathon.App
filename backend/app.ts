@@ -9,6 +9,8 @@ import SampleService from './src/services/sampleService';
 import Repository from './src/repositories/repository';
 import SampleController from './src/controllers/sampleController';
 import sampleRoutes from './src/routes/sampleRoute';
+// import users from './src/routes/userRoute';
+const users = require('./src/routes/userRoute');
 
 const app = express();
 const router = express.Router();
@@ -44,6 +46,8 @@ const sampleService = new SampleService(sampleRepository);
 const sampleController = new SampleController(sampleService);
 const sampleRouter = sampleRoutes(sampleController, router);
 app.use('/api', sampleRouter());
+
+app.use('/api/users', users);
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
