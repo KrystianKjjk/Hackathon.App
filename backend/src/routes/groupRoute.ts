@@ -14,6 +14,7 @@ const groupRoutes = (groupController: GroupController, router: express.Router) =
         router.route("/group/:id").patch(groupController.update);
         router.route("/group/:id").delete(groupController.delete);
         router.route("/group/me/:id").get(groupController.getByUserId);
+        router.route("/group/batchcreation").post(groupController.createMany);
         return router;
     }
 };

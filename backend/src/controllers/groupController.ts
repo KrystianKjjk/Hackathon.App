@@ -95,4 +95,31 @@ export default class GroupController {
         console.log(groupData);
         return res.status(200).json(groupData);
     };
+
+    //gets a table of groups - creates multiple groups at once
+    createMany = async (
+        req: express.Request,
+        res: express.Response
+    ) => {
+        const groups = req.body.userGroups;
+        
+        try{
+            for (let i = 0; i < groups.length; i++ ){
+            
+                const group = req.body;
+                group.users = groups[i];
+
+                const sampleData = new GroupSchema(group);
+                await sampleData.validate();
+                await this.service.create(sampleData); 
+            }
+            return res.status(200).json(groups);
+        }catch (error) {
+                const errorMessage = { message: error.message };
+                if (error.name === "ValidationError") {
+                    return res.status(400).json(errorMessage);
+                }
+                return res.status(500).json(errorMessage);
+            }
+        }   
 }
