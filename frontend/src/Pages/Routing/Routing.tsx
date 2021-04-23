@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
+import useConfirmModal from "../../Hooks/useConfirmModal";
+import AdminRouting from "./AdminRouting";
 
 const Routing = () => {
+    const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
+
     return (
         <div>
             <Router>
@@ -13,6 +17,7 @@ const Routing = () => {
                     <Route path="/logOut">
                         <LogOut />
                     </Route>
+                    {roleRouting}
                     <Route path="*">
                         <NotFoundPage />
                     </Route>
@@ -23,7 +28,23 @@ const Routing = () => {
 };
 
 const LogIn = () => {
-    return <div>LogIn</div>;
+    const [Modal, setModal] = useConfirmModal();
+    return (
+        <div>
+            <button
+                onClick={() =>
+                    setModal({
+                        text: "MODAL!!!",
+                        handleYes: () => console.log("logging"),
+                    })
+                }
+            >
+                {" "}
+                Open Modal
+            </button>
+            {Modal}
+        </div>
+    );
 };
 
 const LogOut = () => {

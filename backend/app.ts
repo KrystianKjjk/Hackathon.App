@@ -10,6 +10,14 @@ import GroupRepository from './src/repositories/groupRepository';
 import GroupController from './src/controllers/groupController';
 import groupRoutes from './src/routes/groupRoute'
 
+import Repository from './src/repositories/repository';
+
+import Scenario from './src/models/scenario.model';
+import ScenarioService from './src/services/scenarioService';
+import ScenarioController from './src/controllers/scenarioController';
+import ScenarioRouter from './src/routes/scenarioRouter';
+
+
 const app = express();
 const router = express.Router();
 
@@ -38,12 +46,21 @@ if (!process.env.JWT_PRIVATE_KEY) {
 app.use(cors());
 app.use(express.json());
 
+
 //group route setup
 const groupRepository = new GroupRepository(Group);
 const groupService = new GroupService(groupRepository);
 const groupController = new GroupController(groupService);
 const GroupRoutes = groupRoutes(groupController, router);
 app.use('/api', GroupRoutes());
+
+//scenario router setup
+const scenarioRepository = new Repository(Scenario);
+const scenarioService = new ScenarioService(scenarioRepository);
+const scenarioController = new ScenarioController(scenarioService);
+const scenarioRouter = ScenarioRouter(scenarioController, router);
+app.use('/api', scenarioRouter());
+
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
