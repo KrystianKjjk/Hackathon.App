@@ -77,11 +77,37 @@ export default class SampleController {
     ) => {
         try {
             const id = new mongoose.Types.ObjectId(req.params.id);
-            const questName = req.params.questName;
-            const decisionName = req.params.decisionName;
-            const userId = req?.user._id;
+            const questIdx = req.params.questIdx;
+            const decisionIdx = req.params.decisionIdx;
+            const userId = new mongoose.Types.ObjectId(req?.user._id);
+            console.log({userId});
+            const updatedData = await this.service.takeDecision(id, questIdx, decisionIdx, userId);
 
-            const updatedData = await this.service.takeDecision(id, questName, decisionName, userId);
+            if (!updatedData) {
+                return res.status(404).json({ message: "Scenario or quest or decision not found" });
+            }
+            const fetchedData = await this.service.getById(id);
+            return res.status(201).json(fetchedData);
+        } catch (error) {
+            const errorMessage = { message: error.message };
+            if (error.name === "ValidationError") {
+                return res.status(400).json(errorMessage);
+            }
+            return res.status(500).json(errorMessage);
+        }
+    };
+
+    untakeDecision = async (
+        req: express.Request & { user: { _id: mongoose.Types.ObjectId } },
+        res: express.Response
+    ) => {
+        try {
+            const id = new mongoose.Types.ObjectId(req.params.id);
+            const questIdx = req.params.questIdx;
+            const decisionIdx = req.params.decisionIdx;
+            const userId = new mongoose.Types.ObjectId(req?.user._id);
+            console.log({userId});
+            const updatedData = await this.service.untakeDecision(id, questIdx, decisionIdx, userId);
 
             if (!updatedData) {
                 return res.status(404).json({ message: "Scenario or quest or decision not found" });

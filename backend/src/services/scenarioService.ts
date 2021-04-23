@@ -31,18 +31,50 @@ export default class ScenarioService {
 
   takeDecision = async (
     id: mongoose.Types.ObjectId, 
-    questName: string, 
-    decisionName: string, 
+    questId: string, 
+    decisionId: string, 
     userId: mongoose.Types.ObjectId
   ) => {
     const scenario = await this.getById(id);
-    const questIdx = scenario.quests.findIndex(quest => quest.name === questName);
-    if (questIdx < 0) return null;
+    const quest = scenario.quests[questId];
+    if (!quest) return null;
 
-    const decisionIdx = scenario.quests[questIdx].decisions.findIndex(decision => decision.title === decisionName);
-    if (decisionIdx < 0) return null;
+    const decision = quest.decisions[decisionId];
+    if (!decision) return null;
 
-    scenario.quests[questIdx].decisions[decisionIdx].users.push(userId);
+    for (let i in quest.decisions) {
+      console.log(quest.decisions[i].users);
+      const userIdx = quest.decisions[i].users.findIndex(id => `${id}` === `${userId}`);
+      if (userIdx >= 0)
+        quest.decisions[i].users.splice(userIdx, 1);
+    }
+
+    scenario.quests[questId].decisions[decisionId].users.push(userId);
+    console.log(decision);
+    scenario.markModified('quests');
+    this.scenarioRepository.save(scenario);
+    return scenario;
+  }
+
+  untakeDecision = async (
+    id: mongoose.Types.ObjectId, 
+    questId: string, 
+    decisionId: string, 
+    userId: mongoose.Types.ObjectId
+  ) => {
+    const scenario = await this.getById(id);
+    const quest = scenario.quests[questId];
+    if (!quest) return null;
+
+    const decision = quest.decisions[decisionId];
+    if (!decision) return null;
+    
+    const userIdx = decision.users.findIndex(id => `${id}` === `${userId}`);
+    if (userIdx < 0)
+      return null;
+    
+    scenario.quests[questId].decisions[decisionId].users.splice(userIdx, 1);
+    console.log(decision);
     scenario.markModified('quests');
     this.scenarioRepository.save(scenario);
     return scenario;
