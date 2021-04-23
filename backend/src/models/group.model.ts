@@ -10,8 +10,7 @@ export interface Group {
 const GroupSchema = new mongoose.Schema({
     users:[],
     scenario: {
-        type: String,        
-        required: true
+        type: String
     },
     currentQuest: {
         type: String
