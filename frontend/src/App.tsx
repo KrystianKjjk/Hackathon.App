@@ -7,7 +7,7 @@ import UserList from './Components/UserList/UserList'
 import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
 
 function App() {
-    return <UserList />;
+    return <Routing />;
 }
 
 export default App;

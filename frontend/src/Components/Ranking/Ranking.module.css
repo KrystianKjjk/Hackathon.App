@@ -1,7 +1,7 @@
 .container{
     box-sizing: border-box;
     width: 40vw;
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(250, 250, 250, 0.7);
     padding: 3.5rem 7rem;
 }
 

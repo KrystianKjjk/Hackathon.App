@@ -14,7 +14,7 @@ const Routing = () => {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <SignIn />
+                        <LogIn />
                     </Route>
                     <Route path="/logOut">
                         <LogOut />
