@@ -1,6 +1,6 @@
 import * as express from "express";
 import mongoose from 'mongoose';
-import SampleSchema from "../models/sample.model";
+import SampleSchema from "../models/Sample.model";
 import SampleService from '../services/sampleService';
 
 export default class SampleController {

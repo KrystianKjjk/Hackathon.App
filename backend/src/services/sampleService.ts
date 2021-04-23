@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import { Sample } from "../models/sample.model";
-import Repository from "../repositories/repository";
+import { Sample } from "../models/Sample.model";
+import Repository from "../repositories/Repository";
 
 export default class SampleService {
   private sampleRepository: Repository;

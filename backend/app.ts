@@ -4,9 +4,9 @@ import 'dotenv/config.js';
 import 'express-async-errors';
 import  cors from 'cors';
 
-import Sample from './src/models/sample.model';
+import Sample from './src/models/Sample.model';
 import SampleService from './src/services/sampleService';
-import Repository from './src/repositories/repository';
+import Repository from './src/repositories/Repository';
 import SampleController from './src/controllers/sampleController';
 import sampleRoutes from './src/routes/sampleRoute';
 
