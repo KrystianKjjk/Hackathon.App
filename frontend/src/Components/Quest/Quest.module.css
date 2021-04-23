@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
 .container{
    width: 50vw;
-   border: 4px solid rgba(214, 194, 194, 0.863);
+   border: 5px solid rgba(214, 194, 194, 0.863);
+   background-color: rgba(211, 204, 204, 0.863);
+}
+
+.imgContainer{
+    position: relative;
 }
 
 .imgContainer img{
@@ -8,13 +15,60 @@
 }
 
 .instruction{
-    
+    text-align: center;
+    background-color: rgba(190, 174, 174, 0.863);
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    margin-bottom: 0.7rem;
+    font-family: 'Cinzel', serif;
+    position: absolute;
+    bottom: 0;
+    left: 0.4rem;
+    right: 0.4rem;
 }
 
 .optionsContainer{
     display: flex;
+    gap: 0.7rem;
+    margin: 0 0.4rem 0.4rem;
 }
 
 .optionsContainer > *{
     width: 100%;
+    margin-top: 0.5rem;
+}
+
+.singleOption{
+    background-color: rgba(184, 177, 177, 0.863);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.singleOption:hover{
+    transform: scale(1.01);
+}
+
+.optionTitle{
+    text-align: center;
+    font-size: 1.05rem;
+    font-family: 'Cinzel', serif;
+}
+
+.chosenByList{
+    padding: 0 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.chosenByList * {
+    margin-right: 0.3rem;
+    font-size: 0.95rem;
+    font-family: 'Times New Roman', serif;
+}
+
+@media (max-width: 768px){
+    .optionsContainer{
+        flex-wrap: wrap;
+    }
 }
