@@ -7,11 +7,11 @@ const UserProfile: React.FC = ({user}:any) => {
   return (
     <Container>
       <Typography variant="h2">Witaj podróżniku</Typography>
-      {user.photo ? <img src={`data:image/jpeg;base64,${Buffer.from(user.photo).toString('base64')}`} alt="avatar" style={{
+      {/* {user.photo ? <img src={`data:image/jpeg;base64,${Buffer.from(user.photo).toString('base64')}`} alt="avatar" style={{
         height: '100%',
         width: '100%',
         objectFit: 'cover',
-    }}/> : null}
+    }}/> : null} */}
       <Typography>Imię: Piotr</Typography>
       <Typography>Nazwisko: Testowy</Typography>
       <Typography>Email: test@test</Typography>
