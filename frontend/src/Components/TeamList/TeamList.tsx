@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container } from "./TeamList-style";
 import Team from "../../Models/Team";
-import UserList from "../UserList";
+import UserList2 from "../UserList2";
 import styled from "styled-components";
 
 interface TeamListProps {
@@ -15,7 +15,7 @@ const TeamList: React.FC<TeamListProps> = ({ teams }) => {
             <h3>Zespoły</h3>
             {teams.map((team, idx) => (
                 <TeamContainer key={team._id}>
-                    <UserList users={team.users} title={`team ${idx + 1}`} />
+                    <UserList2 users={team.users} title={`team ${idx + 1}`} />
                 </TeamContainer>
             ))}
         </Container>

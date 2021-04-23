@@ -1,42 +1,63 @@
-import React from "react";
-import { Container } from "./UserList-style";
-import User from "../../Models/User";
-import styled from "styled-components";
+import { Grid, StylesProvider } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import useHttp from "../../Hooks/useHttp";
+import ListItem from "@material-ui/core/ListItem";
+import style, { Container } from "./UserList-style";
+import styleCss from "./UserList.module.css";
 
-interface UserListProps {
-    users: User[];
-    title: string;
-}
+type Users = Array<string>;
 
-const UserList: React.FC<UserListProps> = ({ users, title }) => {
+const UserList: React.FC = () => {
+    const [users, setUsers] = useState<Users>([]);
+    const [errors, setErrors] = useState();
+    //   const { makeHttpRequest } = useHttp(
+    //     'URL URL URL',
+    //     'GET'
+    //   );
+    useEffect(() => {
+        // const getUsers = async () => {
+        //   const data = await makeHttpRequest();
+        //   try {
+        //     setUsers(data);
+        //   } catch (error) {
+        //     setErrors(error);
+        //   }
+        // };
+        // getUsers();
+        setUsers(["Arek", "Bogdan", "Mateusz", "Arek", "Bogdan", "Mateusz"]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
-        <Container>
-            <h3>{title}</h3>
-            {users.map((user) => (
-                <UserElement key={user._id} user={user} />
-            ))}
-        </Container>
+        <>
+            <Grid container direction="row">
+                <Grid
+                    container
+                    item
+                    xs={3}
+                    style={style}
+                    justify="center"
+                    className={styleCss.gridClass}
+                >
+                    <Container>
+                        <h1>TWOJA DRUŻYNA</h1>
+                        {users.map((user, id) => {
+                            return (
+                                <>
+                                    <ListItem
+                                        key={id}
+                                        className={styleCss.gridItemClass}
+                                    >
+                                        {user}
+                                    </ListItem>
+                                </>
+                            );
+                        })}
+                    </Container>
+                </Grid>
+            </Grid>
+        </>
     );
 };
-const UserElement = ({ user }: { user: User }) => {
-    return (
-        <UserContainer>
-            {user.name} {user.surname}
-        </UserContainer>
-    );
-};
-const UserContainer = styled.div`
-    background-color: white;
-    margin: 5px;
-    padding: 5px;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    :hover {
-        transform: scale(1.05);
-        font-weight: bold;
-        cursor: pointer;
-    }
-`;
+
 export default UserList;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, ListContainer, Header } from "./CreateTeamsPage-style";
-import UserList from "../../Components/UserList";
+import UserList2 from "../../Components/UserList2";
 import User from "../../Models/User";
 import Team from "../../Models/Team";
 import TeamList from "../../Components/TeamList";
@@ -89,7 +89,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
         <Container>
             <Header>Creator zespołów</Header>
             <ListContainer>
-                <UserList users={users} title={"uzytkownicy"} />
+                <UserList2 users={users} title={"uzytkownicy"} />
                 <TeamList teams={newTeams ?? teams} />
             </ListContainer>
             <div
