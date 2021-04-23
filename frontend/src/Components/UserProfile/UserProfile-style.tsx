@@ -6,6 +6,7 @@ justify-content: space-between;
 align-items: center;
 flex-direction: column;
 border: 2px solid black;
+padding: 80px;
 `;
 
 export const style = {
