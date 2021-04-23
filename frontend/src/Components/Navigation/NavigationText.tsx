@@ -1,6 +1,7 @@
 
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 
 const StyledButton = withStyles(() => ({
@@ -28,7 +29,6 @@ const NavigationText: React.FC<propsForNavigationText> = ({
   variant = 'text',
 }) => {
   return (
-    <div>
       <StyledButton
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -36,7 +36,6 @@ const NavigationText: React.FC<propsForNavigationText> = ({
       >
         {mainText}
       </StyledButton>
-    </div>
   );
 };
 

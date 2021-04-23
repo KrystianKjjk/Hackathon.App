@@ -1,8 +1,8 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Navigation from '../../../Components/Navigation/Navigation';
-import { navigationArrayWithRoutes } from '../../../Components/Navigation/createNavigation';
+import { Switch, Route,BrowserRouter as Router } from 'react-router-dom';
+import Navigation from '../../Components/Navigation/Navigation';
+import { navigationArrayWithRoutes } from '../../Components/Navigation/createNavigation';
 
 
 const NavigationTemplate: React.FC = ({ children }) => {
@@ -21,7 +21,8 @@ const NavigationTemplate: React.FC = ({ children }) => {
 function NavigationView() {
   return (
     <>
-        <NavigationTemplate>
+    <Router>
+      <NavigationTemplate>
           <Switch>
               <Route path="/" exact>
                  {/* KOMPONENT */}
@@ -34,6 +35,7 @@ function NavigationView() {
               </Route>
           </Switch>
         </NavigationTemplate>
+        </Router>
     </>
   );
 }
