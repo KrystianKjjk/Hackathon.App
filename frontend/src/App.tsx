@@ -1,8 +1,10 @@
 import React from "react";
-import "./App.css";
+import style from "./App.module.css";
+import Routing from "./Pages/Routing/Routing";
+import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
 
 function App() {
-    return <div>App</div>;
+    return <Routing />;
 }
 
 export default App;
