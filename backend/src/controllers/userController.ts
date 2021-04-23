@@ -52,14 +52,14 @@ export default class UserController {
           .status(400)
           .send({
             message:
-              'Użytkownik o podanym adresie email jest już zarejestrowany.',
+              'User already registered',
           });
   
       if (isAdmin) {
         return res
           .status(403)
           .send({
-            message: 'Nie masz uprawnień do nadania statusu Administratora.',
+            message: 'Forbidden.',
           });
       }
   
@@ -74,7 +74,7 @@ export default class UserController {
   
       const token = user.generateAuthToken();
       res.status(201).send({
-        message: 'Rejestracja przebiegła pomyślnie.',
+        message: 'Registration success.',
         name: user.name,
         email: user.email,
         token: token,
@@ -89,11 +89,11 @@ export default class UserController {
     let id = req.params.id;
     const isIdValid = mongoose.Types.ObjectId.isValid(id);
     if (!isIdValid) {
-      return res.status(400).send({ message: 'Podano błędny numer id.' });
+      return res.status(400).send({ message: 'Incorrect id.' });
     }
     let user = await User.findById(id);
     if (!user)
-      return res.status(404).send({ message: 'Podany użytkownik nie istnieje.' });
+      return res.status(404).send({ message: 'User does not exist.' });
   
     try {
       const updateUser : any = {};
@@ -107,7 +107,7 @@ export default class UserController {
           return res
             .status(403)
             .send({
-              message: 'Nie masz uprawnień do zmiany statusu Administratora.',
+              message: 'Forbidden.',
             });
         }
   
@@ -127,7 +127,7 @@ export default class UserController {
         { new: true }
       );
       res.status(200).send({
-        message: `Zaktualizowano następujące pola: ${JSON.stringify(updateUser)}`,
+        message: `Updated fields: ${JSON.stringify(updateUser)}`,
       });
     } catch (error) {
       res.status(400).send({ error: error.message });
@@ -138,7 +138,7 @@ export default class UserController {
     let id = req.user._id;
     let user = await User.findById(req.user._id);
     if (!user)
-      return res.status(404).send({ message: 'Podany użytkownik nie istnieje.' });
+      return res.status(404).send({ message: 'User does not exist.' });
   
     try {
       let updateUser = {};
@@ -152,7 +152,7 @@ export default class UserController {
             .status(403)
             .send({
               message:
-                'Nie masz uprawnień do nadania sobie statusu Administratora.',
+                'Forbidden.',
             });
         }
         updateUser[propName] = newValue;
@@ -171,7 +171,7 @@ export default class UserController {
         { new: true }
       );
       res.status(200).send({
-        message: `Zaktualizowano następujące pola: ${JSON.stringify(updateUser)}`,
+        message: `Updated fields: ${JSON.stringify(updateUser)}`,
       });
     } catch (error) {
       res.status(400).send({ error: error.message });
@@ -181,21 +181,21 @@ export default class UserController {
   deleteMe = async (req, res, next) => {
     let user = await User.findById(req.user._id).select('-password');
     if (!user)
-      return res.status(404).send({ message: 'Podany użytkownik nie istnieje.' });
+      return res.status(404).send({ message: 'User does not exist.' });
   
     if (user.isAdmin) {
       return res
         .status(403)
         .send({
           message:
-            'Tylko inny Admin może usunąć konto o uprawnieniach Admin.',
+            'Only Admin can delete another Admin account.',
         });
     }
   
     user = await User.findByIdAndRemove(req.user._id).select('-password');
   
     res.status(202).send({
-      message: 'Konto zostało poprawnie usunięte',
+      message: 'Account deleted successfully.',
       user,
     });
   };
@@ -203,7 +203,7 @@ export default class UserController {
   deleteUser = async (req, res, next) => {
     const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
     if (!isIdValid) {
-      return res.status(400).send({ message: 'Podano błędny numer id.' });
+      return res.status(400).send({ message: 'Incorrect id.' });
     }
   
     let user = await User.findById(req.params.id);
@@ -211,7 +211,7 @@ export default class UserController {
       return res
         .status(403)
         .send({
-          message: 'Nie masz uprawnień do usunięcia konta administratora.',
+          message: 'Forbidden.',
         });
     }
   
@@ -220,17 +220,17 @@ export default class UserController {
         .status(403)
         .send({
           message:
-            'Tylko inny Admin może usunąć konto o uprawnieniach Admin.',
+            'Only Admin can delete another Admin account.',
         });
     }
   
     user = await User.findByIdAndRemove(req.params.id);
     if (!user) {
-      return res.status(404).send({ message: 'Podany użytkownik nie istnieje.' });
+      return res.status(404).send({ message: 'User does not exist.' });
     }
   
     res.status(202).send({
-      message: 'Pomyślnie usunięto konto użytkownika.',
+      message: 'Account deleted successfully.',
       user,
     });
   };

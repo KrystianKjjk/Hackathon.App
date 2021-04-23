@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-const jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import * as Joi from 'joi';
 
@@ -13,7 +13,6 @@ export interface IUser extends mongoose.Document{
 
 
 const userSchema = new mongoose.Schema<IUser>({
-    // _id: mongoose.Types.ObjectId,
     name: {
         type: String,
         required: true,
@@ -75,6 +74,3 @@ const updateUserSchema = Joi.object({
 });
 
 export { User,  newUserSchema as validateUser, updateUserSchema as validatePatchUpdate }
-// exports.User = User;
-// exports.validateUser = newUserSchema;
-// exports.validatePatchUpdate = updateUserSchema;
