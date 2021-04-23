@@ -45,6 +45,10 @@ const userSchema = new mongoose.Schema<IUser>({
         type: String,
         ref: 'Group'
     },
+    photo: {
+        type: Buffer.from('base64'),
+        default: ''
+    },
     email: { 
         type: String, 
         minLength: 5,
@@ -58,6 +62,10 @@ const userSchema = new mongoose.Schema<IUser>({
         required: true,
         minLength: 8,
         maxLength: 1024
+    },
+    totalPoints: {
+        type: Number,
+        default: 0
     },
     isAdmin: {
         type: Boolean,
@@ -86,16 +94,35 @@ const User = mongoose.model<IUser & mongoose.Document>('User', userSchema);
 
 const newUserSchema = Joi.object({
     name: Joi.string().min(2).max(50).regex(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/).required(),
+    surname: Joi.string().min(2).max(50).regex(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/).required(),
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(8).max(255).regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z<>!@#$%^&*?_=+-]{8,}$/).required(),
-    isAdmin: Joi.boolean()
+    isAdmin: Joi.boolean(),
+    role: Joi.string()
+    .valid(
+        'mag',
+        'palladin',
+        'warrior'
+    ),
+    currentGroup: Joi.string(),
+    photo: Joi.binary().encoding('base64').max(5*1024*1024), //image size validation 5MB
+    totalPoints: Joi.number(),
 });
 
 const updateUserSchema = Joi.object({
     name: Joi.string().min(2).max(50).regex(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/),
     email: Joi.string().min(5).max(255).email(),
     password: Joi.string().min(8).max(255).regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z<>!@#$%^&*?_=+-]{8,}$/),
-    isAdmin: Joi.boolean()
+    isAdmin: Joi.boolean(),
+    role: Joi.string()
+    .valid(
+        'mag',
+        'palladin',
+        'warrior'
+    ),
+    currentGroup: Joi.string(),
+    photo: Joi.binary().encoding('base64').max(5*1024*1024), //image size validation 5MB
+    totalPoints: Joi.number(),
 });
 
 export { User,  newUserSchema as validateUser, updateUserSchema as validatePatchUpdate }

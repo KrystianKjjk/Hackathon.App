@@ -6,7 +6,7 @@ const userRoutes = (userController: UserController, router: express.Router) => {
 
     return () => {
         router.get('/users/me', auth.loggedUser, userController.getMe)
-        router.get('/users', auth.loggedUser, userController.getAll)
+        router.get('/users', userController.getAll)
         router.get('/users/:id', [auth.loggedUser, auth.isAdmin], userController.getUser)
         router.post('/users', userController.addUser)
         router.patch("/users/me", auth.loggedUser, userController.updateUser);
