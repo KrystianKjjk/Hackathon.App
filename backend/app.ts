@@ -11,6 +11,9 @@ import ScenarioService from './src/services/scenarioService';
 import ScenarioController from './src/controllers/scenarioController';
 import ScenarioRouter from './src/routes/scenarioRouter';
 
+// import users from './src/routes/userRoute';
+const users = require('./src/routes/userRoute');
+
 const app = express();
 const router = express.Router();
 
@@ -45,6 +48,8 @@ const scenarioService = new ScenarioService(scenarioRepository);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
 app.use('/api', scenarioRouter());
+
+app.use('/api/users', users);
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
