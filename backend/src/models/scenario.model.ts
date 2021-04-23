@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose';
 
+
 export interface Decision {
-    text: string;
+    title: string;
     risk: number;
     prize: number;
     punishment: number;
