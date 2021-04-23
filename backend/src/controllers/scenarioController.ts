@@ -72,19 +72,19 @@ export default class SampleController {
     };
 
     takeDecision = async (
-        req: express.Request,
+        req: express.Request & { user: { _id: mongoose.Types.ObjectId } },
         res: express.Response
     ) => {
         try {
             const id = new mongoose.Types.ObjectId(req.params.id);
             const questName = req.params.questName;
             const decisionName = req.params.decisionName;
-            const userId = req.headers['token']
+            const userId = req?.user._id;
 
-            const updatedData = await this.service.update(id, scenarioData);
+            const updatedData = await this.service.takeDecision(id, questName, decisionName, userId);
 
             if (!updatedData) {
-                return res.status(404).json({ message: "Scenario not found" });
+                return res.status(404).json({ message: "Scenario or quest or decision not found" });
             }
             const fetchedData = await this.service.getById(id);
             return res.status(201).json(fetchedData);
