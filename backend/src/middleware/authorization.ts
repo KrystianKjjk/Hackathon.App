@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
 
-exports.loggedUser = function (req, res, next) {
+export const loggedUser = function (req, res, next) {
     const token = req.header('x-auth-token');
     if (!token) return res.status(401).send({message: 'Odmowa dostępu. Operacja możliwa tylko dla zalogowanego użytkownika.'});
 
     try {
-        const decoded = jwt.verify(token, process.env.SCHRONISKO_JWT_PRIVATE_KEY);
+        const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
         req.user = decoded;
         next();
     }
@@ -14,7 +14,7 @@ exports.loggedUser = function (req, res, next) {
     }
 }
 
-exports.isAdmin = function (req, res, next) {
+export const isAdmin = function (req, res, next) {
     if(!req.user.isAdmin) return res.status(403).send({message: 'Brak uprawnień do wykonania tej operacji.'});
     next();
 }

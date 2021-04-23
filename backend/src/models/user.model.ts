@@ -1,14 +1,14 @@
 import * as mongoose from 'mongoose';
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const Joi = require('joi');
-// const { ValidationError } = require('joi');
+import 'dotenv/config';
+import * as Joi from 'joi';
 
 export interface IUser extends mongoose.Document{
     name: String,
     email: String,
     password: String,
-    isAdmin: boolean
+    isAdmin: boolean,
+    generateAuthToken: () => string
 }
 
 
@@ -74,6 +74,7 @@ const updateUserSchema = Joi.object({
     isAdmin: Joi.boolean()
 });
 
-exports.User = User;
-exports.validateUser = newUserSchema;
-exports.validatePatchUpdate = updateUserSchema;
+export { User,  newUserSchema as validateUser, updateUserSchema as validatePatchUpdate }
+// exports.User = User;
+// exports.validateUser = newUserSchema;
+// exports.validatePatchUpdate = updateUserSchema;

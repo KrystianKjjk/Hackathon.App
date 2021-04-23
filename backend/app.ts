@@ -9,8 +9,13 @@ import SampleService from './src/services/sampleService';
 import Repository from './src/repositories/repository';
 import SampleController from './src/controllers/sampleController';
 import sampleRoutes from './src/routes/sampleRoute';
-// import users from './src/routes/userRoute';
-const users = require('./src/routes/userRoute');
+
+import UserController from './src/controllers/userController';
+import userRoutes from './src/routes/userRoute';
+
+import LoginController from './src/controllers/loginController';
+import loginRoutes from './src/routes/loginRoute';
+// const users = require('./src/routes/userRoute');
 
 const app = express();
 const router = express.Router();
@@ -45,9 +50,20 @@ const sampleRepository = new Repository(Sample);
 const sampleService = new SampleService(sampleRepository);
 const sampleController = new SampleController(sampleService);
 const sampleRouter = sampleRoutes(sampleController, router);
-app.use('/api', sampleRouter());
 
-app.use('/api/users', users);
+//user route setup
+const userController = new UserController();
+const userRouter = userRoutes(userController, router);
+
+//login route setup
+const loginController = new LoginController();
+const loginRouter = loginRoutes(loginController, router);
+
+
+app.use("/api", sampleRouter());
+app.use("/api", userRouter());
+app.use("/api", loginRouter());
+
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');
