@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
+import useConfirmModal from "../../Hooks/useConfirmModal";
 
 const Routing = () => {
     return (
@@ -23,7 +24,23 @@ const Routing = () => {
 };
 
 const LogIn = () => {
-    return <div>LogIn</div>;
+    const [Modal, setModal] = useConfirmModal();
+    return (
+        <div>
+            <button
+                onClick={() =>
+                    setModal({
+                        text: "MODAL!!!",
+                        handleYes: () => console.log("logging"),
+                    })
+                }
+            >
+                {" "}
+                Open Modal
+            </button>
+            {Modal}
+        </div>
+    );
 };
 
 const LogOut = () => {
