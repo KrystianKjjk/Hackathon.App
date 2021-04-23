@@ -50,6 +50,7 @@ main {
     position:absolute;
     left: 10vw;
     bottom: 0vh;
+    opacity: 100%;
     background: radial-gradient(177.31% 50% at 59.91% 50%, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 100%);
     animation-name: move-shadow;
     animation-iteration-count: infinite;
@@ -58,11 +59,11 @@ main {
 }
 
 @keyframes move-shadow {
-    0%   {bottom: 0vh; left: 10vw;}
-    25%  {bottom: 0vh; left: 20vw;}
-    50%  {bottom: 0vh; left: 30vw;}
-    75%  {bottom: 0vh; left: 20vw;}
-    100% {bottom: 0vh; left: 10vw;}
+    0%   {bottom: 0vh; left: 10vw; opacity: 100%}
+    25%  {bottom: 0vh; left: 20vw; opacity: 80%}
+    50%  {bottom: 0vh; left: 30vw; opacity: 60%}
+    75%  {bottom: 0vh; left: 20vw; opacity: 80%}
+    100% {bottom: 0vh; left: 10vw; opacity: 100%}
 }
 
 .shadow1 {
@@ -71,6 +72,7 @@ main {
     position:absolute;
     left: 0vw;
     bottom: 0vh;
+    opacity: 100%;
     background: radial-gradient(177.31% 50% at 59.91% 50%, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 100%);
     animation-name: move-shadow1;
     animation-iteration-count: infinite;
@@ -79,11 +81,11 @@ main {
 }
 
 @keyframes move-shadow1 {
-    0%   {bottom: 0vh; left: 0vw;}
-    25%  {bottom: 0vh; left: 10vw;}
-    50%  {bottom: 0vh; left: 20vw;}
-    75%  {bottom: 0vh; left: 10vw;}
-    100% {bottom: 0vh; left: 0vw;}
+    0%   {bottom: 0vh; left: 0vw; opacity: 100%}
+    25%  {bottom: 0vh; left: 10vw; opacity: 80%}
+    50%  {bottom: 0vh; left: 20vw; opacity: 60%}
+    75%  {bottom: 0vh; left: 10vw; opacity: 80%}
+    100% {bottom: 0vh; left: 0vw; opacity: 100%}
 }
 
 .shadow2 {
@@ -105,4 +107,26 @@ main {
     50%  {bottom: 0vh; left: 60vw;}
     75%  {bottom: 0vh; left: 65vw;}
     100% {bottom: 0vh; left: 75vw;}
+}
+
+.shadow1 {
+    width: 35vw;
+    height: 90vw;
+    position:absolute;
+    left: 35vw;
+    bottom: 0vh;
+    opacity: 100%;
+    background: radial-gradient(177.31% 50% at 59.91% 50%, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 100%);
+    animation-name: move-shadow3;
+    animation-iteration-count: infinite;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+}
+
+@keyframes move-shadow3 {
+    0%   {bottom: 0vh; left: 35vw; opacity: 100%}
+    25%  {bottom: 0vh; left: 45vw; opacity: 80%}
+    50%  {bottom: 0vh; left: 35vw; opacity: 60%}
+    75%  {bottom: 0vh; left: 25vw; opacity: 80%}
+    100% {bottom: 0vh; left: 35vw; opacity: 100%}
 }

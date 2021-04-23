@@ -76,6 +76,7 @@ export default function SignIn(props: LogInProps) {
     <div className={style.shadow}></div>
     <div className={style.shadow1}></div>
     <div className={style.shadow2}></div>
+    <div className={style.shadow3}></div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div>
