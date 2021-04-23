@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import * as Joi from "joi";
+import Joi from "joi";
 const passwordComplexity = require("joi-password-complexity");
 
 export interface UserModel {
@@ -7,7 +7,7 @@ export interface UserModel {
     surname: string,
     email: string,
     password: string,
-    admin: boolean,
+    isAdmin: boolean,
 };
 
 const UserSchema = new mongoose.Schema({
