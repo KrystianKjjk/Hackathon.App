@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import useConfirmModal from "../../Hooks/useConfirmModal";
+import AdminRouting from "./AdminRouting";
 
 const Routing = () => {
+    const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
+
     return (
         <div>
             <Router>
@@ -14,6 +17,7 @@ const Routing = () => {
                     <Route path="/logOut">
                         <LogOut />
                     </Route>
+                    {roleRouting}
                     <Route path="*">
                         <NotFoundPage />
                     </Route>
