@@ -1,9 +1,8 @@
-import { Grid,} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useHttp from '../../Hooks/useHttp';
 import ListItem from '@material-ui/core/ListItem';
 import style, { Container } from './UserList-style';
-
 
 type Users = Array<string>;
 
@@ -11,7 +10,7 @@ const UserList: React.FC = () => {
   const [users, setUsers] = useState<Users>([]);
   const [errors, setErrors] = useState();
   //   const { makeHttpRequest } = useHttp(
-  //     'https://best-animal-shelter.herokuapp.com/api',
+  //     'URL URL URL',
   //     'GET'
   //   );
   useEffect(() => {
@@ -24,20 +23,19 @@ const UserList: React.FC = () => {
     //   }
     // };
     // getUsers();
-    setUsers(['Arek', 'Bogdan', 'Mateusz']);
+    setUsers(['Arek', 'Bogdan', 'Mateusz', 'Arek', 'Bogdan', 'Mateusz']);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <Grid container direction="row" spacing={3}>
+      <Grid container direction="row" spacing={1}>
         <Grid
           container
           item
           xs={3}
           style={style}
           justify="center"
-          alignItems="center"
         >
           <Container>
             <h1>Twój zespół</h1>
@@ -50,20 +48,6 @@ const UserList: React.FC = () => {
             })}
           </Container>
         </Grid>
-
-        <Grid
-          container
-          item
-          xs={3}
-          style={style}
-          justify="center"
-          alignItems="center"
-        >
-          <Container>
-            <h1>Scenariusz</h1>
-          </Container>
-        </Grid>
-
       </Grid>
     </>
   );

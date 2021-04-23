@@ -7,12 +7,10 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-
 export const style = {
-  border: '0.06em solid #0292c9',
-  boxShadow: '0px 0.25em 0.25em #0292c9',
-  margin: '20px',
-  backgroundColor: 'white',
+    border: '0.06em solid #0292c9',
+    margin: '20px',
+    backgroundColor: 'white',
 };
 
 export default style;
