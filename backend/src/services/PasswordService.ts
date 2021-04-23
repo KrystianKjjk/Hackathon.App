@@ -1,4 +1,4 @@
-import UserController from '../controllers/userController'
+
 import Repository from '../repositories/repository'
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -15,13 +15,39 @@ const getAll = async () => {
     return results;
   };
 
+const getUser = async (id) => {
+    const isIdValid = mongoose.Types.ObjectId.isValid(id);
+    if (isIdValid) {
+      const user = await User.findById(id);
+      if (!user)
+        return user
+    } else {
+      return false;
+    }
+  };
+
+
+ const updateUser = async (id, password) => {
+    let req = {body: {password: ''}};
+    req.body.password = password;
+    const isIdValid = mongoose.Types.ObjectId.isValid(id);
+    if (!isIdValid) {
+      return 'incorrect id'
+    }
+    let user = await User.findById(id);
+    if (!user)
+      return 'User does not exist.';
+
+}
+
+
+
 export default class PasswordService{
     userRepository;
     passwordTokenRepository: Repository;
     rounds: number = 10;
 
     constructor (passwordTokenRepository) {
-        this.userRepository = new UserController();
         this.passwordTokenRepository = passwordTokenRepository
     }   
 
@@ -58,7 +84,8 @@ export default class PasswordService{
         if (!isValid) throw new Error("Invalid or expired password reset token");
 
         const hashedPassword = await bcrypt.hash(password, this.rounds);
-        const user = await this.userRepository.getUser(userId);
+        const user = await getUser(userId);
+        //@ts-ignore
         user.password = hashedPassword;
         this.userRepository.updateUser(userId, user);
         await this.passwordTokenRepository.deleteById(userId);
@@ -67,7 +94,7 @@ export default class PasswordService{
 
     async changePassword(id:mongoose.Types.ObjectId, oldPassword:string, newPassword:string): Promise<void> {
         if (oldPassword === newPassword) throw new Error("Old and new passwords are the same");
-        const user = await this.userRepository.getUser(id);
+        const user = await getUser(id);
         if (!user) throw new Error("Invalid user");
         const passwordMatch = await bcrypt.compare(oldPassword, user.password);
         if (!passwordMatch) throw new Error("Invalid pw");
