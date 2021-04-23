@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import useConfirmModal from "../../Hooks/useConfirmModal";
 import AdminRouting from "./AdminRouting";
+import SignIn from "../../Components/Login/Login";
 
 const Routing = () => {
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
@@ -12,7 +13,7 @@ const Routing = () => {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <LogIn />
+                        <SignIn />
                     </Route>
                     <Route path="/logOut">
                         <LogOut />

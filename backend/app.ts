@@ -1,10 +1,22 @@
-import  mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import express from 'express';
 import 'dotenv/config.js';
 import 'express-async-errors';
 import  cors from 'cors';
 
+import Group from './src/models/group.model';
+import GroupService from './src/services/groupService';
+import GroupRepository from './src/repositories/groupRepository';
+import GroupController from './src/controllers/groupController';
+import groupRoutes from './src/routes/groupRoute'
+
 import Repository from './src/repositories/repository';
+
+import UserController from './src/controllers/userController';
+import userRoutes from './src/routes/userRoute';
+
+import LoginController from './src/controllers/loginController';
+import loginRoutes from './src/routes/loginRoute';
 
 import Scenario from './src/models/scenario.model';
 import ScenarioService from './src/services/scenarioService';
@@ -38,6 +50,24 @@ if (!process.env.JWT_PRIVATE_KEY) {
 
 app.use(cors());
 app.use(express.json());
+
+//user route setup
+const userController = new UserController();
+const userRouter = userRoutes(userController, router);
+
+//login route setup
+const loginController = new LoginController();
+const loginRouter = loginRoutes(loginController, router);
+
+app.use("/api", userRouter());
+app.use("/api", loginRouter());
+
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService);
+const GroupRoutes = groupRoutes(groupController, router);
+app.use('/api', GroupRoutes());
 
 //scenario router setup
 const scenarioRepository = new Repository(Scenario);
