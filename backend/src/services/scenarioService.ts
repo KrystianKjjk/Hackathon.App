@@ -13,7 +13,7 @@ export default class ScenarioService {
     return this.scenarioRepository.getAll();
   };
 
-  getById = async (id: mongoose.Types.ObjectId): Promise<(Scenario & mongoose.Document<Scenario>)[]> => {
+  getById = async (id: mongoose.Types.ObjectId): Promise<(Scenario & mongoose.Document<Scenario>)> => {
     return this.scenarioRepository.getById(id);
   };
 
@@ -28,4 +28,24 @@ export default class ScenarioService {
   delete = async (id: mongoose.Types.ObjectId) => {
     return this.scenarioRepository.deleteById(id);
   }
+
+  takeDecision = async (
+    id: mongoose.Types.ObjectId, 
+    questName: string, 
+    decisionName: string, 
+    userId: mongoose.Types.ObjectId
+  ) => {
+    const scenario = await this.getById(id);
+    const questIdx = scenario.quests.findIndex(quest => quest.name === questName);
+    if (questIdx < 0) return null;
+
+    const decisionIdx = scenario.quests[questIdx].decisions.findIndex(decision => decision.title === decisionName);
+    if (decisionIdx < 0) return null;
+
+    scenario.quests[questIdx].decisions[decisionIdx].users.push(userId);
+    scenario.markModified('quests');
+    this.scenarioRepository.save(scenario);
+    return scenario;
+  }
+
 }

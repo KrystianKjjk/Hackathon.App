@@ -71,6 +71,32 @@ export default class SampleController {
         }
     };
 
+    takeDecision = async (
+        req: express.Request,
+        res: express.Response
+    ) => {
+        try {
+            const id = new mongoose.Types.ObjectId(req.params.id);
+            const questName = req.params.questName;
+            const decisionName = req.params.decisionName;
+            const userId = req.headers['token']
+
+            const updatedData = await this.service.update(id, scenarioData);
+
+            if (!updatedData) {
+                return res.status(404).json({ message: "Scenario not found" });
+            }
+            const fetchedData = await this.service.getById(id);
+            return res.status(201).json(fetchedData);
+        } catch (error) {
+            const errorMessage = { message: error.message };
+            if (error.name === "ValidationError") {
+                return res.status(400).json(errorMessage);
+            }
+            return res.status(500).json(errorMessage);
+        }
+    };
+
     delete = async (
         req: express.Request,
         res: express.Response
