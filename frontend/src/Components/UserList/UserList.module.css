@@ -1,0 +1,12 @@
+.gridClass {
+    background-color: rgba(0, 0, 0, 0.56) !important;
+    color: #B3ABAB;
+    padding: 1em;
+    padding-bottom: 2.5em;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+}
+
+.gridItemClass {
+    justify-content: center !important;
+}

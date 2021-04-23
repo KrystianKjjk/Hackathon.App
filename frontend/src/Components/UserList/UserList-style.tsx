@@ -5,12 +5,12 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  font-size: 1.25em;
 `;
 
 export const style = {
-    border: '0.06em solid #0292c9',
-    margin: '20px',
-    backgroundColor: 'white',
+    border: 'none',
+    margin: '1em'
 };
 
 export default style;
