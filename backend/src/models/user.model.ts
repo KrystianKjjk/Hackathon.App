@@ -5,9 +5,14 @@ import * as Joi from 'joi';
 
 export interface IUser extends mongoose.Document{
     name: String,
+    surname: String,
+    role: String,
+    currentGroup: String,
+    photo: String,
     email: String,
     password: String,
     isAdmin: boolean,
+    totalPoints: number,
     generateAuthToken: () => string
 }
 
@@ -18,7 +23,27 @@ const userSchema = new mongoose.Schema<IUser>({
         required: true,
         minLength: 2, 
         maxLength: 50,
-        match: [/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/, 'Pole imię musi zawierać tylko litery']
+        match: [/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/, 'Name can contain only letters.']
+    },
+    surname: {
+        type: String,
+        required: true,
+        minLength: 2, 
+        maxLength: 50,
+        match: [/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,50}$/, 'Name can contain only letters.']
+    },
+    role: {
+        type: String,
+        enum: [
+            'mag',
+            'palladin',
+            'warrior'
+        ],
+        required: true,
+    },
+    currentGroup: {
+        type: String,
+        ref: 'Group'
     },
     email: { 
         type: String, 
@@ -26,7 +51,7 @@ const userSchema = new mongoose.Schema<IUser>({
         maxLength: 255,
         required: true,
         unique: true,
-        match: [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/, 'Podano nieprawidłowy adres email']
+        match: [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/, 'Wrong email.']
     },
     password: { 
         type: String, 
