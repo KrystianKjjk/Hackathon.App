@@ -10,7 +10,7 @@ const Routing = () => {
 
     return (
         <div>
-            <Router>
+            
                 <Switch>
                     <Route exact path="/">
                         <SignIn />
@@ -26,7 +26,6 @@ const Routing = () => {
                         <NotFoundPage />
                     </Route>
                 </Switch>
-            </Router>
         </div>
     );
 };
