@@ -4,6 +4,7 @@ import NotFoundPage from "../../Components/NotFoundPage";
 import useConfirmModal from "../../Hooks/useConfirmModal";
 import Quest from "../../Components/Quest";
 import AdminRouting from "./AdminRouting";
+import Ranking from "../../Components/Ranking";
 import SignIn from "../../Components/Login/Login";
 
 const Routing = () => {
@@ -30,7 +31,11 @@ const Routing = () => {
 };
 
 const LogIn = () => {
+<<<<<<< HEAD
     return <Quest />
+=======
+    return <Ranking />
+>>>>>>> main
 };
 
 const LogOut = () => {
