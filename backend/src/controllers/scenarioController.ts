@@ -3,6 +3,11 @@ import mongoose from 'mongoose';
 import ScenarioSchema from "../models/scenario.model";
 import ScenarioService from '../services/scenarioService';
 
+const second = 1000; // ms
+const minute = 60 * second;
+const hour = 60 * minute;
+const day = 24 * hour;
+
 export default class SampleController {
     service: ScenarioService;
     constructor(service: ScenarioService) {
@@ -31,6 +36,10 @@ export default class SampleController {
         res: express.Response
     ) => {
         try {
+            if ( !(req.body.startDate) )
+                req.body.startDate = (new Date()).getTime();
+            if ( !(req.body.endDate) )
+                req.body.endDate = (new Date()).getTime() + 7 * day;
             const scenarioData = new ScenarioSchema(req.body);
             await scenarioData.validate();
             await this.service.create(scenarioData);
