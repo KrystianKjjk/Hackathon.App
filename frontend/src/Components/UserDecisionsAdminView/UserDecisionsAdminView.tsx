@@ -32,7 +32,7 @@ console.log(usersDecisions)
     return (
     <Container>
         <ul>
-            {usersDecisions.map((quest, id)=>{
+            {usersDecisions.map((quest: any, id: number)=>{
                 console.log(quest.name)
             })}
         </ul>
