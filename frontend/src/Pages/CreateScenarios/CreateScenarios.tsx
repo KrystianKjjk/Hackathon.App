@@ -105,6 +105,11 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         setDisplayedScenario(scenario);
     }
 
+    const hideScenario = () => {
+        setDisplayedScenario(undefined);
+        setDisplayedQuest(-1);
+    }
+
     return (
         <Container>
             <Header>STWÓRZ SCENARIUSZ</Header>
@@ -127,7 +132,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                     </span>)
                 )}
                 <div>
-                    <button onClick={() => setDisplayedScenario(undefined)}>ZAMKNIJ</button>
+                    <button onClick={hideScenario}>ZAMKNIJ</button>
                 </div>
             </Modal> }
             <ListContainer className={styles.listContainerStyles}>
