@@ -179,13 +179,6 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         Utwórz
                     </button>
                 )}
-                <button
-                    onClick={() => cancelCreateNewScenarioRequest()}
-                    className={styles.buttonCreateScenarios}
-                >
-                    {" "}
-                    Anuluj
-                </button>
             </div>
             <div
                 style={{
