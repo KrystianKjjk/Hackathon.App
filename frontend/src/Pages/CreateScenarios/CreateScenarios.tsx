@@ -116,7 +116,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
             { displayedScenario && 
             <Modal
                 isOpen={!!displayedScenario}
-                onRequestClose={() => setDisplayedScenario(undefined)}
+                onRequestClose={hideScenario}
                 style={customModalStyles}
                 contentLabel="Example Modal"
             >
