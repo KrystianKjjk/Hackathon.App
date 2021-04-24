@@ -2,6 +2,7 @@ import React from "react";
 import UserList from "../../Components/UserList";
 import PrivateRoute from "../../Components/PrivateRoute";
 import Ranking from "../Ranking";
+import UserScenarioView from "../../Components/UserScenarioView/UserScenarioView"
 import { Route, Switch } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import SignIn from "../Login/Login";
@@ -19,7 +20,7 @@ const UserRouting = () => {
                 <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/scenario">
-                <Ranking />
+                <UserScenarioView />
             </PrivateRoute>
             <PrivateRoute path="/myteam">
                 <UserList />

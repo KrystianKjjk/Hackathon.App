@@ -5,6 +5,10 @@ import Routing from "./Pages/Routing/Routing";
 // import CreateTeamsPage from './Pages/CreateTeamsPage/CreateTeamsPage';
 //import UserScenarioView from './Components/UserScenarioView/UserScenarioView';
 // import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
+import UserScenarioView from './Components/UserScenarioView/UserScenarioView';
+// // import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
+// import CreateDecision from './Components/CreateDecision/CreateDecision'
+// import Decisions from './Components/Decisions/Decisions'
 
 function App() {
     return <Routing />;
