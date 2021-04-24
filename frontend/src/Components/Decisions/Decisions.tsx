@@ -68,13 +68,13 @@ const DisplayDecision = (props:any) => {
             </div>
             <div className={styles.numbersRow} >
                 <div className={styles.number1}>
-                    <strong>Ryzyko</strong> <span>{props.children.risk}</span>
+                    <div className={styles.valueTitle}>Ryzyko:</div> <span>{props.children.risk}</span>
                 </div>
                 <div className={styles.number1}> 
-                    <strong>Nagroda</strong> <span>{props.children.prize}</span>
+                    <div className={styles.valueTitle}>Nagroda:</div> <span>{props.children.prize}</span>
                 </div>
                 <div className={styles.number1}>
-                   <strong>Kara</strong>  <span>{props.children.punishment}</span>
+                   <div className={styles.valueTitle}>Kara:</div>  <span>{props.children.punishment}</span>
                 </div>
             </div>
            

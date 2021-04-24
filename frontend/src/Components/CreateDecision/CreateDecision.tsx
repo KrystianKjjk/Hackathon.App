@@ -33,7 +33,6 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
             users: []
         }
         onSubmit(decision);
-        console.log(decision);
         return decision;
     };
 

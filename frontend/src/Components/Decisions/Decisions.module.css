@@ -1,5 +1,3 @@
-
-
 .createDecisionContainer {
     box-sizing: border-box;
     text-align: center;
@@ -52,11 +50,17 @@
 
 .number1{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 20px;
 }
 
 .tileTitle{
     font-size:20px;
     margin-bottom:10px;
+    font-weight: 600;
+}
+
+.valueTitle{
+    margin-right:5px;
+    font-weight:500;
 }
