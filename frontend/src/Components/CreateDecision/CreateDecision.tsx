@@ -52,33 +52,36 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                     label="Title"
                 />
             </div>
-            <div className={styles.inputContainer}>
-                <StyledTextField
-                    value={risk}
-                    onChange={e => setRisk(parseInt(e.target.value))}
-                    name="title"
-                    type="number"
-                    label="Risk"
-                />
+            <div className={styles.numberContainer}>
+                <div className={styles.number}>
+                    <StyledTextField
+                        value={risk}
+                        onChange={e => setRisk(parseInt(e.target.value))}
+                        name="title"
+                        type="number"
+                        label="Risk"
+                    />
+                </div>
+                <div className={styles.number}>
+                    <StyledTextField
+                        value={prize}
+                        onChange={e => setPrize(parseInt(e.target.value))}
+                        name="title"
+                        type="number"
+                        label="Prize"
+                    />
+                </div>
+                <div className={styles.number}>
+                    <StyledTextField
+                        value={punishment}
+                        onChange={e => setPunishment(parseInt(e.target.value))}
+                        name="title"
+                        type="number"
+                        label="Punishment"
+                    />
+                </div>
             </div>
-            <div className={styles.inputContainer}>
-                <StyledTextField
-                    value={prize}
-                    onChange={e => setPrize(parseInt(e.target.value))}
-                    name="title"
-                    type="number"
-                    label="Prize"
-                />
-            </div>
-            <div className={styles.inputContainer}>
-                <StyledTextField
-                    value={punishment}
-                    onChange={e => setPunishment(parseInt(e.target.value))}
-                    name="title"
-                    type="number"
-                    label="Punishment"
-                />
-            </div>
+           
 
             <Button
                 type="submit"

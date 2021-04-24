@@ -9,9 +9,19 @@
 }
 
 .inputContainer {
-    margin: 20px;
+    margin: 20px 0;
 }
 
 .submit{
     width: 50%;
+}
+
+.numberContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+.number{
+    width:30%;
+    margin: 0;
 }
