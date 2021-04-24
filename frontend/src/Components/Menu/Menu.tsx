@@ -2,13 +2,13 @@ import { List } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
-import AddIcon from '@material-ui/icons/Add';
-import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
+import AddIcon from "@material-ui/icons/Add";
+import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import PeopleIcon from "@material-ui/icons/People";
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PersonIcon from '@material-ui/icons/Person';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import PersonIcon from "@material-ui/icons/Person";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import ItemLink from "../ItemLink";
@@ -38,7 +38,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 float: "left",
                 color: "black",
                 fontSize: "1.5em",
-                fontWeight: 'bold',
+                fontWeight: "bold",
             },
             userDiv: {
                 borderBottom: "1px solid #666666",
@@ -72,7 +72,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                             text="KREATOR ZESPOŁÓW"
                         />
                         <ItemLink
-                            path="/createScenario"
+                            path="/scenario"
                             icon={<MenuBookIcon />}
                             text="SCENARIUSZE"
                         />
