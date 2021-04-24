@@ -117,7 +117,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         history.push("/scenario/create");
     };
     return (
-        <Container>
+        <Container className={styles.createScenarioContainer}>
             <Header>STWÓRZ SCENARIUSZ</Header>
             {displayedScenario && (
                 <Modal
@@ -196,7 +196,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
             >
                 <button
                     onClick={() => createNewScenario()}
-                    className={styles.buttonCreateTeams1}
+                    className={styles.buttonCreateScenarios1}
                 >
                     UTWÓRZ NOWY SCENARIUSZ
                 </button>

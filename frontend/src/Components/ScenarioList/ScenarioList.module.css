@@ -6,6 +6,7 @@
 
 .containerStyles {
     width: 50%;
+    max-height: 90vh !important;
 }
 
 .containerStyles h3 {

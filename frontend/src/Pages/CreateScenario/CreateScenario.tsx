@@ -12,6 +12,8 @@ import { Quest } from "../../Models/Quest";
 import Modal from "react-modal";
 import AddNewQuest from "../../Components/AddNewQuest";
 import instance from "../../Api/axiosInstance";
+import styling from './CreateScenario.module.css'
+
 
 interface CreateScenarioProps {}
 
@@ -50,17 +52,18 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
                 label={"Opis scenariusza"}
                 value={scenarioDescription}
                 onChange={(e) => setScenarioDescription(e.target.value)}
+                className={styling.inputScenario}
             />
             {image}
-            <button onClick={addPhoto}>Prześlij obrazek do zadania</button>
+            <button onClick={addPhoto} className={styling.buttonSingleScenario}>Prześlij obrazek do zadania</button>
             <h3>Zadania</h3>
             <QuestContainer>
                 {quests.map((quest, idx) => (
                     <QuestElement key={idx}>{quest.name}</QuestElement>
                 ))}
             </QuestContainer>
-            <button onClick={addNewQuest}>Dodaj nowe zadanie</button>
-            <BottomButton onClick={confirmNewScenario}>
+            <button onClick={addNewQuest} className={styling.buttonSingleScenario}>Dodaj nowe zadanie</button>
+            <BottomButton onClick={confirmNewScenario} className={styling.buttonSingleScenario}>
                 Zatwierdź scenariusz
             </BottomButton>
             <Modal

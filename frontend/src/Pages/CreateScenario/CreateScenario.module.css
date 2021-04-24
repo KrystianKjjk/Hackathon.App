@@ -7,7 +7,7 @@
   margin: auto;
 }
 
-.buttonCreateScenarios1 {
+.buttonSingleScenario {
     font-size: 1em;
     font-weight: bold;
     box-sizing: border-box;
@@ -15,17 +15,16 @@
     background-color:  rgba(0, 0, 0, 0.75);
     color:  #B3ABAB;
     margin: 0.3em;
-    width: 100% !important;
+    width: 40% !important;
 }
 
-.buttonCreateScenarios {
-    font-size: 1em;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 0.7em;
-    background-color:  rgba(0, 0, 0, 0.75);
-    color:  #B3ABAB;
-    margin: 0.3em;
+.inputScenario label:focus {
+  color: black;
+}
+
+.inputScenario div::after {
+  color: black;
+  border-bottom: 1px solid black !important; 
 }
 
 /* width */
