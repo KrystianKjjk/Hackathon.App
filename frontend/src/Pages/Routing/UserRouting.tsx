@@ -2,30 +2,23 @@ import React from "react";
 import UserList from "../../Components/UserList";
 import PrivateRoute from "../../Components/PrivateRoute";
 import Ranking from "../Ranking";
-import { getUserFromLocalStorage } from "../../app/utils";
 import { Route, Switch } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import SignIn from "../Login/Login";
-import UserProfile from "../../Components/UserProfile";
+import UserProfile from "../UserProfile";
 
 const UserRouting = () => {
-    const user = getUserFromLocalStorage();
 
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
-            <Route path="/logOut">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/home">
-                <LogOut />
+                <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/myprofil">
-                {/*
-                    // @ts-ignore */}
-                <UserProfile user={user.user} />
+                <UserProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/scenario">
+                <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/myteam">
                 <UserList />
@@ -36,9 +29,6 @@ const UserRouting = () => {
             <PrivateRoute path="/ranking">
                 <Ranking />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
         </Switch>
     );
 };

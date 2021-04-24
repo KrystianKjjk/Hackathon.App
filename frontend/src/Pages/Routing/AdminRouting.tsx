@@ -5,23 +5,13 @@ import { Route, Switch } from "react-router-dom";
 import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
-import UserProfile from "../../Components/UserProfile";
-import { getUserFromLocalStorage } from "../../app/utils";
+import UserProfile from "../UserProfile";
 
 const AdminRouting = () => {
-    const user = getUserFromLocalStorage();
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
-            <Route path="/logOut">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/myprofil">
-                {/*
-                    // @ts-ignore */}
-            <UserProfile user={user.user} />
+                <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/teamsManagement">
                 <CreateTeamsPage />
@@ -33,11 +23,8 @@ const AdminRouting = () => {
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <LogOut />
+                <UserProfile />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
         </Switch>
     );
 };

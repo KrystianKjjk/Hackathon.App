@@ -13,7 +13,7 @@ const ItemLink = ({ path, icon, text, textColor }: ListItemLinkProps) => {
     const style = textColor !== undefined ? { color: textColor } : undefined;
     return (
         <ListItem button component={Link} to={path}>
-            <ListItemIcon>{icon}</ListItemIcon>
+            <ListItemIcon style={style}>{icon}</ListItemIcon>
             <ListItemText primary={text} style={style} />
         </ListItem>
     );
