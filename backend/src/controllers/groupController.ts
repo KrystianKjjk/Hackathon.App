@@ -2,13 +2,16 @@ import * as express from "express";
 import mongoose from 'mongoose';
 import GroupSchema from '../models/group.model';
 import GroupService from '../services/groupService';
+import ScenarioService from '../services/scenarioService';
 
 export default class GroupController {
     service: GroupService;
-    constructor(service: GroupService) {
-        this.service = service;
-    }
+    scenarioService: ScenarioService
 
+    constructor(service: GroupService, scenarioService: ScenarioService) {
+        this.service = service;
+        this.scenarioService = scenarioService;
+    }
     getAll = async (
         req: express.Request,
         res: express.Response
@@ -46,9 +49,26 @@ export default class GroupController {
         req: express.Request,
         res: express.Response
     ) => {
-        try {
-            const sampleData = new GroupSchema(req.body);
+        try {           
+
+            const group = req.body;           
+
+            if(!group.scenario) {
+                const scenario = await this.scenarioService.getAll();
+                const scenarioWithQuest = scenario.find(element => element.quests !== undefined)
+                //@ts-ignore
+                console.log(scenarioWithQuest.quests);
+                //@ts-ignore
+                group.scenario = scenarioWithQuest?._id;
+                
+                //@ts-ignore
+                group.currentQuest = 0; 
+            }
+
+            const sampleData = new GroupSchema(group);
             await sampleData.validate();
+
+
             await this.service.create(sampleData);
             return res.status(201).json(sampleData);
         } catch (error) {
@@ -128,6 +148,20 @@ export default class GroupController {
             
                 const group = req.body;
                 group.users = groups[i];
+               
+
+                if(!group.scenario) {
+                    const scenario = await this.scenarioService.getAll();
+                    const scenarioWithQuest = scenario.find(element => element.quests !== undefined)
+                    //@ts-ignore
+                    console.log(scenarioWithQuest.quests);
+                    //@ts-ignore
+                    group.scenario = scenarioWithQuest?._id;
+                    
+                    //@ts-ignore
+                    group.currentQuest = 0; 
+                }
+
 
                 const sampleData = new GroupSchema(group);
                 await sampleData.validate();
