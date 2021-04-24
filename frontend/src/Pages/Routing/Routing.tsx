@@ -6,6 +6,8 @@ import SignIn from "../Login/LoginWorkaround";
 import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import UserRouting from "./UserRouting";
 import Logout from "../../Components/Logout/Logout";
+import ResetPassword from "../../Components/ResetPassword/ResetPassword";
+import ResetPasswordFromLink from "../../Components/ResetPassword/ResetPasswordFromLink";
 
 const Routing = () => {
     const [userInfo, setUserInfo] = useState(getUserFromLocalStorage());
@@ -28,6 +30,12 @@ const Routing = () => {
                 </Route>
                 <Route exact path="/logout">
                     <Logout />
+                </Route>
+                <Route path="/resetpassword">
+                    <ResetPassword />
+                </Route>
+                <Route path="/requestpasswordreset">
+                    <ResetPasswordFromLink />
                 </Route>
                 {getRouting()}
                 <Route path="*">

@@ -3,7 +3,7 @@ import User from "../Models/User";
 export const getUserFromLocalStorage = () => {
     const userId = localStorage.getItem("id");
     const userToken = localStorage.getItem("token");
-    const userType = localStorage.getItem("type");
+    const userType = localStorage.getItem("isAdmin");
     let userString = localStorage.getItem("user");
 
     let user: User | null = null;
@@ -20,7 +20,7 @@ export const getUserFromLocalStorage = () => {
 export const removeUserFromLocalStorage = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
-    localStorage.removeItem("type");
+    localStorage.removeItem("isAdmin");
     localStorage.removeItem("user");
     localStorage.removeItem("isAdmin");
 };

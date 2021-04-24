@@ -8,7 +8,7 @@ const Logout = () => {
         removeUserFromLocalStorage();
         history.push("/login");
     }, [history]);
-    return <div></div>;
+    return <div />;
 };
 
 export default Logout;
