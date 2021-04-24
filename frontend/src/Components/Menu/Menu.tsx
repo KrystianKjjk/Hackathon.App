@@ -19,6 +19,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 width: "23%",
                 maxWidth: 360,
                 minWidth: 180,
+                margin: "auto",
                 backgroundColor: "transparent",
                 borderRight: "1px solid #666",
                 color: "#fff",
@@ -43,6 +44,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 alignItems: "center",
                 display: "flex",
                 flexDirection: "column",
+                marginBottom: "1em"
             },
         })
     );
