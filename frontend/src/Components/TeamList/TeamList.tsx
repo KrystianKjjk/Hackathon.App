@@ -2,8 +2,9 @@ import React from "react";
 
 import { Container } from "./TeamList-style";
 import Team from "../../Models/Team";
-import UserList2 from "../UserList2";
+import AdminUserList from "../AdminUserList";
 import styled from "styled-components";
+import styles from "./TeamList.module.css"
 
 interface TeamListProps {
     teams: Team[];
@@ -11,11 +12,11 @@ interface TeamListProps {
 
 const TeamList: React.FC<TeamListProps> = ({ teams }) => {
     return (
-        <Container>
-            <h3>Zespoły</h3>
+        <Container className={styles.containerStyles}>
+            <h3>ZESPOŁY</h3>
             {teams.map((team, idx) => (
-                <TeamContainer key={team._id}>
-                    <UserList2 users={team.users} title={`team ${idx + 1}`} />
+                <TeamContainer key={team._id} className={styles.teamContainerStyles}>
+                    <AdminUserList users={team.users} title={`team ${idx + 1}`} />
                 </TeamContainer>
             ))}
         </Container>

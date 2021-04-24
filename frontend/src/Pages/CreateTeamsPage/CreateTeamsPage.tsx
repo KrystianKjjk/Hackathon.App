@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, ListContainer, Header } from "./CreateTeamsPage-style";
-import UserList2 from "../../Components/UserList2";
+import AdminUserList from "../../Components/AdminUserList";
 import User from "../../Models/User";
 import Team from "../../Models/Team";
 import TeamList from "../../Components/TeamList";
 import Input from "@material-ui/core/Input";
 import instance from "../../Api/axiosInstance";
 import { CircularProgress } from "@material-ui/core";
+import styles from './CreateTeamsPageProps.module.css';
 
 interface CreateTeamsPageProps {}
 
@@ -87,9 +88,9 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
     if (loading) return <CircularProgress />;
     return (
         <Container>
-            <Header>Creator zespołów</Header>
-            <ListContainer>
-                <UserList2 users={users} title={"uzytkownicy"} />
+            <Header>STWÓRZ ZESPOŁY</Header>
+            <ListContainer className={styles.listContainerStyles}>
+                <AdminUserList users={users} title={"UŻYTKOWNICY"}/>
                 <TeamList teams={newTeams ?? teams} />
             </ListContainer>
             <div
@@ -97,13 +98,12 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     display: "flex",
-                    margin: "5px",
                 }}
             >
                 {createNewTeamsRequest || (
-                    <button onClick={() => setCreateNewTeamsRequest(true)}>
+                    <button onClick={() => setCreateNewTeamsRequest(true)} className={styles.buttonCreateTeams1}>
                         {" "}
-                        Utwórz nowe zespoły
+                        UTWÓRZ NOWE ZESPOŁY
                     </button>
                 )}
                 {createNewTeamsRequest && (
@@ -120,16 +120,16 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                                 )
                             }
                         />
-                        <button onClick={() => createNewTeams()}>
+                        <button onClick={() => createNewTeams()} className={styles.buttonCreateTeams}>
                             {" "}
                             Utwórz
                         </button>
-                        <button onClick={() => cancelCreateNewTeamRequest()}>
+                        <button onClick={() => cancelCreateNewTeamRequest()} className={styles.buttonCreateTeams}>
                             {" "}
                             Anuluj
                         </button>
                         {canConfirmNewTeams && (
-                            <button onClick={() => confirmNewTeam()}>
+                            <button onClick={() => confirmNewTeam()} className={styles.buttonCreateTeams}>
                                 {" "}
                                 Zatwierdź nowe zespoły
                             </button>
