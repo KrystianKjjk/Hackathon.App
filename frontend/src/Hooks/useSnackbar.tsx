@@ -32,7 +32,7 @@ const CustomSnackbar: React.FC<CustomSnackbarProps> = ({
     );
 };
 
-const useSnackbar = (): [JSX.Element, string, (value: React.SetStateAction<string>) => void] => {
+const useSnackbar = (): [JSX.Element, (value: React.SetStateAction<string>) => void] => {
     const [error, setError] = useState('');
     const handleCloseError = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
@@ -46,7 +46,7 @@ const useSnackbar = (): [JSX.Element, string, (value: React.SetStateAction<strin
         handleCloseError,
         autoHideDuration: 3000
     }
-    return [<CustomSnackbar {...snackBarData} />, error, setError];
+    return [<CustomSnackbar {...snackBarData} />, setError];
 };
 
 export default useSnackbar;

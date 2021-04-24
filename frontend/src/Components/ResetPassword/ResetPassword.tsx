@@ -39,7 +39,7 @@ export default function ResetPassword() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [beenSent, setBeenSent] = useState(false);
-  const [ErrorSnackbar, , setError] = useSnackbar();
+  const [ErrorSnackbar, setError] = useSnackbar();
 
   const handleSubmit = async () => {
     const service = new BaseService();
