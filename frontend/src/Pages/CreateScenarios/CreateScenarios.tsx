@@ -3,6 +3,7 @@ import { Container, ListContainer, Header } from "../CreateTeamsPage/CreateTeams
 
 import { Scenario, Quest, Decision } from "../../Models/Scenario";
 import Input from "@material-ui/core/Input";
+import ScenarioList from "../../Components/ScenarioList";
 import instance from "../../Api/axiosInstance";
 import styles from './CreateScenarios.module.css';
 
@@ -23,6 +24,10 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const [newScenario, setNewScenario] = useState<Scenario>(initialScenario);
     const [canConfirmNewScenarios, setCanConfirmNewScenarios] = useState(false);
 
+    const [scenarios, setScenarios] = useState<Scenario[]>([]);
+    const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const cancelCreateNewScenarioRequest = () => {
         setNewScenario(initialScenario);
         setCreateNewScenariosRequest(false);
@@ -40,9 +45,26 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         }
     };
 
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoading(true);
+                const allScenarios = await instance.get< Scenario[] >("scenarios");
+                setScenarios(allScenarios.data);
+            } catch (error) {
+                console.log("Nie udało sie pobrać uytkowników");
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, []);
+
     return (
         <Container>
             <Header>STWÓRZ Scenariusz</Header>
+            <ListContainer className={styles.listContainerStyles}>
+                <ScenarioList scenarios={scenarios} />
+            </ListContainer>
             <div
                 style={{
                     justifyContent: "center",
@@ -50,33 +72,24 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                     display: "flex",
                 }}
             >
-                {createNewScenariosRequest || (
-                    <button onClick={() => setCreateNewScenariosRequest(true)} className={styles.buttonCreateScenarios1}>
-                        {" "}
-                        UTWÓRZ NOWE ZESPOŁY
-                    </button>
-                )}
-                {createNewScenariosRequest && (
-                    <>
-                        <Input
-                            value={newScenario.name}
-                            onChange={(e) =>
-                                setNewScenario({
-                                    ...newScenario,
-                                    name: e.target.value,
-                                })
-                            }
-                        />
-                        { canConfirmNewScenarios && <button onClick={() => confirmNewScenario()} className={styles.buttonCreateScenarios}>
-                            {" "}
-                            Utwórz
-                        </button> }
-                        <button onClick={() => cancelCreateNewScenarioRequest()} className={styles.buttonCreateScenarios}>
-                            {" "}
-                            Anuluj
-                        </button>
-                    </>
-                )}
+                
+                <Input
+                    value={newScenario.name}
+                    onChange={(e) =>
+                        setNewScenario({
+                            ...newScenario,
+                            name: e.target.value,
+                        })
+                    }
+                />
+                { canConfirmNewScenarios && <button onClick={() => confirmNewScenario()} className={styles.buttonCreateScenarios}>
+                    {" "}
+                    Utwórz
+                </button> }
+                <button onClick={() => cancelCreateNewScenarioRequest()} className={styles.buttonCreateScenarios}>
+                    {" "}
+                    Anuluj
+                </button>
             </div>
         </Container>
     );

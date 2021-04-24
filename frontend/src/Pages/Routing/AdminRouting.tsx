@@ -18,7 +18,7 @@ const AdminRouting = () => {
                 <CreateTeamsPage />
             </PrivateRoute>
             <PrivateRoute path="/createScenario">
-                <Ranking />
+            <CreateScenariosPage />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />
@@ -26,9 +26,6 @@ const AdminRouting = () => {
             <PrivateRoute path="/home">
                 <UserProfile />
             </PrivateRoute>
-            <Route path="/scenario/create">
-                <CreateScenariosPage />
-            </Route>
             <Route path="*">
                 <NotFoundPage />
             </Route>
