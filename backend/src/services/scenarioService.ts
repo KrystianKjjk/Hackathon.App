@@ -64,6 +64,7 @@ export default class ScenarioService {
     await this.scenarioRepository.save(scenario);
 
     const team = await this.groupRepository.getByUserId(userId);
+    if(!team) return scenario;
     if (team.users.length === decision.users.length){
       const users = team.users.map(user => user._id);
       this._countPoints(users, decision);
