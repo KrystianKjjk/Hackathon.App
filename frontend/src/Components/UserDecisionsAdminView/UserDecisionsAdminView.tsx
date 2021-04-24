@@ -19,7 +19,7 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({
     setLoading(true);
     try {
       const response = await fetch(
-        `https://hackathon-backend-application.herokuapp.com/api/scenarios/6083bdd60573f8c882235689`
+        `https://hackathon-backend-application.herokuapp.com/api/scenarios/${id}`
       );
       let data = await response.json();
       setUsersDecisions(data.quests);
@@ -84,10 +84,7 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({
                               <Container key={id}>
                                 <h4 key={id}>Użytkownicy</h4>
                                 <ListItem>
-                                  <span>Imie:</span> {user.name}
-                                </ListItem>
-                                <ListItem>
-                                  <span>Nazwisko: </span> {user.surname}
+                                  {user.name} {user.surname}
                                 </ListItem>
                                 <ListItem>
                                   <span>Id użytkownika: </span> {user._id}

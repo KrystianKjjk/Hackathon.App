@@ -10,7 +10,7 @@ import UserDecisionsAdminView from "./Components/UserDecisionsAdminView/UserDeci
 // import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
 
 function App() {
-    return <UserDecisionsAdminView />;
+    return <Routing />;
 }
 
 export default App;
