@@ -3,6 +3,8 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import useConfirmModal from "../../Hooks/useConfirmModal";
 import AdminRouting from "./AdminRouting";
+import Ranking from "../../Components/Ranking";
+import SignIn from "../../Components/Login/Login";
 
 const Routing = () => {
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
@@ -28,23 +30,7 @@ const Routing = () => {
 };
 
 const LogIn = () => {
-    const [Modal, setModal] = useConfirmModal();
-    return (
-        <div>
-            <button
-                onClick={() =>
-                    setModal({
-                        text: "MODAL!!!",
-                        handleYes: () => console.log("logging"),
-                    })
-                }
-            >
-                {" "}
-                Open Modal
-            </button>
-            {Modal}
-        </div>
-    );
+    return <Ranking />
 };
 
 const LogOut = () => {

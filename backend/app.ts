@@ -12,6 +12,8 @@ import groupRoutes from './src/routes/groupRoute'
 
 import Repository from './src/repositories/repository';
 
+// import users from './src/routes/userRoute';
+const users = require('./src/routes/userRoute');
 import UserController from './src/controllers/userController';
 import userRoutes from './src/routes/userRoute';
 
@@ -19,19 +21,32 @@ import LoginController from './src/controllers/loginController';
 import loginRoutes from './src/routes/loginRoute';
 
 import Scenario from './src/models/scenario.model';
+import ScenarioRepository from './src/repositories/scenarioRepository';
 import ScenarioService from './src/services/scenarioService';
 import ScenarioController from './src/controllers/scenarioController';
 import ScenarioRouter from './src/routes/scenarioRouter';
 
+<<<<<<< HEAD
 import PasswordResetTokenModel from './src/models/PasswordResetToken';
 import PasswordService from './src/services/PasswordService';
 import PasswordController from './src/controllers/PasswordController';
 import PasswordRoutes from './src/routes/PasswordRoutes';
 import MailingService from './src/services/mailingService';
 import * as nodemailer from 'nodemailer';
+=======
+const second = 1000; // ms
+const minute = 60 * second;
+const groupTimeout = Number(process.env.GROUP_TIMEOUT) ?? minute;
+>>>>>>> main
 
 const app = express();
 const router = express.Router();
+
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService);
+const GroupRoutes = groupRoutes(groupController, router);
 
 mongoose.set('useUnifiedTopology', true);
 mongoose
@@ -44,6 +59,10 @@ mongoose
   )
   .then(() => {
     console.log('Connected to Atlas MongoDB');
+    setInterval( () => {
+      console.log('deactivate old groups');
+      groupRepository.deactivateOlderThan( new Date( (new Date).getTime() - groupTimeout ) )
+    }, minute );
   })
   .catch((error) => {
     console.log('Connection failed', error);
@@ -68,6 +87,7 @@ const loginRouter = loginRoutes(loginController, router);
 
 app.use("/api", userRouter());
 app.use("/api", loginRouter());
+<<<<<<< HEAD
 
 //password reset setup
 const mailingService = new MailingService(nodemailer);
@@ -82,10 +102,12 @@ const groupRepository = new GroupRepository(Group);
 const groupService = new GroupService(groupRepository);
 const groupController = new GroupController(groupService);
 const GroupRoutes = groupRoutes(groupController, router);
+=======
+>>>>>>> main
 app.use('/api', GroupRoutes());
 
 //scenario router setup
-const scenarioRepository = new Repository(Scenario);
+const scenarioRepository = new ScenarioRepository(Scenario);
 const scenarioService = new ScenarioService(scenarioRepository);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
