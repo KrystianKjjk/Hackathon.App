@@ -31,11 +31,7 @@ const Routing = () => {
 };
 
 const LogIn = () => {
-<<<<<<< HEAD
-    return <Quest />
-=======
-    return <Ranking />
->>>>>>> main
+    return <Quest scenarioID="608323e47b7b7b83541700da" questIndex={0}/>
 };
 
 const LogOut = () => {

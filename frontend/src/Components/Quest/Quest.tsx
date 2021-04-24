@@ -3,36 +3,37 @@ import React, { useState, useEffect } from 'react';
 import style from './Quest.module.css'
 
 interface QuestProps {
-
+    scenarioID: string,
+    questIndex: number
 }
 
 interface QuestInterface {
-    image: string,
-    instruction: string,
-    options: Array<{title: string, chosenBy: string[]}>
+    image?: string,
+    name: string,
+    decisions: Array<{title: string, risk?: number, punishment?: number, prize?: number, users: any[]}>
 }
 
 const testQuestObject = {
     image: "https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg",
-    instruction: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sequi alias natus blanditiis reiciendis velit ad harum repudiandae vitae esse. Czy chcesz zaprzyjaźnić się z wilkiem?",
-    options: [
+    name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sequi alias natus blanditiis reiciendis velit ad harum repudiandae vitae esse. Czy chcesz zaprzyjaźnić się z wilkiem?",
+    decisions: [
         {
             title: "Chcę",
-            chosenBy: ["Karol", "Piotr"]
+            users: ["Karol", "Piotr"]
         },
         {
             title: "Nie chcę",
-            chosenBy: ["Ania"]
+            users: ["Ania"]
         },
         {
             title: "Muszę spytać mentora",
-            chosenBy: ["Patryk"]
+            users: ["Patryk"]
         }
     ]
 }
 
 
-const Quest: React.FC<QuestProps> = () => {
+const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
 
     const [quest, setQuest] = useState<QuestInterface | null>(null);
     const [loading, setLoading] = useState(true);
@@ -44,31 +45,35 @@ const Quest: React.FC<QuestProps> = () => {
     }
 
     const fetchData = async () => {
+        setLoading(true);
         try {
-            const response = await fetch('https://hackathon-backend-application.herokuapp.com/api/scenarios');
-            const data = await response.json();
-            console.log(data);
+            const s = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/`);
+            const d = await s.json();
+            console.log(d);
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}`);
+            let data = await response.json();
+            data = data.quests[questIndex];
+            if(!data.image)
+                data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
+                
+            setQuest(data);
         } catch (error) {
             console.log(error);
         }
+        setLoading(false);
     }
 
     useEffect(() => {
-        fetchData();
-
-        setLoading(true);
         
-        /*here we will send api request for a particular quest*/
-        setQuest(testQuestObject);
-
-        setLoading(false);
+        fetchData();
+        
     }, []);
 
     if(loading){
         return <p>loading</p>
     }
 
-    const { image, instruction, options } = quest!;
+    const { image, name:instruction, decisions } = quest!;
     return (
         <div className={style.container}>
             <div className={style.imgContainer}>
@@ -79,12 +84,12 @@ const Quest: React.FC<QuestProps> = () => {
             </div>
             
             <div className={style.optionsContainer}>
-            {options.map((option, index) => {
+            {decisions.map((decision, index) => {
                 return <div key={index} className={style.singleOption} onClick={handleOptionClick}>
-                    <p className={style.optionTitle}>{option.title}</p>
+                    <p className={style.optionTitle}>{decision.title}</p>
                     <ul className={style.chosenByList}>
-                        {option.chosenBy.map((item, index) => {
-                            return <li key={index}>{item}</li>
+                        {decision.users.map((item, index) => {
+                            return <li key={index}>{item.name}</li>
                         })}
                     </ul>
                 </div>
