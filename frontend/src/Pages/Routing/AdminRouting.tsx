@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
+import UserProfile from "../UserProfile";
 
 const AdminRouting = () => {
     return (
@@ -12,11 +13,8 @@ const AdminRouting = () => {
             <Route exact path="/">
                 <SignIn />
             </Route>
-            <Route path="/logOut">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/myprofil">
-                <Ranking />
+                <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/teamsManagement">
                 <CreateTeamsPage />
@@ -28,7 +26,7 @@ const AdminRouting = () => {
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <LogOut />
+                <UserProfile />
             </PrivateRoute>
             <Route path="*">
                 <NotFoundPage />

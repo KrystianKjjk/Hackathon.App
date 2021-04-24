@@ -22,6 +22,7 @@ export const removeUserFromLocalStorage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("type");
     localStorage.removeItem("user");
+    localStorage.removeItem("isAdmin");
 };
 
 export const loggerRole = () => {
