@@ -5,7 +5,8 @@
 }
 
 .containerStyles {
-    width: 50%;
+    margin-bottom: 1em;
+    height: 100%;
 }
 
 .containerStyles h3 {
@@ -13,5 +14,11 @@
 }
 
 .usersContainerStyles {
-    width: 100% !important;
+    width: 90% !important;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+#TeamContainer{
+    width: initial;
 }

@@ -7,10 +7,14 @@
 
 .content {
     background-color: rgba(0, 0, 0, 0.56);
-    width: 100%;
+    width: 80vw;
     max-height: auto;
-
+    /* margin: auto !important; */
     overflow: auto;
     color: #fff;
     
+}
+
+.content > div {
+    margin: 0 auto;
 }

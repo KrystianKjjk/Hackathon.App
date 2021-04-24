@@ -1,6 +1,15 @@
 .listContainerStyles {
-    width: 90vw !important;
     height: 80vh !important;
+    margin-bottom: 1em;
+}
+
+.userListStyles{
+  width: 40%;
+  height: 100%;
+}
+.teamListStyles{
+  width: 40%;
+  height: 100%;
 }
 
 .buttonCreateTeams1 {
@@ -11,7 +20,7 @@
     background-color:  rgba(0, 0, 0, 0.75);
     color:  #B3ABAB;
     margin: 0.3em;
-    width: 100% !important;
+    width: 80% !important;
 }
 
 .buttonCreateTeams {

@@ -16,12 +16,11 @@ const Menu: React.FC<MenuProps> = (props) => {
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
-                width: "23%",
+                width: "20vw",
                 maxWidth: 360,
                 minWidth: 180,
                 margin: "auto",
                 backgroundColor: "transparent",
-                borderRight: "1px solid #666",
                 color: "#fff",
                 "& .MuiListItem-root": {
                     "&:hover": {
