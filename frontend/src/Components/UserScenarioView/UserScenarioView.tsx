@@ -32,6 +32,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
             if(data.scenario)
                 setScenarioID(data.scenario);
         }
+        else setScenarioID('608434ed3348b40042418f59');
     }
 
     useEffect(() => {
