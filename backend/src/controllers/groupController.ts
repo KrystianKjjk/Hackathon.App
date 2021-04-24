@@ -126,8 +126,8 @@ export default class GroupController {
         req: express.Request,
         res: express.Response
     ) => {
-        const id = new mongoose.Types.ObjectId(req.params.id);
-        const groupData = await this.service.getByUserId(id);
+        const id = new mongoose.Types.ObjectId(String('60843aa93348b40042418f66'));
+        const groupData = await this.service.getById(id);
         console.log(groupData);
         return res.status(200).json(groupData);
     };

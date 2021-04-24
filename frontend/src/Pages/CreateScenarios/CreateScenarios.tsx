@@ -13,9 +13,10 @@ import instance from "../../Api/axiosInstance";
 import styles from "./CreateScenarios.module.css";
 
 import Modal from "react-modal";
-import AdminQuestList from "../../Components/AdminQuestList";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import useSnackbar from "../../Hooks/useSnackbar";
+import { CircularProgress } from "@material-ui/core";
 
 interface CreateScenariosPageProps {}
 
@@ -64,31 +65,15 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         quests: [],
     };
     const [newScenario, setNewScenario] = useState<Scenario>(initialScenario);
-    const [canConfirmNewScenarios, setCanConfirmNewScenarios] = useState(false);
-
     const [scenarios, setScenarios] = useState<Scenario[]>([]);
     const [displayedScenario, setDisplayedScenario] = useState<
         Scenario | undefined
     >();
+
+    const [Snackbar, setMessage, setSeverity] = useSnackbar();
+
     const [displayedQuest, setDisplayedQuest] = useState(-1);
-    const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    const cancelCreateNewScenarioRequest = () => {
-        setNewScenario(initialScenario);
-        setCanConfirmNewScenarios(false);
-    };
-
-    const confirmNewScenario = async () => {
-        const req = { newScenario };
-        console.log("confirm new", req);
-        console.log("JSON", JSON.stringify(req));
-        try {
-            const result = await instance.post("/scenarios", req);
-        } catch (error) {
-            console.log("Nie udało się utworzyć scenariusza");
-        }
-    };
 
     useEffect(() => {
         (async () => {
@@ -99,7 +84,8 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 );
                 setScenarios(allScenarios.data);
             } catch (error) {
-                console.log("Nie udało sie pobrać scenariuszy");
+                setMessage("Nie udało się pobrać scenariuszy");
+                setSeverity("error");
             } finally {
                 setLoading(false);
             }
@@ -117,93 +103,87 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const createNewScenario = () => {
         history.push("/scenario/create");
     };
-    console.log(displayedScenario);
+    if (loading) return <CircularProgress />;
     return (
-        <Container className={styles.createScenarioContainer}>
-            <Header>SCENARIUSZE</Header>
-            {displayedScenario && (
-                <Modal
-                    isOpen={!!displayedScenario}
-                    onRequestClose={hideScenario}
-                    style={customModalStyles}
-                    contentLabel="Example Modal"
-                >
-                    <h3>{displayedScenario?.name}</h3>
-                    {displayedScenario.image.length > 100 && (
-                        <img
-                            alt={"obraz - " + displayedScenario.name}
-                            src={displayedScenario.image}
-                        />
-                    )}
-                    <h4>Questy:</h4>
-                    {displayedScenario.quests.map((quest, idx) =>
-                        displayedQuest !== idx ? (
-                            <span onClick={() => setDisplayedQuest(idx)}>
-                                <QuestElement key={idx} quest={quest} />
-                            </span>
-                        ) : (
-                            <span onClick={() => setDisplayedQuest(-1)}>
-                                <QuestDetails quest={quest} />
-                            </span>
-                        )
-                    )}
-                    <div style={{ marginTop: "20px" }}>
-                        <button
-                            className={styles.buttonCreateScenarios1}
-                            onClick={hideScenario}
-                        >
-                            ZAMKNIJ
-                        </button>
-                    </div>
-                </Modal>
-            )}
-            <ListContainer className={styles.listContainerStyles}>
-                <ScenarioList
-                    scenarios={scenarios}
-                    showScenario={showScenario}
-                />
-            </ListContainer>
-            <div
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                }}
-            >
-                <Input
-                    value={newScenario.name}
-                    onChange={(e) =>
-                        setNewScenario({
-                            ...newScenario,
-                            name: e.target.value,
-                        })
-                    }
-                />
-                {canConfirmNewScenarios && (
-                    <button
-                        onClick={() => confirmNewScenario()}
-                        className={styles.buttonCreateScenarios}
+        <>
+            <Container className={styles.createScenarioContainer}>
+                <Header>SCENARIUSZE</Header>
+                {displayedScenario && (
+                    <Modal
+                        isOpen={!!displayedScenario}
+                        onRequestClose={hideScenario}
+                        style={customModalStyles}
+                        contentLabel="Example Modal"
                     >
-                        {" "}
-                        Utwórz
-                    </button>
+                        <h3>{displayedScenario?.name}</h3>
+                        {displayedScenario.image.length > 100 && (
+                            <img
+                                alt={"obraz - " + displayedScenario.name}
+                                src={displayedScenario.image}
+                            />
+                        )}
+                        <h4>Questy:</h4>
+                        {displayedScenario.quests.map((quest, idx) =>
+                            displayedQuest !== idx ? (
+                                <span onClick={() => setDisplayedQuest(idx)}>
+                                    <QuestElement key={idx} quest={quest} />
+                                </span>
+                            ) : (
+                                <span onClick={() => setDisplayedQuest(-1)}>
+                                    <QuestDetails quest={quest} />
+                                </span>
+                            )
+                        )}
+                        <div style={{ marginTop: "20px" }}>
+                            <button
+                                className={styles.buttonCreateScenarios1}
+                                onClick={hideScenario}
+                            >
+                                ZAMKNIJ
+                            </button>
+                        </div>
+                    </Modal>
                 )}
-            </div>
-            <div
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                }}
-            >
-                <button
-                    onClick={() => createNewScenario()}
-                    className={styles.buttonCreateScenarios1}
+                <ListContainer className={styles.listContainerStyles}>
+                    <ScenarioList
+                        scenarios={scenarios}
+                        showScenario={showScenario}
+                    />
+                </ListContainer>
+                <div
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                    }}
                 >
-                    UTWÓRZ NOWY SCENARIUSZ
-                </button>
-            </div>
-        </Container>
+                    <Input
+                        value={newScenario.name}
+                        onChange={(e) =>
+                            setNewScenario({
+                                ...newScenario,
+                                name: e.target.value,
+                            })
+                        }
+                    />
+                </div>
+                <div
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                    }}
+                >
+                    <button
+                        onClick={() => createNewScenario()}
+                        className={styles.buttonCreateScenarios1}
+                    >
+                        UTWÓRZ NOWY SCENARIUSZ
+                    </button>
+                </div>
+            </Container>
+            {Snackbar}
+        </>
     );
 };
 
