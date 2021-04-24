@@ -4,7 +4,8 @@ import { IUser } from './user.model'
 export interface Group {
     users: IUser[],
     scenario: String,
-    currentQuest: String
+    currentQuest: String,
+    messages: String[]
 };
 
 const GroupSchema = new mongoose.Schema({
@@ -14,7 +15,8 @@ const GroupSchema = new mongoose.Schema({
     },
     currentQuest: {
         type: String
-    }
+    },
+    messages: []
 
 }, {timestamps: true})
 

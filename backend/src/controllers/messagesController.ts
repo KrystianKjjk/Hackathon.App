@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { User } from '../models/user.model';
 import GroupSchema from '../models/group.model';
 import MessageSchema from '../models/message.model';
@@ -21,7 +21,8 @@ export default class MessagesController{
       };
       
       sendMessage = async (req, res, next) => {
-        const { gid, username, text, uid, date } = req.body;
+        const { gid, name, text, uid, date } = req.body;
+        console.log(req.body);
       
         // Find group
         let group;
@@ -48,11 +49,13 @@ export default class MessagesController{
       
         // Create message
         const newMessage = new MessageSchema({
-          username,
+          name,
           text,
           group,
           date
         });
+
+        console.log(newMessage)
       
         // Transaction
         try {
