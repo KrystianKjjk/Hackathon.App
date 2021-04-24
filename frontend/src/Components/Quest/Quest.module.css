@@ -2,8 +2,8 @@
 
 .container{
    width: 45vw;
-   border: 5px solid rgba(214, 194, 194, 0.863);
-   background-color: rgba(211, 204, 204, 0.863);
+   /* border: 5px solid rgba(214, 194, 194, 0.863); */
+   /* background-color: rgba(211, 204, 204, 0.863); */
 }
 
 .imgContainer{
@@ -16,7 +16,7 @@
 
 .description{
     text-align: center;
-    background-color: rgba(190, 174, 174, 0.863);
+    background-color:  rgba(48, 47, 47, 0.663);
     font-size: 1.2rem;
     padding: 1rem 0;
     margin-bottom: 0.7rem;
@@ -39,7 +39,7 @@
 }
 
 .singleOption{
-    background-color: rgba(184, 177, 177, 0.863);
+    background-color: rgba(48, 47, 47, 0.763);
     cursor: pointer;
     transition: all 0.2s ease;
     

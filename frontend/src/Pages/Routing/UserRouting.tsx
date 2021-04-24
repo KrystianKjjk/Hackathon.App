@@ -43,13 +43,7 @@ const getScenarioAndQuest = async () => {
     const data = await response.json();
     console.log(data);
 
-    const response2 = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios`);
-    const data2 = await response2.json();
-    console.log(data2)
-
-    const response3 = await fetch(`https://hackathon-backend-application.herokuapp.com/api/users`);
-    const data3 = await response3.json();
-    console.log(data3)
+    
 }
 
 getScenarioAndQuest();
