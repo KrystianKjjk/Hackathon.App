@@ -69,6 +69,10 @@ const ScenarioSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        default: 'imageBase64 or url',
+    },
     description: {
         type: String,
         default: 'Opis'
