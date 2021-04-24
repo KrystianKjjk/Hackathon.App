@@ -118,7 +118,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 <h3>{displayedScenario?.name}</h3>
                 <img alt={"obraz - " + displayedScenario.name} src={displayedScenario.image}/>
                 <h4>Questy:</h4>
-                {displayedScenario.quests.map((quest, idx) => displayedQuest === idx ? (
+                {displayedScenario.quests.map((quest, idx) => displayedQuest !== idx ? (
                     <QuestElement key={idx} quest={quest}/>):
                     (<QuestDetails quest={quest} />)
                 )}
