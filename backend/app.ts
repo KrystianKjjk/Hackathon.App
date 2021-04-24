@@ -36,6 +36,7 @@ import PasswordController from './src/controllers/PasswordController';
 import PasswordRoutes from './src/routes/PasswordRoutes';
 import MailingService from './src/services/mailingService';
 import * as nodemailer from 'nodemailer';
+import { User } from './src/models/user.model';
 const second = 1000; // ms
 const minute = 60 * second;
 const groupTimeout = Number(process.env.GROUP_TIMEOUT) ?? minute;
@@ -91,16 +92,18 @@ const passwordController = new PasswordController(mailingService, passwordServic
 const passwordRoutes = PasswordRoutes(passwordController, router);
 app.use('/api', passwordRoutes());
 
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+
 //scenario router setup
 const scenarioRepository = new ScenarioRepository(Scenario);
-const scenarioService = new ScenarioService(scenarioRepository);
+const scenarioService = new ScenarioService(scenarioRepository, groupRepository, User);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
 app.use('/api', scenarioRouter());
 
 //group route setup
-const groupRepository = new GroupRepository(Group);
-const groupService = new GroupService(groupRepository);
+
 const groupController = new GroupController(groupService, scenarioService);
 const GroupRoutes = groupRoutes(groupController, router);
 app.use('/api', GroupRoutes());
