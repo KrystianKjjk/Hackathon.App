@@ -6,6 +6,7 @@ import {
     Input,
     QuestElement,
     QuestContainer,
+    BottomButton,
 } from "./CreateScenario-style";
 import { Quest } from "../../Models/Quest";
 import Modal from "react-modal";
@@ -22,6 +23,7 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
     const openModal = () => setAddQuestModal(true);
     const addQuest = (quest: Quest) => setQuests((prev) => [...prev, quest]);
     const addNewQuest = () => openModal();
+    const confirmNewScenario = () => {};
     return (
         <Container>
             <Header>Utwórz nowy scenariusz</Header>
@@ -38,6 +40,9 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
                 ))}
             </QuestContainer>
             <button onClick={addNewQuest}>Dodaj nowe zadanie</button>
+            <BottomButton onClick={confirmNewScenario}>
+                Zatwierdź scenariusz
+            </BottomButton>
             <Modal
                 isOpen={addQuestModal}
                 style={customStyles}

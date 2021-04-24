@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { TextField as MaterialText } from "@material-ui/core";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    position: relative;
+    height: 95vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+`;
 export const Header = styled.h2``;
 
 export const Input = styled(MaterialText)`
@@ -20,7 +26,18 @@ export const QuestElement = styled.div`
         cursor: pointer;
     }
 `;
-export const QuestContainer = styled.div``;
+export const BottomButton = styled.button`
+    position: absolute;
+    bottom: 2%;
+    align-self: center;
+`;
+export const QuestContainer = styled.div`
+    background-color: rgba(200, 200, 200, 0.6);
+    width: 76%;
+    margin: 10px;
+    padding: 10px;
+    align-self: center;
+`;
 
 export const style = {};
 
