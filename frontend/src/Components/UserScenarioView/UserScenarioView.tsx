@@ -15,7 +15,6 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     const [scenarioEndDate, setCurrentScenarioEndDate]=useState();
     const [loading, setLoading]=useState<boolean>(false);
     const [scenarioID, setScenarioID] = useState('');
-    const id = localStorage.getItem('toRoute');
 
     const getScenarioId = async () => {
         const id = localStorage.getItem('id');
@@ -56,8 +55,8 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     }
 
     useEffect(()=>{
-        fetchData()
-    },[])
+     fetchData()
+    },[scenarioID])
 
     return loading ? (<p>Loading...</p>):(
     <Container className={styleCss.container}>
