@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import { Decision, Scenario } from "../models/scenario.model";
 import Repository from "../repositories/repository";
 import GroupRepository from "../repositories/groupRepository";
-import { User } from '../models/user.model';
+import { IUser } from '../models/user.model';
 
 export default class ScenarioService {
   private scenarioRepository: Repository;
