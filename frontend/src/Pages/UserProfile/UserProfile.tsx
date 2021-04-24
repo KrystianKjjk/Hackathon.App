@@ -9,7 +9,7 @@ const UserProfile: React.FC = () => {
     return (
         <Container>
             <Typography variant="h2">Witaj podróżniku</Typography>
-            {user.photo ? (
+            {user.photo.length === 0 ? (
                 <img
                     src={`data:image/jpeg;base64,${Buffer.from(
                         user.photo
