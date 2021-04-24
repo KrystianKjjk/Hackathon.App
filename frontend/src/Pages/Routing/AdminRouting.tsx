@@ -8,12 +8,13 @@ import CreateTeamsPage from "../CreateTeamsPage";
 import CreateScenariosPage from "../CreateScenarios";
 import UserProfile from "../UserProfile";
 import CreateScenario from "../CreateScenario";
+import AdminProfile from "../AdminProfile";
 
 const AdminRouting = () => {
     return (
         <Switch>
             <PrivateRoute path="/myprofil">
-                <UserProfile />
+                <AdminProfile />
             </PrivateRoute>
             <PrivateRoute path="/teamsManagement">
                 <CreateTeamsPage />
