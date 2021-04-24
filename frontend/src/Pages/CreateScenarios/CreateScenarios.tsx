@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Container, ListContainer, Header } from "../CreateTeamsPage/CreateTeamsPage-style";
+import React, { useState, useEffect } from "react";
+import {
+    Container,
+    ListContainer,
+    Header,
+} from "../CreateTeamsPage/CreateTeamsPage-style";
 
 import { Scenario, Quest, Decision } from "../../Models/Scenario";
 import Input from "@material-ui/core/Input";
 import ScenarioList from "../../Components/ScenarioList";
 import instance from "../../Api/axiosInstance";
-import styles from './CreateScenarios.module.css';
+import styles from "./CreateScenarios.module.css";
 
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Modal from "react-modal";
-import AdminQuestList from '../../Components/AdminQuestList';
+import AdminQuestList from "../../Components/AdminQuestList";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 interface CreateScenariosPageProps {}
-
 
 const customModalStyles = {
     content: {
@@ -31,11 +35,7 @@ const customModalStyles = {
 };
 
 const QuestElement = ({ quest }: { quest: Quest }) => {
-    return (
-        <QuestContainer>
-            {quest.name}
-        </QuestContainer>
-    );
+    return <QuestContainer>{quest.name}</QuestContainer>;
 };
 const QuestContainer = styled.div`
     background-color: white;
@@ -55,24 +55,25 @@ const QuestContainer = styled.div`
 `;
 
 const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
-    const [createNewScenariosRequest, setCreateNewScenariosRequest] = useState(false);
+    const history = useHistory();
     const initialScenario = {
-        _id: '',
-        name: '',
-        image: '',
+        _id: "",
+        name: "",
+        image: "",
         quests: [],
     };
     const [newScenario, setNewScenario] = useState<Scenario>(initialScenario);
     const [canConfirmNewScenarios, setCanConfirmNewScenarios] = useState(false);
 
     const [scenarios, setScenarios] = useState<Scenario[]>([]);
-    const [displayedScenario, setDisplayedScenario] = useState<Scenario | undefined>();
+    const [displayedScenario, setDisplayedScenario] = useState<
+        Scenario | undefined
+    >();
     const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const cancelCreateNewScenarioRequest = () => {
         setNewScenario(initialScenario);
-        setCreateNewScenariosRequest(false);
         setCanConfirmNewScenarios(false);
     };
 
@@ -91,7 +92,9 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         (async () => {
             try {
                 setLoading(true);
-                const allScenarios = await instance.get< Scenario[] >("scenarios");
+                const allScenarios = await instance.get<Scenario[]>(
+                    "scenarios"
+                );
                 setScenarios(allScenarios.data);
             } catch (error) {
                 console.log("Nie udało sie pobrać scenariuszy");
@@ -103,30 +106,41 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
 
     const showScenario = (scenario: Scenario) => {
         setDisplayedScenario(scenario);
-    }
-
+    };
+    const createNewScenario = () => {
+        history.push("/scenario/create");
+    };
     return (
         <Container>
             <Header>STWÓRZ SCENARIUSZ</Header>
-            { displayedScenario && 
-            <Modal
-                isOpen={!!displayedScenario}
-                onRequestClose={() => setDisplayedScenario(undefined)}
-                style={customModalStyles}
-                contentLabel="Example Modal"
-            >
-                <h3>{displayedScenario?.name}</h3>
-                <img alt={"obraz - " + displayedScenario.name} src={displayedScenario.image}/>
-                <h4>Questy:</h4>
-                {displayedScenario.quests.map((quest) => (
-                    <QuestElement key={quest.id} quest={quest}/>
-                ))}
-                <div>
-                    <button onClick={() => setDisplayedScenario(undefined)}>ZAMKNIJ</button>
-                </div>
-            </Modal> }
+            {displayedScenario && (
+                <Modal
+                    isOpen={!!displayedScenario}
+                    onRequestClose={() => setDisplayedScenario(undefined)}
+                    style={customModalStyles}
+                    contentLabel="Example Modal"
+                >
+                    <h3>{displayedScenario?.name}</h3>
+                    <img
+                        alt={"obraz - " + displayedScenario.name}
+                        src={displayedScenario.image}
+                    />
+                    <h4>Questy:</h4>
+                    {displayedScenario.quests.map((quest) => (
+                        <QuestElement key={quest.id} quest={quest} />
+                    ))}
+                    <div>
+                        <button onClick={() => setDisplayedScenario(undefined)}>
+                            ZAMKNIJ
+                        </button>
+                    </div>
+                </Modal>
+            )}
             <ListContainer className={styles.listContainerStyles}>
-                <ScenarioList scenarios={scenarios} showScenario={showScenario} />
+                <ScenarioList
+                    scenarios={scenarios}
+                    showScenario={showScenario}
+                />
             </ListContainer>
             <div
                 style={{
@@ -135,7 +149,6 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                     display: "flex",
                 }}
             >
-                
                 <Input
                     value={newScenario.name}
                     onChange={(e) =>
@@ -145,11 +158,19 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         })
                     }
                 />
-                { canConfirmNewScenarios && <button onClick={() => confirmNewScenario()} className={styles.buttonCreateScenarios}>
-                    {" "}
-                    Utwórz
-                </button> }
-                <button onClick={() => cancelCreateNewScenarioRequest()} className={styles.buttonCreateScenarios}>
+                {canConfirmNewScenarios && (
+                    <button
+                        onClick={() => confirmNewScenario()}
+                        className={styles.buttonCreateScenarios}
+                    >
+                        {" "}
+                        Utwórz
+                    </button>
+                )}
+                <button
+                    onClick={() => cancelCreateNewScenarioRequest()}
+                    className={styles.buttonCreateScenarios}
+                >
                     {" "}
                     Anuluj
                 </button>
@@ -161,12 +182,12 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                     display: "flex",
                 }}
             >
-                {createNewScenariosRequest || (
-                    <button onClick={() => setCreateNewScenariosRequest(true)} className={styles.buttonCreateTeams1}>
-                        {" "}
-                        UTWÓRZ NOWY SCENARIUSZ
-                    </button>
-                )}
+                <button
+                    onClick={() => createNewScenario()}
+                    className={styles.buttonCreateTeams1}
+                >
+                    UTWÓRZ NOWY SCENARIUSZ
+                </button>
             </div>
         </Container>
     );

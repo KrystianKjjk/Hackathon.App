@@ -22,7 +22,7 @@ const AdminRouting = () => {
                 <CreateScenario />
             </PrivateRoute>
             <PrivateRoute path="/scenario">
-                <Ranking />
+                <CreateScenariosPage />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />
