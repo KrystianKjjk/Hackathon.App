@@ -2,7 +2,6 @@ import * as express from "express";
 import mongoose from 'mongoose';
 import ScenarioSchema from "../models/scenario.model";
 import ScenarioService from '../services/scenarioService';
-import groupService from '../services/groupService';
 
 const second = 1000; // ms
 const minute = 60 * second;
@@ -11,10 +10,8 @@ const day = 24 * hour;
 
 export default class SampleController {
     service: ScenarioService;
-    groupService: groupService;
-    constructor(service: ScenarioService, groupService: groupService) {
+    constructor(service: ScenarioService) {
         this.service = service;
-        this.groupService = groupService;
     }
 
     getAll = async (
@@ -97,14 +94,6 @@ export default class SampleController {
                 return res.status(404).json({ message: "Scenario or quest or decision not found" });
             }
 
-            // getGroupById = async (
-            //     req: express.Request,
-            //     res: express.Response
-            // ) => {
-            //     const id = new mongoose.Types.ObjectId(req.params.id);
-            //     const sampleData = await this.service.getById(id);
-            //     return res.status(200).json(sampleData);
-            // };
             const fetchedData = await this.service.getById(id);
             return res.status(201).json(fetchedData);
         } catch (error) {
