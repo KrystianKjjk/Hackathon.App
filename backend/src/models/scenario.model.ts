@@ -69,6 +69,10 @@ const ScenarioSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        default: 'Opis'
+    },
     quests: [{
         type: QuestSchema,
         required: true,
