@@ -118,7 +118,7 @@ export default class GroupController {
         res: express.Response
     ) => {
         const active = await this.service.getAllActive();
-        if (active.length < 1) 
+        if (active.length > 0) 
             return res.status(200).json({ message: "Creating teams is not allowed, because there are some active teams." });
         
         const groups = req.body.userGroups;
