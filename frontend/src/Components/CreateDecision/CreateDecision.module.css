@@ -4,8 +4,8 @@
     box-sizing: border-box;
     text-align: center;
     padding-bottom: 2em !important;
-    width: 50%;
-    margin-top:20%;
+    width: 50% !important;
+    height: 10px !important;
 }
 
 .inputContainer {

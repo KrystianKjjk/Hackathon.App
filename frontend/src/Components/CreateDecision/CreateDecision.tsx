@@ -41,7 +41,7 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
     return (
         <Container className={styles.createDecisionContainer}>
             <h3>
-                Add a decision to the quest!
+                Dodaj decyzję!
             </h3>
             <div className={styles.inputContainer}>
                 <StyledTextField
@@ -49,8 +49,9 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                     onChange={e => setTitle(e.target.value)}
                     name="title"
                     type="string"
-                    label="Title"
-                />
+                    label="Nazwa"
+                    required={true}
+                    />
             </div>
             <div className={styles.numberContainer}>
                 <div className={styles.number}>
@@ -59,8 +60,9 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         onChange={e => setRisk(parseInt(e.target.value))}
                         name="title"
                         type="number"
-                        label="Risk"
-                    />
+                        label="Ryzyko"
+                        required={true}
+                        />
                 </div>
                 <div className={styles.number}>
                     <StyledTextField
@@ -68,8 +70,9 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         onChange={e => setPrize(parseInt(e.target.value))}
                         name="title"
                         type="number"
-                        label="Prize"
-                    />
+                        label="Nagroda"
+                        required={true}
+                        />
                 </div>
                 <div className={styles.number}>
                     <StyledTextField
@@ -77,8 +80,9 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         onChange={e => setPunishment(parseInt(e.target.value))}
                         name="title"
                         type="number"
-                        label="Punishment"
-                    />
+                        label="Kara"
+                        required={true}
+                        />
                 </div>
             </div>
            
@@ -94,7 +98,7 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
 
                 style={{ backgroundColor: "rgb(1, 79, 51)" }}
             >
-                Add decision
+                Dodaj
           </Button>
 
 
