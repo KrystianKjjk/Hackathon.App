@@ -1,6 +1,6 @@
 
 import Repository from '../repositories/repository'
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto'
 import 'dotenv/config';
@@ -17,12 +17,10 @@ const getAll = async () => {
 
 const getUser = async (id) => {
     const isIdValid = mongoose.Types.ObjectId.isValid(id);
+    
     if (isIdValid) {
       const user = await User.findById(id);
-      if (!user)
         return user
-    } else {
-      return false;
     }
   };
 
@@ -37,7 +35,6 @@ const getUser = async (id) => {
     let user = await User.findById(id);
     if (!user)
       return 'User does not exist.';
-
 }
 
 
@@ -87,7 +84,7 @@ export default class PasswordService{
         const user = await getUser(userId);
         //@ts-ignore
         user.password = hashedPassword;
-        this.userRepository.updateUser(userId, user);
+        updateUser(userId, user);
         await this.passwordTokenRepository.deleteById(userId);
         return true;
     }

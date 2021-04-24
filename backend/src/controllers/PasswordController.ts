@@ -1,6 +1,6 @@
 import PasswordService from '../services/PasswordService';
 import { Request, Response } from 'express';
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 interface MailingService{
     sendMail: Function
@@ -37,7 +37,8 @@ export default class PasswordController{
     }
 
     resetPassword = async (req:Request, res:Response) => {
-        const userId = new mongoose.Types.ObjectId(req.body.userId);
+        const userId1 = String(req.body.userId);
+        const userId = new mongoose.Types.ObjectId(userId1);
         const token = req.body.token;
         const password = req.body.password;
         try{
