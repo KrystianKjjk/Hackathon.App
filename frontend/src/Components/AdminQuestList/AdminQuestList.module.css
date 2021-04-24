@@ -4,11 +4,11 @@
 }
 
 .questsContainerStyles {
-    width: 40%;
+    margin: 15px;
+    width: 100%;
     box-sizing: border-box;
-    margin: auto !important;
     margin-top: 0 !important;
     border-right: 1px solid black;
     text-align: center;
-    
+
 }

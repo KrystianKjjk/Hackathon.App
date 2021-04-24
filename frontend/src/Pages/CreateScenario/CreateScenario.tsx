@@ -14,10 +14,12 @@ import AddNewQuest from "../../Components/AddNewQuest";
 import instance from "../../Api/axiosInstance";
 import styling from "./CreateScenario.module.css";
 import useSnackbar from "../../Hooks/useSnackbar";
+import { useHistory } from "react-router";
 
 interface CreateScenarioProps {}
 
 const CreateScenario: React.FC<CreateScenarioProps> = () => {
+    const history = useHistory();
     const [scenarioDescription, setScenarioDescription] = useState("");
     const [title, setTitle] = useState("");
     const [quests, setQuests] = useState<Quest[]>([]);
@@ -31,6 +33,9 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
     const addNewQuest = () => openModal();
     const addPhoto = () => {
         setImage("ScenarioImage.jpg");
+    };
+    const cancelNewScenario = () => {
+        history.push("scenario");
     };
     const confirmNewScenario = async () => {
         const obj = {
@@ -94,6 +99,13 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
                 >
                     Zatwierdź scenariusz
                 </BottomButton>
+                <BottomButton
+                    onClick={cancelNewScenario}
+                    className={`${styling.buttonSingleScenario} ${styling.cancelButton}`}
+                >
+                    ANULUJ
+                </BottomButton>
+
                 <Modal
                     isOpen={addQuestModal}
                     style={customStyles}

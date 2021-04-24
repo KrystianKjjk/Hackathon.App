@@ -26,10 +26,10 @@ const customModalStyles = {
         left: "50%",
         right: "auto",
         bottom: "auto",
-        marginRight: "-50%",
+        maxWidth: "90%",
+        marginRight: "-20%",
         transform: "translate(-50%, -50%)",
         justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column" as "column",
         display: "flex",
     },
@@ -39,17 +39,17 @@ const QuestElement = ({ quest }: { quest: Quest }) => {
     return <QuestContainer>{quest.name}</QuestContainer>;
 };
 const QuestContainer = styled.div`
-    background-color: white;
-    margin: auto;
+    background-color: rgba(200, 200, 200, 0.6);
+    margin: 10px;
     padding: 5px;
     border: 2px solid black;
     display: flex;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         font-weight: bold;
         cursor: pointer;
     }
@@ -106,76 +106,83 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     if (loading) return <CircularProgress />;
     return (
         <>
-        <Container className={styles.createScenarioContainer}>
-            <Header>SCENARIUSZE</Header>
-            {displayedScenario && (
-                <Modal
-                    isOpen={!!displayedScenario}
-                    onRequestClose={hideScenario}
-                    style={customModalStyles}
-                    contentLabel="Example Modal"
-                >
-                    <h3>{displayedScenario?.name}</h3>
-                    <img
-                        alt={"obraz - " + displayedScenario.name}
-                        src={displayedScenario.image}
+            <Container className={styles.createScenarioContainer}>
+                <Header>SCENARIUSZE</Header>
+                {displayedScenario && (
+                    <Modal
+                        isOpen={!!displayedScenario}
+                        onRequestClose={hideScenario}
+                        style={customModalStyles}
+                        contentLabel="Example Modal"
+                    >
+                        <h3>{displayedScenario?.name}</h3>
+                        {displayedScenario.image.length > 100 && (
+                            <img
+                                alt={"obraz - " + displayedScenario.name}
+                                src={displayedScenario.image}
+                            />
+                        )}
+                        <h4>Questy:</h4>
+                        {displayedScenario.quests.map((quest, idx) =>
+                            displayedQuest !== idx ? (
+                                <span onClick={() => setDisplayedQuest(idx)}>
+                                    <QuestElement key={idx} quest={quest} />
+                                </span>
+                            ) : (
+                                <span onClick={() => setDisplayedQuest(-1)}>
+                                    <QuestDetails quest={quest} />
+                                </span>
+                            )
+                        )}
+                        <div style={{ marginTop: "20px" }}>
+                            <button
+                                className={styles.buttonCreateScenarios1}
+                                onClick={hideScenario}
+                            >
+                                ZAMKNIJ
+                            </button>
+                        </div>
+                    </Modal>
+                )}
+                <ListContainer className={styles.listContainerStyles}>
+                    <ScenarioList
+                        scenarios={scenarios}
+                        showScenario={showScenario}
                     />
-                    <h4>Questy:</h4>
-                    {displayedScenario.quests.map((quest, idx) =>
-                        displayedQuest !== idx ? (
-                            <span onClick={() => setDisplayedQuest(idx)}>
-                                <QuestElement key={idx} quest={quest} />
-                            </span>
-                        ) : (
-                            <span onClick={() => setDisplayedQuest(-1)}>
-                                <QuestDetails quest={quest} />
-                            </span>
-                        )
-                    )}
-                    <div style={{ marginTop: "20px" }}>
-                        <button onClick={hideScenario}>ZAMKNIJ</button>
-                    </div>
-                </Modal>
-            )}
-            <ListContainer className={styles.listContainerStyles}>
-                <ScenarioList
-                    scenarios={scenarios}
-                    showScenario={showScenario}
-                />
-            </ListContainer>
-            <div
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                }}
-            >
-                <Input
-                    value={newScenario.name}
-                    onChange={(e) =>
-                        setNewScenario({
-                            ...newScenario,
-                            name: e.target.value,
-                        })
-                    }
-                />
-            </div>
-            <div
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                }}
-            >
-                <button
-                    onClick={() => createNewScenario()}
-                    className={styles.buttonCreateScenarios1}
+                </ListContainer>
+                <div
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                    }}
                 >
-                    UTWÓRZ NOWY SCENARIUSZ
-                </button>
-            </div>
-        </Container>
-        { Snackbar }
+                    <Input
+                        value={newScenario.name}
+                        onChange={(e) =>
+                            setNewScenario({
+                                ...newScenario,
+                                name: e.target.value,
+                            })
+                        }
+                    />
+                </div>
+                <div
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                    }}
+                >
+                    <button
+                        onClick={() => createNewScenario()}
+                        className={styles.buttonCreateScenarios1}
+                    >
+                        UTWÓRZ NOWY SCENARIUSZ
+                    </button>
+                </div>
+            </Container>
+            {Snackbar}
         </>
     );
 };
