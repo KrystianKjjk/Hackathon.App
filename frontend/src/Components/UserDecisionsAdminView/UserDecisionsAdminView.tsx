@@ -3,19 +3,19 @@ import ListItem from '@material-ui/core/ListItem';
 import { FlexContainer, Container } from './UserDecisionsAdminView-style';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { useHistory } from "react-router";
 
 interface UserDecisionsAdminViewProps {
-  id?: string;
+  // id?: string;
 }
 
-const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({
-  id,
-}) => {
+const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
+  const history = useHistory();
   const [usersDecisions, setUsersDecisions] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [scenario, setScenario] = useState<any>('');
 
-  const fetchData = async () => {
+  const fetchData = async (id:string) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -31,14 +31,18 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({
   };
 
   useEffect(() => {
-    fetchData();
+    const id = window.localStorage.getItem('toRoute');
+    console.log(id)
+    if(id){
+fetchData(id);
+    };
   }, []);
 
   return (
     <>
       <Grid container direction="row">
         <Grid container item justify="center" xs={12} alignContent="center">
-          <Typography variant="h2" key={id}>
+          <Typography variant="h2">
             {scenario}
           </Typography>
           {usersDecisions.map((quest: any, id: number) => {
@@ -102,6 +106,10 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({
           })}
         </Grid>
       </Grid>
+      <button onClick={() => {
+        history.push("/teamsManagement");
+        window.localStorage.removeItem('toRoute');
+        }}>Powrót do zespołów</button>
     </>
   );
 };

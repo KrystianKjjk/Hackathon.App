@@ -6,6 +6,7 @@ import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
 import UserProfile from "../UserProfile";
+import UserDecisionsAdminView from "../../Components/UserDecisionsAdminView/UserDecisionsAdminView";
 
 const AdminRouting = () => {
     return (
@@ -24,6 +25,9 @@ const AdminRouting = () => {
             </PrivateRoute>
             <PrivateRoute path="/home">
                 <UserProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/decisions">
+                <UserDecisionsAdminView />
             </PrivateRoute>
         </Switch>
     );
