@@ -5,17 +5,20 @@ import { User } from '../models/user.model';
 export default class LoginController{
     logging = async(req, res) => {
         try{
-            const { email, password } = req.body;
+            // const { email, password } = req.body;
             const validLogin = await loginSchema.validateAsync(req.body);
-            let user = await User.findOne({ email: email });
+            let user = await User.findOne({ email: req.body.email });
             if(!user) return res.status(400).send({ message: 'Bad email or password.' });
     
-            const validPassword = await bcrypt.compare(password, user.password)
+            const validPassword = await bcrypt.compare(req.body.password, user.password)
             if(!validPassword) return res.status(400).send({ message: 'Bad email or password.' });
+
+            user = await User.findOne({ email: req.body.email }).select('-password');
     
             const token = user.generateAuthToken();
             res.status(200).send({
                 message: 'Succesfully log in.',
+                user,
                 token: token
             });
             
