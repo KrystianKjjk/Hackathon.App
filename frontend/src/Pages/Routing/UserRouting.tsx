@@ -5,6 +5,7 @@ import Ranking from "../../Components/Ranking";
 import { Route, Switch } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import SignIn from "../../Components/Login/Login";
+
 const UserRouting = () => {
     return (
         <Switch>

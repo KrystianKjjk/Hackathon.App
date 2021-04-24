@@ -50,7 +50,7 @@ const Menu: React.FC<MenuProps> = (props) => {
     const classes = useStyles();
 
     const userInfo = getUserFromLocalStorage();
-
+    console.log("info", userInfo);
     const VisibleOptions = () => {
         //@ts-ignore
         switch (userInfo.userType) {

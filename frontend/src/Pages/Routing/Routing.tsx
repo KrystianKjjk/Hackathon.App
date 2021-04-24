@@ -5,8 +5,12 @@ import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
 import PrivateRoute from "../../Components/PrivateRoute";
 import SignIn from "../../Components/Login/LoginWorkaround";
+import { getUserFromLocalStorage } from "../../app/utils";
 
 const Routing = () => {
+    const userInfo = getUserFromLocalStorage();
+    console.log("info", userInfo);
+
     const user = {};
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
 
