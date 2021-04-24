@@ -39,16 +39,19 @@ export default function ResetPassword() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [beenSent, setBeenSent] = useState(false);
-  const [ErrorSnackbar, setError] = useSnackbar();
+  const [Snackbar, setMessage, setSeverity] = useSnackbar();
 
   const handleSubmit = async () => {
     const service = new BaseService();
     try {
       await service.post('users/requestpasswordreset', { email })
       setBeenSent(true);
+      setSeverity("success");
+      setMessage("Success!");
     }
     catch (error) {
-      setError("Incorrect email!");
+      setSeverity("error");
+      setMessage("Incorrect email!");
       console.log(error);
     };
   };
@@ -96,7 +99,7 @@ export default function ResetPassword() {
           </Button>
             </div>
           </div>
-          { ErrorSnackbar }
+          { Snackbar }
 
         </Container>
       </div>
