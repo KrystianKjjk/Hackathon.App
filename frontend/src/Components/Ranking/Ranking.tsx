@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { GiBroadsword } from 'react-icons/gi'
+import { GiBroadsword } from 'react-icons/gi';
 
-import style from './Ranking.module.css'
+import style from './Ranking.module.css';
 
 interface RankingProps {
 

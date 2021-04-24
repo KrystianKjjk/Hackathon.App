@@ -4,6 +4,8 @@ import Ranking from "../../Components/Ranking";
 import { Route, Switch } from "react-router-dom";
 import SignIn from "../../Components/Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
+import { Route } from "react-router";
+import CreateTeamsPage from "../CreateTeamsPage";
 
 const AdminRouting = () => {
     return (
@@ -31,6 +33,9 @@ const AdminRouting = () => {
             </PrivateRoute>
             <Route path="*">
                 <NotFoundPage />
+            </Route>
+            <Route path="teams">
+                <CreateTeamsPage />
             </Route>
         </Switch>
     );

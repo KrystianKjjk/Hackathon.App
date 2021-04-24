@@ -3,8 +3,8 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
-import SignIn from "../../Components/Login/Login";
 import PrivateRoute from "../../Components/PrivateRoute";
+import SignIn from "../../Components/Login/LoginWorkaround";
 
 const Routing = () => {
     const user = {};
@@ -12,21 +12,19 @@ const Routing = () => {
 
     return (
         <div>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <SignIn />
-                    </Route>
-                    <Route path="/logOut">
-                        <SignIn />
-                    </Route>
+            <Switch>
+                <Route exact path="/">
+                    <SignIn />
+                </Route>
+                <Route path="/logOut">
+                    <SignIn />
+                </Route>
 
-                    {roleRouting}
-                    <Route path="*">
-                        <NotFoundPage />
-                    </Route>
-                </Switch>
-            </Router>
+                {roleRouting}
+                <Route path="*">
+                    <NotFoundPage />
+                </Route>
+            </Switch>
         </div>
     );
 };
