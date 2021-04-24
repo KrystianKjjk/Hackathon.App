@@ -25,8 +25,8 @@ const UserProfile: React.FC = () => {
             ) : null}
             <Typography className={style.typoUserData}>IMIĘ: {user.name}</Typography>
             <Typography className={style.typoUserData}>NAZWISKO: {user.surname}</Typography>
-            <Typography className={style.typoUserData}>EMAIL: {user.email}</Typography>
-            <Typography className={style.typoUserData}>POSTAĆ: {user.isAdmin ? "Admin" : "User"}</Typography>
+            <Typography className={style.typoUserData}>E-MAIL: {user.email}</Typography>
+            <Typography className={style.typoUserData}>POSTAĆ: {user.isAdmin ? "Admin" : "Gracz"}</Typography>
             <Typography className={style.typoUserData}>ZESPÓŁ: {user.currentGroup}</Typography>
             <Typography className={style.typoUserData}>PUNKTY: {user.totalPoints}</Typography>
         </Container>
