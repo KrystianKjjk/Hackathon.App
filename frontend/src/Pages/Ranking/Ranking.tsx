@@ -47,7 +47,7 @@ const Ranking: React.FC<RankingProps> = () => {
     }
 
     return (
-        <div className={style.container}>
+        <div className={style.containerRanking}>
             <h2 className={style.heading}>Ranking</h2>
             {users!.map((user, index) => {
                 return <div key={index} className={style.rankingRow}>

@@ -5,6 +5,7 @@ export interface Group {
     users: IUser[],
     scenario: String,
     currentQuest: String,
+    messages: String[]
     isActive: boolean,
 };
 
@@ -16,6 +17,7 @@ const GroupSchema = new mongoose.Schema({
     currentQuest: {
         type: String
     },
+    messages: [],
     isActive: {
         type: Boolean,
         default: true,

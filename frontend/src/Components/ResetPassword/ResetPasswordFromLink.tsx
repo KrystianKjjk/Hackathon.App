@@ -86,7 +86,7 @@ export default function ResetPasswordFromLink() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Reset Password
+              Zresetuj Hasło
             </Typography>
             <div className={classes.form}
             >
@@ -119,9 +119,10 @@ export default function ResetPasswordFromLink() {
                 color="primary"
                 className={classes.submit}
                 data-testid="rp-button"
-                onClick={handleSubmit}
+                onClick={handleSubmit}                
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
-                Send
+                Wyślij
           </Button>
             </div>
           </div>
@@ -141,7 +142,7 @@ export default function ResetPasswordFromLink() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Your password has been changed!
+              Twoje hasło zostało zmienione!
         </Typography>
               <Button
                 type="submit"
@@ -150,9 +151,10 @@ export default function ResetPasswordFromLink() {
                 color="primary"
                 className={classes.submit}
                 data-testid="rp-button"
-                onClick={routeChange}
+                onClick={routeChange}                
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
-                Go back to the login page
+                Wróć na stronę logowania
           </Button>
             </div>  
         </Container>

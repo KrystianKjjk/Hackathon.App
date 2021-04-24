@@ -1,0 +1,14 @@
+.questListStyles {
+    width: 40vw !important;
+    text-align: center;
+}
+
+.questsContainerStyles {
+    width: 40%;
+    box-sizing: border-box;
+    margin: auto !important;
+    margin-top: 0 !important;
+    border-right: 1px solid black;
+    text-align: center;
+    
+}

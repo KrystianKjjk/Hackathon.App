@@ -1,0 +1,25 @@
+.createDecisionContainer {
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 2em !important;
+    background-color: rgba(100, 100, 100, 0.8);
+}
+
+.inputContainer {
+    margin: 20px 0;
+}
+
+.submit {
+    width: 50%;
+}
+
+.numberContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.number {
+    width: 30%;
+    margin: 0;
+}

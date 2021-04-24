@@ -20,11 +20,15 @@ import userRoutes from './src/routes/userRoute';
 import LoginController from './src/controllers/loginController';
 import loginRoutes from './src/routes/loginRoute';
 
+import MessagesController from './src/controllers/messagesController';
+import messagesRoutes from './src/routes/messagesRoute';
+
 import Scenario from './src/models/scenario.model';
 import ScenarioRepository from './src/repositories/scenarioRepository';
 import ScenarioService from './src/services/scenarioService';
 import ScenarioController from './src/controllers/scenarioController';
 import ScenarioRouter from './src/routes/scenarioRouter';
+import { isObjectBindingPattern } from 'typescript';
 
 import PasswordResetTokenModel from './src/models/PasswordResetToken';
 import PasswordService from './src/services/PasswordService';
@@ -72,12 +76,11 @@ app.use(express.json());
 //user route setup
 const userController = new UserController();
 const userRouter = userRoutes(userController, router);
+app.use("/api", userRouter());
 
 //login route setup
 const loginController = new LoginController();
 const loginRouter = loginRoutes(loginController, router);
-
-app.use("/api", userRouter());
 app.use("/api", loginRouter());
 
 //password reset setup
@@ -88,19 +91,24 @@ const passwordController = new PasswordController(mailingService, passwordServic
 const passwordRoutes = PasswordRoutes(passwordController, router);
 app.use('/api', passwordRoutes());
 
-//group route setup
-const groupRepository = new GroupRepository(Group);
-const groupService = new GroupService(groupRepository);
-const groupController = new GroupController(groupService);
-const GroupRoutes = groupRoutes(groupController, router);
-app.use('/api', GroupRoutes());
-
 //scenario router setup
 const scenarioRepository = new ScenarioRepository(Scenario);
 const scenarioService = new ScenarioService(scenarioRepository);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
 app.use('/api', scenarioRouter());
+
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService, scenarioService);
+const GroupRoutes = groupRoutes(groupController, router);
+app.use('/api', GroupRoutes());
+
+//messages route setup
+const messagesController = new MessagesController();
+const messagesRouter = messagesRoutes(messagesController, router);
+app.use("/api", messagesRouter());
 
 app.use((req, res, next) => {
     const error = new Error('Resource not found');

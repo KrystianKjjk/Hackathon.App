@@ -8,7 +8,7 @@ import TeamList from "../../Components/TeamList";
 import Input from "@material-ui/core/Input";
 import instance from "../../Api/axiosInstance";
 import { CircularProgress } from "@material-ui/core";
-import styles from './CreateTeamsPageProps.module.css';
+import styles from "./CreateTeamsPageProps.module.css";
 
 interface CreateTeamsPageProps {}
 
@@ -85,13 +85,19 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
         }
     };
 
+    console.log("TEAMS", newTeams ?? teams);
+
     if (loading) return <CircularProgress />;
     return (
-        <Container>
+        <Container className={styles.topContainer}>
             <Header>STWÓRZ ZESPOŁY</Header>
             <ListContainer className={styles.listContainerStyles}>
-                <AdminUserList users={users} title={"UŻYTKOWNICY"}/>
-                <TeamList teams={newTeams ?? teams} />
+                <div className={styles.userListStyles}>
+                    <AdminUserList users={users} title={"UŻYTKOWNICY"} />
+                </div>
+                <div className={styles.teamListStyles}>
+                    <TeamList teams={newTeams ?? teams} />
+                </div>
             </ListContainer>
             <div
                 style={{
@@ -101,7 +107,10 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                 }}
             >
                 {createNewTeamsRequest || (
-                    <button onClick={() => setCreateNewTeamsRequest(true)} className={styles.buttonCreateTeams1}>
+                    <button
+                        onClick={() => setCreateNewTeamsRequest(true)}
+                        className={styles.buttonCreateTeams1}
+                    >
                         {" "}
                         UTWÓRZ NOWE ZESPOŁY
                     </button>
@@ -110,6 +119,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                     <>
                         <Input
                             value={NumberOfChosenTeams}
+                            className={styles.inputForNewTeam}
                             onChange={(e) =>
                                 setNumberOfChosenTeams(
                                     Number.isNaN(
@@ -120,16 +130,25 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                                 )
                             }
                         />
-                        <button onClick={() => createNewTeams()} className={styles.buttonCreateTeams}>
+                        <button
+                            onClick={() => createNewTeams()}
+                            className={styles.buttonCreateTeams}
+                        >
                             {" "}
                             Utwórz
                         </button>
-                        <button onClick={() => cancelCreateNewTeamRequest()} className={styles.buttonCreateTeams}>
+                        <button
+                            onClick={() => cancelCreateNewTeamRequest()}
+                            className={styles.buttonCreateTeams}
+                        >
                             {" "}
                             Anuluj
                         </button>
                         {canConfirmNewTeams && (
-                            <button onClick={() => confirmNewTeam()} className={styles.buttonCreateTeams}>
+                            <button
+                                onClick={() => confirmNewTeam()}
+                                className={styles.buttonCreateTeams}
+                            >
                                 {" "}
                                 Zatwierdź nowe zespoły
                             </button>

@@ -1,14 +1,13 @@
 .userListStyles {
-    width: 40vw !important;
+    width: 50vw !important;
     text-align: center;
 }
 
 .usersContainerStyles {
-    width: 40%;
     box-sizing: border-box;
-    margin: auto !important;
+    margin-right: 2em !important;
     margin-top: 0 !important;
     border-right: 1px solid black;
     text-align: center;
-    
+    padding-bottom: 2em !important;
 }

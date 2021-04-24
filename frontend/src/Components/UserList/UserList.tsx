@@ -17,9 +17,10 @@ interface IUser{
 }
 
 // @ts-ignore
-const UserList: React.FC = ({id}) => {
+const UserList: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const id = localStorage.getItem('id');
 
    const fetchData = async () => {
         setLoading(true);

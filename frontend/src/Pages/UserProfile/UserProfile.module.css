@@ -1,0 +1,10 @@
+.typoUserPage {
+font-size: 3em;
+padding-top: 1em;
+}
+
+.typoUserData {
+    line-height: 0.5em;
+    font-weight: bold !important;
+    font-size: 2em !important;
+}

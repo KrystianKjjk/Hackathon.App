@@ -12,6 +12,7 @@ import StyledTextField from '../StyledTextField';
 import BaseService from '../../app/baseService';
 import MuiAlert, { AlertProps }  from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
+import styleResetPage from './ResetPassword.module.css';
 
 export interface ResetPasswordProps {
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: '#FFF'
   },
   
   form: {
@@ -74,13 +76,13 @@ export default function ResetPassword() {
 
   return (
     !beenSent ? (
-      <div>
+      <div className={styleResetPage.backgroundPasswordReset}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Reset Password
-        </Typography>
+              Zresetuj hasło
+            </Typography>
             <div className={classes.form}
             >
               <StyledTextField
@@ -104,7 +106,7 @@ export default function ResetPassword() {
                 onClick={handleSubmit}
                 style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
-                Send
+                WYŚLIJ
           </Button>
             </div>
           </div>
@@ -123,8 +125,8 @@ export default function ResetPassword() {
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <div className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              Email with reset link has been sent!
+            <Typography component="h1" variant="h5" style={{color: "black"}}> 
+              Email z linkiem do resetu hasła został wysłany :)
         </Typography>
               <Button
                 type="submit"
@@ -134,8 +136,9 @@ export default function ResetPassword() {
                 className={classes.submit}
                 data-testid="rp-button"
                 onClick={routeChange}
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
-                Go back to the login page
+                Wróć na stronę logowania
           </Button>
             </div>  
         </Container>

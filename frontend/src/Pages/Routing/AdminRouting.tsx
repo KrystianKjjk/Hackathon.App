@@ -5,36 +5,41 @@ import { Route, Switch } from "react-router-dom";
 import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
+import CreateScenariosPage from "../CreateScenarios";
 import UserProfile from "../UserProfile";
 import UserDecisionsAdminView from "../../Components/UserDecisionsAdminView/UserDecisionsAdminView";
+import CreateScenario from "../CreateScenario";
+import AdminProfile from "../AdminProfile";
 
 const AdminRouting = () => {
     return (
         <Switch>
             <PrivateRoute path="/myprofil">
-                <UserProfile />
+                <AdminProfile />
             </PrivateRoute>
             <PrivateRoute path="/teamsManagement">
                 <CreateTeamsPage />
             </PrivateRoute>
-            <PrivateRoute path="/createScenario">
-                <Ranking />
+            <PrivateRoute path="/scenario/create">
+                <CreateScenario />
+            </PrivateRoute>
+            <PrivateRoute path="/scenario">
+                <CreateScenariosPage />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <UserProfile />
+                <AdminProfile />
             </PrivateRoute>
             <PrivateRoute path="/decisions">
                 <UserDecisionsAdminView />
             </PrivateRoute>
+            <Route path="*">
+                <NotFoundPage />
+            </Route>
         </Switch>
     );
 };
 
 export default AdminRouting;
-
-const LogOut = () => {
-    return <div>Logout here</div>;
-};
