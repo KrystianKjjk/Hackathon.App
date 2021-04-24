@@ -1,4 +1,4 @@
-import User from "../Models/User";
+import User from '../Models/User'
 
 export const getUserFromLocalStorage = () => {
     const userId = localStorage.getItem("id");
