@@ -23,6 +23,7 @@ main {
     border: none;
     padding: 20px;
     font-weight: bold;
+    color: white;
 }
 
 .loginHeader {
