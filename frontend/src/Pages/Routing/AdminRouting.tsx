@@ -31,12 +31,13 @@ const AdminRouting = () => {
             <PrivateRoute path="/home">
                 <LogOut />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
             <Route path="/scenario/create">
                 <CreateScenariosPage />
             </Route>
+            <Route path="*">
+                <NotFoundPage />
+            </Route>
+            
         </Switch>
     );
 };
