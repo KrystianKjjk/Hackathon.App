@@ -4,4 +4,8 @@ export default interface User {
     surname: string;
     email: String;
     isAdmin: boolean;
+    totalPoints: number;
+    role: string;
+    currentGroup: string;
+    photo: any;
 }
