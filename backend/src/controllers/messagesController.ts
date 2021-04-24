@@ -27,6 +27,7 @@ export default class MessagesController{
         let group;
         try {
           group = await GroupSchema.findById(gid);
+          console.log(group);
         } catch (error) {
           return next(new Error('[ERROR][MESSAGES] Could not find group by id: ' + error));
         }
@@ -40,10 +41,10 @@ export default class MessagesController{
         }
       
         let isMember = false;
-        for (const member of group.members) {
+        for (const member of group.users) {
           if (member._id == uid) isMember = true;
         }
-        if (!isMember) group.members.push(user);
+        if (!isMember) group.users.push(user);
       
         // Create message
         const newMessage = new MessageSchema({
