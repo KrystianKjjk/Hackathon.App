@@ -21,7 +21,7 @@ export default class MessagesController{
       };
       
       sendMessage = async (req, res, next) => {
-        const { gid, name, text, uid, date } = req.body;
+        const { gid, name, text, userId, date } = req.body;
       
         // Find group
         let group;
@@ -34,20 +34,21 @@ export default class MessagesController{
         // Add member
         let user;
         try {
-          user = await User.findById(uid);
+          user = await User.findById(userId);
         } catch (error) {
           return next(new Error('[ERROR][MESSAGES] Could not find user by id: ' + error));
         }
       
         let isMember = false;
         for (const member of group.users) {
-          if (member._id == uid) isMember = true;
+          if (member._id == userId) isMember = true;
         }
         if (!isMember) group.users.push(user);
       
         // Create message
         const newMessage = new MessageSchema({
           name,
+          userId,
           text,
           group,
           date

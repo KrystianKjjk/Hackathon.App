@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 
 export interface Message {
+    userId: string
     name: string;
     text: string;
     group: string;
@@ -12,6 +13,10 @@ export interface Message {
 const MessageSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     text: {
