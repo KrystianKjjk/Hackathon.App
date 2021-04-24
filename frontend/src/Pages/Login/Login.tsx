@@ -120,7 +120,6 @@ export default function SignIn(props: LogInProps) {
                             >
                                 Zaloguj się
                             </Button>
-                            { Snackbar }
                             <Grid container>
                                 <Grid item xs className={style.gridPassword}>
                                     <Link
