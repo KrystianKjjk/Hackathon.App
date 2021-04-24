@@ -12,7 +12,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     const [scenarioTitle, setCurrentScenarioTitle]=useState();
     const [scenarioDescription, setCurrentScenarioDescription]=useState();
     const [scenarioEndDate, setCurrentScenarioEndDate]=useState();
-    const [lading, setLoading]=useState<boolean>(false);
+    const [loading, setLoading]=useState<boolean>(false);
 
     const fetchData = async () => {
         setLoading(true);
@@ -34,7 +34,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
         fetchData()
     },[])
 
-    return (
+    return loading ? (<p>Loading...</p>):(
     <Container>
         <Grid container direction="row">
                 <Grid
