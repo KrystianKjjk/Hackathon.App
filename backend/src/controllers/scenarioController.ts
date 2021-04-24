@@ -93,6 +93,7 @@ export default class SampleController {
             if (!updatedData) {
                 return res.status(404).json({ message: "Scenario or quest or decision not found" });
             }
+
             const fetchedData = await this.service.getById(id);
             return res.status(201).json(fetchedData);
         } catch (error) {
