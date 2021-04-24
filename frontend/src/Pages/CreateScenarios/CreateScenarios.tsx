@@ -131,7 +131,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         <QuestDetails quest={quest} />
                     </span>)
                 )}
-                <div>
+                <div style={{'marginTop': '20px'}}>
                     <button onClick={hideScenario}>ZAMKNIJ</button>
                 </div>
             </Modal> }
