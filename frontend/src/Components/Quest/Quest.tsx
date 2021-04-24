@@ -149,7 +149,6 @@ const Quest: React.FC<QuestProps> = () => {
             if (data.currentQuest) setQuestIndex(data.currentQuest);
         }
     };
-
     useEffect(() => {
         (async () => {
             if (scenarioID.length > 0 && questIndex > -1) {

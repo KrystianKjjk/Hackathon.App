@@ -36,26 +36,28 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
         getScenarioId();
     }, []);
 
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(
+                `https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}`
+            );
+            let data = await response.json();
+            setCurrentScenarioTitle(data.name);
+            setCurrentScenarioDescription(data.description);
+            const dateString = moment
+                .unix(data.endDate / 1000)
+                .format("DD-MM-YYYY");
+            //@ts-ignore
+            setCurrentScenarioEndDate(dateString);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    };
+
     useEffect(() => {
-        (async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(
-                    `https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}`
-                );
-                let data = await response.json();
-                setCurrentScenarioTitle(data.name);
-                setCurrentScenarioDescription(data.description);
-                const dateString = moment
-                    .unix(data.endDate / 1000)
-                    .format("DD-MM-YYYY");
-                //@ts-ignore
-                setCurrentScenarioEndDate(dateString);
-            } catch (error) {
-                console.log(error);
-            }
-            setLoading(false);
-        })();
+        fetchData();
     }, [scenarioID]);
 
     return loading ? (
