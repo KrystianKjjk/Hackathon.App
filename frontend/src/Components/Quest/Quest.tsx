@@ -16,7 +16,7 @@ interface QuestInterface {
 
 
 
-const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgzNGM0YmJiZjQwMzAwNDI3MWRmOGYiLCJlbWFpbCI6ImZpbGlwdGVzdEBzaGFya2xhc2Vycy5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjE5MjUxOTE5LCJleHAiOjE2MTkyNTU1MTl9.kibUqgzhSbOtoyJoP3Fh216QE276BbiEzzaTD2qvjK4';
+const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgzNGM0YmJiZjQwMzAwNDI3MWRmOGYiLCJlbWFpbCI6ImZpbGlwdGVzdEBzaGFya2xhc2Vycy5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjE5MjU1ODYxLCJleHAiOjE2MTkyNTk0NjF9.Eir5zmsT34orJE_h0O5yHdVD8PDv7AooFokBcrgVNkg';
 
 const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
 
@@ -52,9 +52,15 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
               }
         })
 
-        // console.log(response)
-        const data = await response.json();
-        // console.log(data);
+        console.log(response)
+        let data = await response.json();
+        console.log(data);
+
+        data = data.quests[questIndex];
+            if(!data.image)
+                data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
+                
+        setQuest(data);
     }
 
     const untakeDecision = async (decisionIdx: number) => {
