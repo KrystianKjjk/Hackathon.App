@@ -96,15 +96,11 @@ export default class SampleController {
             if (!updatedData) {
                 return res.status(404).json({ message: "Scenario or quest or decision not found" });
             }
+            const group = await this.groupService.getByUserId(userId);
+            const noOfUsersInGroup = group['users'].count();
+            console.log(noOfUsersInGroup);
 
-            // getGroupById = async (
-            //     req: express.Request,
-            //     res: express.Response
-            // ) => {
-            //     const id = new mongoose.Types.ObjectId(req.params.id);
-            //     const sampleData = await this.service.getById(id);
-            //     return res.status(200).json(sampleData);
-            // };
+            
             const fetchedData = await this.service.getById(id);
             return res.status(201).json(fetchedData);
         } catch (error) {
