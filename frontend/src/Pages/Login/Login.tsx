@@ -8,31 +8,24 @@ import {
     Link,
     Grid,
     Typography,
-    Container,
-    FormHelperText,
-    Snackbar,
+    Container
 } from "@material-ui/core";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import BaseService from "../../app/baseService";
 import axios from "axios";
 import style from "./Login.module.css";
 import StyledTextField from "../../Components/StyledTextField";
 import { loggerRole } from "../../app/utils";
+import useSnackbar from "../../Hooks/useSnackbar";
 
 export interface LogInProps {
     onLogin?: Function;
     setRole?: Function;
 }
 
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 export default function SignIn(props: LogInProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [formError, setFormError] = useState("");
-    const [openError, setOpenError] = useState(false);
+    const [Snackbar, setMessage, setSeverity] = useSnackbar();
 
     const history = useHistory();
     const routeChange = () => {
@@ -44,16 +37,6 @@ export default function SignIn(props: LogInProps) {
         const user = localStorage.getItem("user");
         if (user) routeChange();
     });
-
-    const handleCloseError = (
-        event?: React.SyntheticEvent,
-        reason?: string
-    ) => {
-        if (reason === "clickaway") {
-            return;
-        }
-        setOpenError(false);
-    };
 
     const setResponseDataToLocalStorage = (response: AxiosResponse) => {
         const token = response.data?.token;
@@ -73,17 +56,18 @@ export default function SignIn(props: LogInProps) {
         const service = new BaseService();
         try {
             const response = await service.post("login", { email, password });
-            setFormError("");
+            setMessage("");
             setResponseDataToLocalStorage(response);
             axios.defaults.headers.common = {
                 "x-auth-token": localStorage.getItem("token"),
             };
+            setMessage("Logowanie zakończone");
+            setSeverity("success");
             routeChange();
             if (props.onLogin) props.onLogin();
         } catch (error) {
-            setFormError(error?.response?.data?.message);
-            setOpenError(true);
-            console.log(error);
+            setMessage("Błąd logowania");
+            setSeverity("error");
         }
     };
 
@@ -136,23 +120,7 @@ export default function SignIn(props: LogInProps) {
                             >
                                 Zaloguj się
                             </Button>
-                            <Snackbar
-                                open={openError}
-                                autoHideDuration={6000}
-                                onClose={handleCloseError}
-                                data-testid="li-snack"
-                            >
-                                <Alert
-                                    onClose={handleCloseError}
-                                    severity="error"
-                                >
-                                    {formError && (
-                                        <FormHelperText>
-                                            {formError}
-                                        </FormHelperText>
-                                    )}
-                                </Alert>
-                            </Snackbar>
+                            { Snackbar }
                             <Grid container>
                                 <Grid item xs className={style.gridPassword}>
                                     <Link
@@ -169,6 +137,7 @@ export default function SignIn(props: LogInProps) {
                     </form>
                 </div>
             </Container>
+            { Snackbar }
         </div>
     );
 }
