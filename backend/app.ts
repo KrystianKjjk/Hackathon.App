@@ -26,6 +26,12 @@ import ScenarioService from './src/services/scenarioService';
 import ScenarioController from './src/controllers/scenarioController';
 import ScenarioRouter from './src/routes/scenarioRouter';
 
+import PasswordResetTokenModel from './src/models/PasswordResetToken';
+import PasswordService from './src/services/PasswordService';
+import PasswordController from './src/controllers/PasswordController';
+import PasswordRoutes from './src/routes/PasswordRoutes';
+import MailingService from './src/services/mailingService';
+import * as nodemailer from 'nodemailer';
 const second = 1000; // ms
 const minute = 60 * second;
 const groupTimeout = Number(process.env.GROUP_TIMEOUT) ?? minute;
@@ -33,11 +39,6 @@ const groupTimeout = Number(process.env.GROUP_TIMEOUT) ?? minute;
 const app = express();
 const router = express.Router();
 
-//group route setup
-const groupRepository = new GroupRepository(Group);
-const groupService = new GroupService(groupRepository);
-const groupController = new GroupController(groupService);
-const GroupRoutes = groupRoutes(groupController, router);
 
 mongoose.set('useUnifiedTopology', true);
 mongoose
@@ -78,6 +79,20 @@ const loginRouter = loginRoutes(loginController, router);
 
 app.use("/api", userRouter());
 app.use("/api", loginRouter());
+
+//password reset setup
+const mailingService = new MailingService(nodemailer);
+const passwordRepository = new Repository(PasswordResetTokenModel);
+const passwordService = new PasswordService(passwordRepository);
+const passwordController = new PasswordController(mailingService, passwordService);
+const passwordRoutes = PasswordRoutes(passwordController, router);
+app.use('/api', passwordRoutes());
+
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService);
+const GroupRoutes = groupRoutes(groupController, router);
 app.use('/api', GroupRoutes());
 
 //scenario router setup
