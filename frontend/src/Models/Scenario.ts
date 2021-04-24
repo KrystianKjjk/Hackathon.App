@@ -17,5 +17,6 @@ export interface Quest {
 export interface Scenario {
     _id: string;
     name: string;
+    image: string;
     quests: Quest[];
 }

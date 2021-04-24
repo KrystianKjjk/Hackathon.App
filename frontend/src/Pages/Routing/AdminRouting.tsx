@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 import CreateTeamsPage from "../CreateTeamsPage";
+import CreateScenariosPage from "../CreateScenarios";
 
 const AdminRouting = () => {
     return (
@@ -8,8 +9,11 @@ const AdminRouting = () => {
             <Route path="/home">
                 <LogOut />
             </Route>
-            <Route path="teams">
+            <Route path="/teams">
                 <CreateTeamsPage />
+            </Route>
+            <Route path="/scenario/create">
+                <CreateScenariosPage />
             </Route>
         </>
     );
