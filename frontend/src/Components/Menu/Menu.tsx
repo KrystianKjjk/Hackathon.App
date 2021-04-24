@@ -72,7 +72,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/createScenario"
                             icon={<NotificationsIcon />}
-                            text="CREATOR SCENARIUSZY"
+                            text="SCENARIUSZE"
                         />
                         <ItemLink
                             path="/ranking"
