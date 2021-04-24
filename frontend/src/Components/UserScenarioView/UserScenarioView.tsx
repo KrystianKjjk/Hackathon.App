@@ -14,11 +14,34 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     const [scenarioDescription, setCurrentScenarioDescription]=useState();
     const [scenarioEndDate, setCurrentScenarioEndDate]=useState();
     const [loading, setLoading]=useState<boolean>(false);
+    const [scenarioID, setScenarioID] = useState('');
     const id = localStorage.getItem('toRoute');
+
+    const getScenarioId = async () => {
+        const id = localStorage.getItem('id');
+        let data;
+        try {
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group/me/${id}`);
+            data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+
+        if(data !== null){
+            if(data.scenario)
+                setScenarioID(data.scenario);
+        }
+    }
+
+    useEffect(() => {
+        getScenarioId();
+    }, [])
+
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${id}`);
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}`);
             let data = await response.json();
             setCurrentScenarioTitle(data.name);
             setCurrentScenarioDescription(data.description);
