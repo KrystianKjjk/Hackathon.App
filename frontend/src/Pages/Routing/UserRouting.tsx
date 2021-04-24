@@ -5,20 +5,18 @@ import Ranking from "../Ranking";
 import { Route, Switch } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import SignIn from "../Login/Login";
+import UserProfile from "../UserProfile";
 
 const UserRouting = () => {
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
-            <Route path="/logOut">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/home">
-                <LogOut />
+                <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/myprofil">
+                <UserProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/scenario">
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/myteam">
@@ -30,9 +28,6 @@ const UserRouting = () => {
             <PrivateRoute path="/ranking">
                 <Ranking />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
         </Switch>
     );
 };

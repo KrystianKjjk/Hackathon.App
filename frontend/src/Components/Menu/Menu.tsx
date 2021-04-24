@@ -44,7 +44,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 alignItems: "center",
                 display: "flex",
                 flexDirection: "column",
-                marginBottom: "1em"
+                marginBottom: "1em",
             },
         })
     );
@@ -73,7 +73,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/createScenario"
                             icon={<NotificationsIcon />}
-                            text="CREATOR ZESPOŁÓW"
+                            text="CREATOR SCENARIUSZY"
                         />
                         <ItemLink
                             path="/ranking"
