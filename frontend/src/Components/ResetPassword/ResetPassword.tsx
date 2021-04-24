@@ -64,6 +64,7 @@ export default function ResetPassword() {
   }
 
   return (
+    <>
     !beenSent ? (
       <div className={styleResetPage.backgroundPasswordReset}>
         <Container component="main" maxWidth="xs">
@@ -99,7 +100,6 @@ export default function ResetPassword() {
           </Button>
             </div>
           </div>
-          { Snackbar }
 
         </Container>
       </div>
@@ -129,5 +129,6 @@ export default function ResetPassword() {
         </Container>
       </div>
     )
+    </>
   );
 }
