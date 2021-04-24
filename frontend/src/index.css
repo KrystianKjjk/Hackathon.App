@@ -3,7 +3,8 @@ body {
   text-align: center !important;
   height: 100vh;
   width: 100vw;
-  background-image: url("./assets/wolves-1341881_1920.jpg");
+  background-image: url("./assets/fantasy-3468988_19201.png");
+  background-color:rgba(0, 0, 0, 0.5);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

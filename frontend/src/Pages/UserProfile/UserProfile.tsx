@@ -2,13 +2,14 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import { Container } from "./UserProfile-style";
 import { getUserFromLocalStorage } from "../../app/utils";
+import style from './UserProfile.module.css';
 
 const UserProfile: React.FC = () => {
     const { user } = getUserFromLocalStorage();
     if (!user) return <div>It should happend</div>;
     return (
         <Container>
-            <Typography variant="h2">Witaj podróżniku</Typography>
+            <Typography variant="h2" className={style.typoUserPage}>Witaj podróżniku!</Typography>
             {user.photo.length === 0 ? (
                 <img
                     src={`data:image/jpeg;base64,${Buffer.from(
@@ -22,12 +23,12 @@ const UserProfile: React.FC = () => {
                     }}
                 />
             ) : null}
-            <Typography>Imię: {user.name}</Typography>
-            <Typography>Nazwisko: {user.surname}</Typography>
-            <Typography>Email: {user.email}</Typography>
-            <Typography>Postać: {user.isAdmin ? "Admin" : "User"}</Typography>
-            <Typography>Zespół: {user.currentGroup}</Typography>
-            <Typography>Punkty: {user.totalPoints}</Typography>
+            <Typography className={style.typoUserData}>IMIĘ: {user.name}</Typography>
+            <Typography className={style.typoUserData}>NAZWISKO: {user.surname}</Typography>
+            <Typography className={style.typoUserData}>EMAIL: {user.email}</Typography>
+            <Typography className={style.typoUserData}>POSTAĆ: {user.isAdmin ? "Admin" : "User"}</Typography>
+            <Typography className={style.typoUserData}>ZESPÓŁ: {user.currentGroup}</Typography>
+            <Typography className={style.typoUserData}>PUNKTY: {user.totalPoints}</Typography>
         </Container>
     );
 };

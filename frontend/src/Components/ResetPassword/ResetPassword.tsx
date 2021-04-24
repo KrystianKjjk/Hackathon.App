@@ -79,7 +79,7 @@ export default function ResetPassword() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Reset Password
+              Zresetuj hasło
         </Typography>
             <div className={classes.form}
             >
@@ -104,7 +104,7 @@ export default function ResetPassword() {
                 onClick={handleSubmit}
                 style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
-                Send
+                WYŚLIJ
           </Button>
             </div>
           </div>

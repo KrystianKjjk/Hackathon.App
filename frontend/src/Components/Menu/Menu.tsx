@@ -22,12 +22,11 @@ const Menu: React.FC<MenuProps> = (props) => {
                 width: "20vw",
                 minWidth: 180,
                 marginVertical: "auto",
-                marginTop: "20px",
-                backgroundColor: "transparent",
+                backgroundColor: "rgba(0,0,0,0.35)",
                 color: "#fff",
                 "& .MuiListItem-root": {
                     "&:hover": {
-                        backgroundColor: "rgba(0,0,0,0.56)",
+                        backgroundColor: "rgba(0,0,0,0.35)",
                     },
                 },
                 "& .MuiListItemIcon-root": {
@@ -37,8 +36,9 @@ const Menu: React.FC<MenuProps> = (props) => {
             span: {
                 paddingLeft: "13px",
                 float: "left",
-                color: "#9E9E9E",
-                fontSize: "14px",
+                color: "black",
+                fontSize: "1.5em",
+                fontWeight: 'bold',
             },
             userDiv: {
                 borderBottom: "1px solid #666666",
