@@ -1,13 +1,14 @@
-.userListStyles {
-    width: 50vw !important;
+.questListStyles {
+    width: 40vw !important;
     text-align: center;
 }
 
-.usersContainerStyles {
+.questsContainerStyles {
+    width: 40%;
     box-sizing: border-box;
-    margin-right: 2em !important;
+    margin: auto !important;
     margin-top: 0 !important;
     border-right: 1px solid black;
     text-align: center;
-    padding-bottom: 2em !important;
+    
 }

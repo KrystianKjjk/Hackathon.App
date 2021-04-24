@@ -5,12 +5,14 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  border: 2px solid black;
-  padding: 80px;
-  background-color: rgba(0, 0, 0, 0.56) !important;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.35) !important;
   color: #b3abab;
   padding: 1em;
-  padding-bottom: 2.5em;
+  height: 100vh;
+  width: 80vw;
+  padding: 5em;
+  padding-bottom: 15em;
   box-sizing: border-box;
   border-radius: 0.5em;
 `;

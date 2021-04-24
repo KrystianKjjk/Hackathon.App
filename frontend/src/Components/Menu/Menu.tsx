@@ -1,11 +1,14 @@
 import { List } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import AppsIcon from "@material-ui/icons/Apps";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import AddIcon from "@material-ui/icons/Add";
+import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import PeopleIcon from "@material-ui/icons/People";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import PersonIcon from "@material-ui/icons/Person";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import ItemLink from "../ItemLink";
@@ -16,17 +19,14 @@ const Menu: React.FC<MenuProps> = (props) => {
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
-                width: "24%",
-                maxWidth: 360,
+                width: "20vw",
                 minWidth: 180,
                 marginVertical: "auto",
-                marginTop: "20px",
-                backgroundColor: "transparent",
-                borderRight: "1px solid #666",
+                backgroundColor: "rgba(0,0,0,0.35)",
                 color: "#fff",
                 "& .MuiListItem-root": {
                     "&:hover": {
-                        backgroundColor: "rgba(0,0,0,0.56)",
+                        backgroundColor: "rgba(0,0,0,0.35)",
                     },
                 },
                 "& .MuiListItemIcon-root": {
@@ -36,8 +36,9 @@ const Menu: React.FC<MenuProps> = (props) => {
             span: {
                 paddingLeft: "13px",
                 float: "left",
-                color: "#9E9E9E",
-                fontSize: "14px",
+                color: "black",
+                fontSize: "1.5em",
+                fontWeight: "bold",
             },
             userDiv: {
                 borderBottom: "1px solid #666666",
@@ -62,27 +63,27 @@ const Menu: React.FC<MenuProps> = (props) => {
                     <>
                         <ItemLink
                             path="/myprofil"
-                            icon={<PeopleIcon />}
+                            icon={<PersonIcon />}
                             text="TWOJ PROFIL"
                         />
                         <ItemLink
                             path="/teamsManagement"
-                            icon={<NotificationsIcon />}
-                            text="CREATOR ZESPOŁÓW"
+                            icon={<AddIcon />}
+                            text="KREATOR ZESPOŁÓW"
                         />
                         <ItemLink
                             path="/scenario"
-                            icon={<NotificationsIcon />}
+                            icon={<MenuBookIcon />}
                             text="SCENARIUSZE"
                         />
                         <ItemLink
                             path="/ranking"
-                            icon={<AppsIcon />}
+                            icon={<AssistantPhotoIcon />}
                             text="RANKING"
                         />
                         <ItemLink
                             path="/logout"
-                            icon={<EmojiObjectsIcon />}
+                            icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
                             textColor={"rgb(113,13,23"}
                         />
@@ -93,32 +94,32 @@ const Menu: React.FC<MenuProps> = (props) => {
                     <>
                         <ItemLink
                             path="/myprofil"
-                            icon={<PeopleIcon />}
+                            icon={<PersonIcon />}
                             text="TWÓj PROFIL"
                         />
                         <ItemLink
                             path="/myteam"
-                            icon={<NotificationsIcon />}
+                            icon={<PeopleIcon />}
                             text="TWÓJA DRUŻYNA"
                         />
                         <ItemLink
                             path="/scenario"
-                            icon={<AssignmentIcon />}
+                            icon={<MenuBookIcon />}
                             text="SCENARIUSZ GRY"
                         />
                         <ItemLink
                             path="/quest"
-                            icon={<AssignmentIcon />}
+                            icon={<FlashOnIcon />}
                             text="QUEST"
                         />
                         <ItemLink
                             path="/ranking"
-                            icon={<AppsIcon />}
+                            icon={<AssistantPhotoIcon />}
                             text="RANKING"
                         />
                         <ItemLink
                             path="/logout"
-                            icon={<EmojiObjectsIcon />}
+                            icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
                         />
                     </>

@@ -119,7 +119,8 @@ export default function ResetPasswordFromLink() {
                 color="primary"
                 className={classes.submit}
                 data-testid="rp-button"
-                onClick={handleSubmit}
+                onClick={handleSubmit}                
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
                 Send
           </Button>
@@ -150,7 +151,8 @@ export default function ResetPasswordFromLink() {
                 color="primary"
                 className={classes.submit}
                 data-testid="rp-button"
-                onClick={routeChange}
+                onClick={routeChange}                
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
                 Go back to the login page
           </Button>

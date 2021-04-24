@@ -87,11 +87,16 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
 
     if (loading) return <CircularProgress />;
     return (
-        <Container>
+        <Container className={styles.topContainer}>
             <Header>STWÓRZ ZESPOŁY</Header>
             <ListContainer className={styles.listContainerStyles}>
-                <AdminUserList users={users} title={"UŻYTKOWNICY"}/>
-                <TeamList teams={newTeams ?? teams} />
+                <div className={styles.userListStyles}>
+                    <AdminUserList users={users} title={"UŻYTKOWNICY"}/>
+                </div>     
+                <div className={styles.teamListStyles}>
+                    <TeamList teams={newTeams ?? teams} />                    
+                </div>           
+                
             </ListContainer>
             <div
                 style={{

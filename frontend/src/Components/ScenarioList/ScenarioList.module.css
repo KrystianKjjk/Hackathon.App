@@ -1,0 +1,17 @@
+.scenarioContainerStyles {
+    width: 95%;
+    text-align: center;
+    margin: 0.3em auto !important;
+}
+
+.containerStyles {
+    width: 50%;
+}
+
+.containerStyles h3 {
+    text-align: center;
+}
+
+.questsContainerStyles {
+    width: 100% !important;
+}

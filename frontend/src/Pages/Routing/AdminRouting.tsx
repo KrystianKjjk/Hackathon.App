@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
+import CreateScenariosPage from "../CreateScenarios";
 import UserProfile from "../UserProfile";
 import CreateScenario from "../CreateScenario";
 
@@ -29,6 +30,9 @@ const AdminRouting = () => {
             <PrivateRoute path="/home">
                 <UserProfile />
             </PrivateRoute>
+            <Route path="*">
+                <NotFoundPage />
+            </Route>
         </Switch>
     );
 };

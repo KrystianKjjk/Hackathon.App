@@ -21,6 +21,9 @@ export const Header = styled.h3`
     width: 100%;
     font-size: 2em;
 `;
+export const topContainer = styled.div`
+    margin: 0 auto;
+`;
 
 export const style = {};
 
