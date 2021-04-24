@@ -4,6 +4,7 @@ import NotFoundPage from "../../Components/NotFoundPage";
 import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
 import SignIn from "../../Components/Login/Login";
+import PrivateRoute from "../../Components/PrivateRoute";
 
 const Routing = () => {
     const user = {};
@@ -19,17 +20,8 @@ const Routing = () => {
                     <Route path="/logOut">
                         <SignIn />
                     </Route>
+
                     {roleRouting}
-                    {user && (
-                        <>
-                            <Route path="/myprofil">
-                                <Ranking />
-                            </Route>
-                            <Route path="/ranking">
-                                <Ranking />
-                            </Route>
-                        </>
-                    )}
                     <Route path="*">
                         <NotFoundPage />
                     </Route>
