@@ -115,6 +115,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                     <>
                         <Input
                             value={NumberOfChosenTeams}
+                            className={styles.inputForNewTeam}
                             onChange={(e) =>
                                 setNumberOfChosenTeams(
                                     Number.isNaN(

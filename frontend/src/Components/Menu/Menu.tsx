@@ -85,7 +85,8 @@ const Menu: React.FC<MenuProps> = (props) => {
                             path="/logout"
                             icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
-                            textColor={"rgb(113,13,23"}
+                            textColor={"#244E9F"}
+                            
                         />
                     </>
                 );
