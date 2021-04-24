@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AxiosResponse } from "axios";
 
@@ -38,6 +38,11 @@ export default function SignIn(props: LogInProps) {
     history.push(path);
   };
 
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if(user) routeChange();
+  })
+
   const handleCloseError = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
@@ -46,13 +51,15 @@ export default function SignIn(props: LogInProps) {
   };
 
   const setResponseDataToLocalStorage = (response: AxiosResponse) => {
-    const token = response.headers?.["x-auth-token"];
-    const userId = response.data?.["_id"];
-    const userType = response.data?.["type"];
+    const token = response.data?.token;
+    const userId = response.data?.user._id;
+    const isAdmin = response.data?.user.isAdmin;
+    const user = JSON.stringify(response.data?.user)
 
     localStorage.setItem("token", token);
     localStorage.setItem("id", userId);
-    localStorage.setItem("type", userType);
+    localStorage.setItem("isAdmin", isAdmin);
+    localStorage.setItem("user", user);
   };
 
   const handleSignInClick = async () => {
@@ -68,6 +75,7 @@ export default function SignIn(props: LogInProps) {
     catch (error) {
       setFormError(error?.response?.data?.message);
       setOpenError(true);
+      console.log(error)
     }
   };
 
