@@ -1,7 +1,8 @@
 body {
-  margin: 0;
-  width: 100vw;
+  margin: auto !important;
+  text-align: center !important;
   height: 100vh;
+  width: 100vw;
   background-image: url("./assets/wolves-1341881_1920.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
