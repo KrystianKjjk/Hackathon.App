@@ -76,6 +76,7 @@ app.use(express.json());
 //user route setup
 const userController = new UserController();
 const userRouter = userRoutes(userController, router);
+app.use("/api", userRouter());
 
 //login route setup
 const loginController = new LoginController();
