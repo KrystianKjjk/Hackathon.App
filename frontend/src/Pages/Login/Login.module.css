@@ -23,6 +23,7 @@ main {
     border: none;
     padding: 20px;
     font-weight: bold;
+    color: white;
 }
 
 .loginHeader {
@@ -39,9 +40,15 @@ main {
     color: #B3ABAB;
 }
 
+.gridPassword {
+    padding-top: 0.75em;
+}
+
 .forgotPassword {
     font-size: 1em !important;
     color: #B3ABAB !important;
+    margin-top: 0.5em !important;
+    box-sizing: border-box;
 }
 
 .shadow {
