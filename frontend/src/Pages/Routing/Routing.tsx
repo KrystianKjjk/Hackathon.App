@@ -4,14 +4,13 @@ import NotFoundPage from "../../Components/NotFoundPage";
 import useConfirmModal from "../../Hooks/useConfirmModal";
 import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
-import SignIn from "../../Components/Login/Login";
+import SignIn from "../../Components/Login/LoginWorkaround";
 
 const Routing = () => {
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
 
     return (
         <div>
-            <Router>
                 <Switch>
                     <Route exact path="/">
                         <LogIn />
@@ -24,7 +23,6 @@ const Routing = () => {
                         <NotFoundPage />
                     </Route>
                 </Switch>
-            </Router>
         </div>
     );
 };
