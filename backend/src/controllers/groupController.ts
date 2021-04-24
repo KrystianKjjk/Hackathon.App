@@ -17,6 +17,22 @@ export default class GroupController {
         return res.status(200).json(allData);
     };
 
+    getAllActive = async (
+        req: express.Request,
+        res: express.Response
+    ) => {
+        const allData = await this.service.getAllActive();
+        return res.status(200).json(allData);
+    };
+
+    deactivateAll = async (
+        req: express.Request,
+        res: express.Response
+    ) => {
+        const allData = await this.service.deactivateAll();
+        return res.status(200).json(allData);
+    };
+
     getById = async (
         req: express.Request,
         res: express.Response
@@ -101,6 +117,10 @@ export default class GroupController {
         req: express.Request,
         res: express.Response
     ) => {
+        const active = await this.service.getAllActive();
+        if (active.length < 1) 
+            return res.status(200).json({ message: "Creating teams is not allowed, because there are some active teams." });
+        
         const groups = req.body.userGroups;
         
         try{

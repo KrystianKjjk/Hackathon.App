@@ -1,32 +1,46 @@
-import { Grid, StylesProvider } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import useHttp from '../../Hooks/useHttp';
 import ListItem from '@material-ui/core/ListItem';
 import style, { Container } from './UserList-style';
 import styleCss from './UserList.module.css';
 
-type Users = Array<string>;
+interface IUser{
+  name: string,
+  surname: string,
+  role: string,
+  currentGroup:string,
+  photo: string,
+  email: string,
+  password: string,
+  isAdmin: boolean,
+  totalPoints: number,
+}
 
-const UserList: React.FC = () => {
-  const [users, setUsers] = useState<Users>([]);
-  const [errors, setErrors] = useState();
-  //   const { makeHttpRequest } = useHttp(
-  //     'URL URL URL',
-  //     'GET'
-  //   );
-  useEffect(() => {
-    // const getUsers = async () => {
-    //   const data = await makeHttpRequest();
-    //   try {
-    //     setUsers(data);
-    //   } catch (error) {
-    //     setErrors(error);
-    //   }
-    // };
-    // getUsers();
-    setUsers(['Arek', 'Bogdan', 'Mateusz', 'Arek', 'Bogdan', 'Mateusz']);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+// @ts-ignore
+const UserList: React.FC = ({id}) => {
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+   const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group/me/${id}`);
+            let data = await response.json();
+            setUsers(data.users);
+        } catch(error) {
+            console.log(error);
+        }
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+
+    if(loading){
+      return <Container className={styleCss.gridClass}>loading</Container>
+  }
 
   return (
     <>
@@ -41,11 +55,11 @@ const UserList: React.FC = () => {
         >
           <Container>
             <h1>TWOJA DRUŻYNA</h1>
-            {users.map((user, id) => {
+            {users.map((user:any, id:number) => {
               return (
-                <>
-                  <ListItem key={id} className={styleCss.gridItemClass}>{user}</ListItem>
-                </>
+                <div key={id}>
+                  <ListItem  className={styleCss.gridItemClass}>{user.name}</ListItem>
+                </div>
               );
             })}
           </Container>

@@ -1,0 +1,25 @@
+.teamContainerStyles {
+    width: 95%;
+    text-align: center;
+    margin: 0.3em auto !important;
+}
+
+.containerStyles {
+    margin-bottom: 1em;
+    height: 100%;
+    width:100%;
+}
+
+.containerStyles h3 {
+    text-align: center;
+}
+
+.usersContainerStyles {
+    width: 90% !important;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+#TeamContainer{
+    width: initial;
+}

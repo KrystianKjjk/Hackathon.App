@@ -13,6 +13,14 @@ export default class GroupService {
     return this.groupRepository.getAll();
   };
 
+  getAllActive = async (): Promise<(Group & mongoose.Document<Group>)[]> => {
+    return this.groupRepository.getAllActive();
+  };
+
+  deactivateAll = async () => {
+    return this.groupRepository.deactivateAll();
+  };
+
   getById = async (id: mongoose.Types.ObjectId): Promise<(Group & mongoose.Document<Group>)[]> => {
     return this.groupRepository.getById(id);
   };

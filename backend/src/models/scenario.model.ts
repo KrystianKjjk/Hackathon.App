@@ -69,10 +69,26 @@ const ScenarioSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        default: 'imageBase64 or url',
+    },
+    description: {
+        type: String,
+        default: 'Opis'
+    },
     quests: [{
         type: QuestSchema,
         required: true,
     }],
+    startDate: {
+        type: Number,
+        required: true,
+    },
+    endDate: {
+        type: Number,
+        required: true,
+    }
 });
 
 export default mongoose.model<Scenario & mongoose.Document>('Scenario', ScenarioSchema);
