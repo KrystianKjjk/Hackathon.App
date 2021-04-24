@@ -90,19 +90,19 @@ const passwordController = new PasswordController(mailingService, passwordServic
 const passwordRoutes = PasswordRoutes(passwordController, router);
 app.use('/api', passwordRoutes());
 
-//group route setup
-const groupRepository = new GroupRepository(Group);
-const groupService = new GroupService(groupRepository);
-const groupController = new GroupController(groupService);
-const GroupRoutes = groupRoutes(groupController, router);
-app.use('/api', GroupRoutes());
-
 //scenario router setup
 const scenarioRepository = new ScenarioRepository(Scenario);
 const scenarioService = new ScenarioService(scenarioRepository);
 const scenarioController = new ScenarioController(scenarioService);
 const scenarioRouter = ScenarioRouter(scenarioController, router);
 app.use('/api', scenarioRouter());
+
+//group route setup
+const groupRepository = new GroupRepository(Group);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService, scenarioService);
+const GroupRoutes = groupRoutes(groupController, router);
+app.use('/api', GroupRoutes());
 
 //messages route setup
 const messagesController = new MessagesController();
