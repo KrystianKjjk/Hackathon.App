@@ -2,7 +2,7 @@ import * as express from "express";
 import mongoose from 'mongoose';
 import ScenarioSchema from "../models/scenario.model";
 import ScenarioService from '../services/scenarioService';
-// import GroupService from '../services/'
+import groupService from '../services/groupService';
 
 const second = 1000; // ms
 const minute = 60 * second;
@@ -11,8 +11,10 @@ const day = 24 * hour;
 
 export default class SampleController {
     service: ScenarioService;
-    constructor(service: ScenarioService) {
+    groupService: groupService;
+    constructor(service: ScenarioService, groupService: groupService) {
         this.service = service;
+        this.groupService = groupService;
     }
 
     getAll = async (
