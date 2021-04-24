@@ -1,10 +1,10 @@
 import React from "react";
 import UserList from "../../Components/UserList";
 import PrivateRoute from "../../Components/PrivateRoute";
-import Ranking from "../../Components/Ranking";
+import Ranking from "../Ranking";
 import { Route, Switch } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
-import SignIn from "../../Components/Login/Login";
+import SignIn from "../Login/Login";
 
 const UserRouting = () => {
     return (

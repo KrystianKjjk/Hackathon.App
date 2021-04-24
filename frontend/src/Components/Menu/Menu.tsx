@@ -7,7 +7,7 @@ import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import PeopleIcon from "@material-ui/icons/People";
 import React from "react";
-import { getUserFromLocalStorage } from "../../app/utils";
+import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import ItemLink from "../ItemLink";
 
 export interface MenuProps {}
@@ -49,25 +49,15 @@ const Menu: React.FC<MenuProps> = (props) => {
 
     const classes = useStyles();
 
-    const userInfo = getUserFromLocalStorage();
-    console.log("info", userInfo);
+    const role = loggerRole();
+    const { user } = getUserFromLocalStorage();
+    console.log("info", role);
     const VisibleOptions = () => {
         //@ts-ignore
-        switch (userInfo.userType) {
+        switch (role) {
             case "Admin":
                 return (
-                    <List component="nav">
-                        <div className={classes.userDiv}>
-                            <AccountCircleIcon
-                                style={{ paddingTop: 20, fontSize: 40 }}
-                            ></AccountCircleIcon>
-                            <p
-                                style={{ fontWeight: 500 }}
-                                // >{`${userData?.name} ${userData?.surname}`}</p>
-                            >
-                                Imie i nazwisko
-                            </p>
-                        </div>
+                    <>
                         <ItemLink
                             path="/myprofil"
                             icon={<PeopleIcon />}
@@ -93,23 +83,11 @@ const Menu: React.FC<MenuProps> = (props) => {
                             icon={<EmojiObjectsIcon />}
                             text="WYLOGUJ SIĘ"
                         />
-                    </List>
+                    </>
                 );
             case "User":
                 return (
-                    <List component="nav">
-                        <div className={classes.userDiv}>
-                            <AccountCircleIcon
-                                style={{ paddingTop: 20, fontSize: 40 }}
-                            ></AccountCircleIcon>
-                            <p
-                                style={{ fontWeight: 500 }}
-                                // >{`${userData?.name} ${userData?.surname}`}</p>
-                            >
-                                Imie i nazwisko
-                            </p>
-                            <p>user</p>
-                        </div>
+                    <>
                         <ItemLink
                             path="/myprofil"
                             icon={<PeopleIcon />}
@@ -140,7 +118,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                             icon={<EmojiObjectsIcon />}
                             text="WYLOGUJ SIĘ"
                         />
-                    </List>
+                    </>
                 );
             default:
                 return <List component="nav"></List>;
@@ -149,7 +127,17 @@ const Menu: React.FC<MenuProps> = (props) => {
 
     return (
         <div className={classes.root}>
-            <VisibleOptions />
+            <List component="nav">
+                <div className={classes.userDiv}>
+                    <AccountCircleIcon
+                        style={{ paddingTop: 20, fontSize: 40 }}
+                    ></AccountCircleIcon>
+                    <p style={{ fontWeight: 500 }}>
+                        {user?.name} {user?.surname}
+                    </p>
+                </div>
+                <VisibleOptions />
+            </List>
         </div>
     );
 };

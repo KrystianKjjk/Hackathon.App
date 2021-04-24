@@ -1,10 +1,9 @@
 import React from "react";
 import PrivateRoute from "../../Components/PrivateRoute";
-import Ranking from "../../Components/Ranking";
+import Ranking from "../Ranking";
 import { Route, Switch } from "react-router-dom";
-import SignIn from "../../Components/Login/Login";
+import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
-// import { Route } from "react-router";
 import CreateTeamsPage from "../CreateTeamsPage";
 
 const AdminRouting = () => {

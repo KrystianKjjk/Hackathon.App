@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import AdminRouting from "./AdminRouting";
-import Ranking from "../../Components/Ranking";
+import Ranking from "../Ranking";
 import PrivateRoute from "../../Components/PrivateRoute";
-import SignIn from "../../Components/Login/LoginWorkaround";
-import { getUserFromLocalStorage } from "../../app/utils";
+import SignIn from "../Login/LoginWorkaround";
+import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
+import UserRouting from "./UserRouting";
 
 const Routing = () => {
     const userInfo = getUserFromLocalStorage();
+    const role = loggerRole();
     console.log("info", userInfo);
-
-    const user = {};
-    const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
+    const getRouting = () =>
+        role === "Admin" ? <AdminRouting /> : <UserRouting />;
 
     return (
         <div>
@@ -20,11 +21,10 @@ const Routing = () => {
                 <Route exact path="/">
                     <SignIn />
                 </Route>
-                <Route path="/logOut">
+                <Route exact path="/login">
                     <SignIn />
                 </Route>
-
-                {roleRouting}
+                {getRouting()}
                 <Route path="*">
                     <NotFoundPage />
                 </Route>
