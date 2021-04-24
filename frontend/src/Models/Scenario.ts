@@ -1,4 +1,3 @@
-
 export interface Decision {
     title: string;
     risk: number;
@@ -16,6 +15,7 @@ export interface Quest {
 
 export interface Scenario {
     _id: string;
+    description: string;
     name: string;
     image: string;
     quests: Quest[];

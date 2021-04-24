@@ -55,7 +55,7 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         onChange={(e) => setRisk(parseInt(e.target.value))}
                         name="title"
                         type="number"
-                        label="Ryzyko"
+                        label="Ryzyko (0-100)"
                         required={true}
                     />
                 </div>
@@ -65,7 +65,7 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         onChange={(e) => setPrize(parseInt(e.target.value))}
                         name="title"
                         type="number"
-                        label="Nagroda"
+                        label="Nagroda  (0-100)"
                         required={true}
                     />
                 </div>
@@ -77,7 +77,7 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                         }
                         name="title"
                         type="number"
-                        label="Kara"
+                        label="Kara  (0-100)"
                         required={true}
                     />
                 </div>
@@ -86,12 +86,9 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
             <Button
                 type="submit"
                 fullWidth
-                variant="contained"
-                color="primary"
-                className={styles.submit}
                 data-testid="rp-button"
                 onClick={handleSubmit}
-                style={{ backgroundColor: "rgb(1, 79, 51)" }}
+                className={styles.buttonSingleScenario}
             >
                 Dodaj
             </Button>

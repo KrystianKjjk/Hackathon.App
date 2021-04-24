@@ -4,6 +4,8 @@
    width: 45vw;
    /* border: 5px solid rgba(214, 194, 194, 0.863); */
    /* background-color: rgba(211, 204, 204, 0.863); */
+   margin:0 auto;
+   margin-top:10%;
 }
 
 .imgContainer{

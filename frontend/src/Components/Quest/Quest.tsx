@@ -156,7 +156,7 @@ const Quest: React.FC<QuestProps> = () => {
             setDescription(data.description);
             data = data.quests[questIndex];
             if(!data.image)
-                data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
+                data.image = 'https://cdn.pixabay.com/photo/2015/07/02/10/22/stone-arch-828730_1280.jpg';
                 
             setQuest(data);
 

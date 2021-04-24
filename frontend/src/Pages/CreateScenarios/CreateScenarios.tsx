@@ -60,6 +60,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const initialScenario = {
         _id: "",
         name: "",
+        description: "",
         image: "",
         quests: [],
     };
@@ -106,7 +107,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     return (
         <>
         <Container className={styles.createScenarioContainer}>
-            <Header>STWÓRZ SCENARIUSZ</Header>
+            <Header>SCENARIUSZE</Header>
             {displayedScenario && (
                 <Modal
                     isOpen={!!displayedScenario}
