@@ -12,7 +12,7 @@ export default class MessagesController{
         // Find group's messages
         let group;
         try {
-          group = await GroupSchema.findById(gid).populate('messages');
+          group = await GroupSchema.findById(gid);
         } catch (error) {
           return next(new Error('[ERROR][MESSAGES] Could not find group by id: ' + error));
         }
