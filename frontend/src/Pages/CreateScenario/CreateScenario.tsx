@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     Container,
@@ -13,6 +13,7 @@ import Modal from "react-modal";
 import AddNewQuest from "../../Components/AddNewQuest";
 import instance from "../../Api/axiosInstance";
 import styling from './CreateScenario.module.css'
+import useSnackbar from "../../Hooks/useSnackbar";
 
 
 interface CreateScenarioProps {}
@@ -25,26 +26,33 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
 
     const closeModal = () => setAddQuestModal(false);
     const openModal = () => setAddQuestModal(true);
+    const [Snackbar, setMessage, setSeverity] = useSnackbar();
     const addQuest = (quest: Quest) => setQuests((prev) => [...prev, quest]);
     const addNewQuest = () => openModal();
     const addPhoto = () => {
         setImage("ScenarioImage.jpg");
     };
     const confirmNewScenario = async () => {
-        const obj = {
-            name: scenarioDescription,
-            image: image,
-            quests,
-        };
-        console.log("CONFIRM ADD SCENARIO ");
-        console.log(obj);
-        try {
+        try {    
+            const obj = {
+                name: scenarioDescription,
+                image: image,
+                quests,
+            };
+            console.log("CONFIRM ADD SCENARIO ");
+            console.log(obj);
             const result = await instance.post("scenarios", obj);
+            setMessage("Success!");
+            setSeverity("success");
         } catch (error) {
-            console.log("Nieee");
+            setMessage("Failed!");
+            setSeverity("error");
+        } finally {
+            closeModal();
         }
     };
     return (
+        <>
         <Container>
             <Header>Utwórz nowy scenariusz</Header>
             <Input
@@ -74,6 +82,8 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
                 <AddNewQuest addQuest={addQuest} closeModal={closeModal} />
             </Modal>
         </Container>
+        { Snackbar }
+        </>
     );
 };
 

@@ -65,7 +65,7 @@ export default function ResetPassword() {
 
   return (
     <>
-    !beenSent ? (
+    {!beenSent ? (
       <div className={styleResetPage.backgroundPasswordReset}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -111,7 +111,7 @@ export default function ResetPassword() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5" style={{color: "black"}}> 
-              Email z linkiem do resetu hasła został wysłany :)
+              {'Email z linkiem do resetu hasła został wysłany :)'}
         </Typography>
               <Button
                 type="submit"
@@ -128,7 +128,8 @@ export default function ResetPassword() {
             </div>  
         </Container>
       </div>
-    )
+    )}
+    { Snackbar }
     </>
   );
 }
