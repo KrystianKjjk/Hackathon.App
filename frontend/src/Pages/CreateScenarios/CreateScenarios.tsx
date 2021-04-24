@@ -43,6 +43,7 @@ const QuestContainer = styled.div`
     border: 2px solid black;
     display: flex;
     width: 90%;
+    min-width: 400px;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;

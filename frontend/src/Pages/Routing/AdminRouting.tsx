@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
-import CreateScenariosPage from "../CreateScenarios";
+import ScenariosPage from "../CreateScenarios";
 import UserProfile from "../UserProfile";
 import CreateScenario from "../CreateScenario";
 
@@ -22,7 +22,7 @@ const AdminRouting = () => {
                 <CreateScenario />
             </PrivateRoute>
             <PrivateRoute path="/scenario">
-                <Ranking />
+                <ScenariosPage />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />

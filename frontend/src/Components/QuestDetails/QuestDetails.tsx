@@ -14,6 +14,27 @@ const Container = styled.div`
     padding: 5px;
     border: 2px solid black;
     display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-width: 400px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    :hover {
+        transform: scale(1.05);
+        font-weight: bold;
+        cursor: pointer;
+    }
+`;
+
+const ContainerFlexible = styled.div`
+    background-color: white;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
     width: 90%;
     box-sizing: border-box;
     justify-content: center;
@@ -33,7 +54,7 @@ const QuestDetails: React.FC<QuestDetailsProps> = ({ quest }: { quest: Quest }) 
             <h4>Decyzje:</h4>
             
             {quest.decisions.map(decision => (
-                <Container>{decision.title}</Container>
+                <ContainerFlexible>{decision.title}</ContainerFlexible>
             ))}
         </Container>
     );
