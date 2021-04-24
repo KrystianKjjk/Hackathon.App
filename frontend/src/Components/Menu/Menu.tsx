@@ -61,12 +61,12 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/myprofil"
                             icon={<PeopleIcon />}
-                            text="TWOJ PROFIL"
+                            text="TWÓJ PROFIL"
                         />
                         <ItemLink
                             path="/teamsManagement"
                             icon={<NotificationsIcon />}
-                            text="CREATOR ZESPOŁÓW"
+                            text="KREATOR ZESPOŁÓW"
                         />
                         <ItemLink
                             path="/createScenario"
@@ -92,12 +92,12 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/myprofil"
                             icon={<PeopleIcon />}
-                            text="TWÓj PROFIL"
+                            text="TWÓJ PROFIL"
                         />
                         <ItemLink
                             path="/myteam"
                             icon={<NotificationsIcon />}
-                            text="TWÓJA DRUŻYNA"
+                            text="TWOJA DRUŻYNA"
                         />
                         <ItemLink
                             path="/scenario"
