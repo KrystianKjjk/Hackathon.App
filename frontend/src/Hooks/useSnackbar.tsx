@@ -11,42 +11,47 @@ function Alert(props: AlertProps) {
   }
 
 interface CustomSnackbarProps {
-    openError: boolean;
-    error: string;
-    handleCloseError: () => void;
+    open: boolean;
+    severity: "error" | "success";
+    message: string;
+    handleClose: () => void;
     autoHideDuration: number;
 }
 
 const CustomSnackbar: React.FC<CustomSnackbarProps> = ({
-    error,
-    openError,
-    handleCloseError,
+    message,
+    severity,
+    open,
+    handleClose,
     autoHideDuration,
 }) => {
     return (
-        <Snackbar open={openError} autoHideDuration={autoHideDuration} onClose={handleCloseError} data-testid='li-snack'>
-            <Alert onClose={handleCloseError} severity="error">
-              {error && <FormHelperText >{error}</FormHelperText>}
+        <Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose} data-testid='li-snack'>
+            <Alert onClose={handleClose} severity={severity}>
+              {message && <FormHelperText >{message}</FormHelperText>}
             </Alert>
         </Snackbar>
     );
 };
 
-const useSnackbar = (): [JSX.Element, (value: React.SetStateAction<string>) => void] => {
-    const [error, setError] = useState('');
-    const handleCloseError = (event?: React.SyntheticEvent, reason?: string) => {
+const useSnackbar = (): [JSX.Element, (value: React.SetStateAction<string>) => void, (value: React.SetStateAction<"error" | "success">) => void] => {
+    const [msg, setMsg] = useState('');
+    const [severity, setSeverity] = useState<"error" | "success">("success");
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
           return;
         }
-        setError('');
+        setMsg('');
     };
     const snackBarData = {
-        error,
-        openError: !!error,
-        handleCloseError,
+        message: msg,
+        severity,
+        open: !!msg,
+        handleClose,
         autoHideDuration: 3000
     }
-    return [<CustomSnackbar {...snackBarData} />, setError];
+    return [<CustomSnackbar {...snackBarData} />, setMsg, setSeverity];
 };
 
 export default useSnackbar;
+
