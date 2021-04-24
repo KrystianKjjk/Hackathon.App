@@ -3,38 +3,32 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
 import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
-import SignIn from "../../Components/Login/Login";
+import PrivateRoute from "../../Components/PrivateRoute";
+import SignIn from "../../Components/Login/LoginWorkaround";
+import { getUserFromLocalStorage } from "../../app/utils";
 
 const Routing = () => {
+    const userInfo = getUserFromLocalStorage();
+    console.log("info", userInfo);
+
     const user = {};
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
 
     return (
         <div>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <SignIn />
-                    </Route>
-                    <Route path="/logOut">
-                        <SignIn />
-                    </Route>
-                    {roleRouting}
-                    {user && (
-                        <>
-                            <Route path="/myprofil">
-                                <Ranking />
-                            </Route>
-                            <Route path="/ranking">
-                                <Ranking />
-                            </Route>
-                        </>
-                    )}
-                    <Route path="*">
-                        <NotFoundPage />
-                    </Route>
-                </Switch>
-            </Router>
+            <Switch>
+                <Route exact path="/">
+                    <SignIn />
+                </Route>
+                <Route path="/logOut">
+                    <SignIn />
+                </Route>
+
+                {roleRouting}
+                <Route path="*">
+                    <NotFoundPage />
+                </Route>
+            </Switch>
         </div>
     );
 };
