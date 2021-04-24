@@ -22,7 +22,7 @@ const AdminQuestList: React.FC<QuestListProps> = ({ quests, title }) => {
 const QuestElement = ({ quest }: { quest: Quest }) => {
     return (
         <QuestContainer>
-            {quest.name} {quest.name}
+            {quest.name}
         </QuestContainer>
     );
 };
