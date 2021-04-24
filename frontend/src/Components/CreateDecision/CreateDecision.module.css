@@ -1,0 +1,27 @@
+
+
+.createDecisionContainer {
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 2em !important;
+    width: 50% !important;
+    height: 10px !important;
+}
+
+.inputContainer {
+    margin: 20px 0;
+}
+
+.submit{
+    width: 50%;
+}
+
+.numberContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+.number{
+    width:30%;
+    margin: 0;
+}
