@@ -3,6 +3,7 @@ import moment from 'moment';
 import Typography from '@material-ui/core/Typography';
 import { Grid} from "@material-ui/core";
 import { Container } from './UserScenarioView-style'
+import styleCss from './UserScenarioView.module.css';
 
 interface UserScenarioViewProps {
 
@@ -35,7 +36,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     },[])
 
     return loading ? (<p>Loading...</p>):(
-    <Container>
+    <Container className={styleCss.container}>
         <Grid container direction="row">
                 <Grid
                     container
@@ -43,8 +44,8 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
                     xs={12}
                     justify="center"
                 >
-                    <Container>
-                         <Typography variant="h2">{scenarioTitle}</Typography>
+                    <Container >
+                         <Typography className={styleCss.title} variant="h2">{"Aktualny scenariusz: " + scenarioTitle}</Typography>
                     </Container>
                 </Grid>
 
@@ -55,7 +56,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
                     justify="center"
                 >
                     <Container>
-                         <Typography variant="h2">{scenarioDescription}</Typography>
+                         <Typography className={styleCss.description} variant="h2">{scenarioDescription}</Typography>
                     </Container>
                 </Grid>
                 <Grid
@@ -65,7 +66,7 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
                     justify="center"
                 >
                     <Container>
-                         <Typography variant="h2"> Ten scanriusz zakończy się {scenarioEndDate}. Czy Twoja drużyna jest gotowa?</Typography>
+                         <Typography className={styleCss.description} variant="h2"> Ten scenariusz zakończy się <strong>{scenarioEndDate}</strong>. Współpracuj ze swoją drużyną, aby osiągnąć sukces.</Typography>
                     </Container>
                 </Grid>
             </Grid>
