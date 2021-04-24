@@ -1,0 +1,17 @@
+
+
+.createDecisionContainer {
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 2em !important;
+    width: 50%;
+    margin-top:20%;
+}
+
+.inputContainer {
+    margin: 20px;
+}
+
+.submit{
+    width: 50%;
+}
