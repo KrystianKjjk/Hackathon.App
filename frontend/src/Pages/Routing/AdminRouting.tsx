@@ -23,13 +23,13 @@ const AdminRouting = () => {
                 <CreateScenario />
             </PrivateRoute>
             <PrivateRoute path="/scenario">
-                <Ranking />
+                <CreateScenariosPage />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <UserProfile />
+                <AdminProfile />
             </PrivateRoute>
             <Route path="*">
                 <NotFoundPage />
