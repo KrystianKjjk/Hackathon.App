@@ -5,10 +5,12 @@ import UserDecisions from './Components/UserDecisionsAdminView/UserDecisionsAdmi
 // import UserList from './Components/UserList/UserList';
 // import CreateTeamsPage from './Pages/CreateTeamsPage/CreateTeamsPage';
 import UserScenarioView from './Components/UserScenarioView/UserScenarioView';
+import CreateTeamsPage from "./Pages/CreateTeamsPage";
+import UserDecisionsAdminView from "./Components/UserDecisionsAdminView/UserDecisionsAdminView";
 // import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
 
 function App() {
-    return <UserDecisions />;
+    return <UserDecisionsAdminView />;
 }
 
 export default App;

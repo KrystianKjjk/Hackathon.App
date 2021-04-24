@@ -11,6 +11,7 @@ interface TeamListProps {
 }
 
 const TeamList: React.FC<TeamListProps> = ({ teams }) => {
+    console.log('TEAM', teams)
     return (
         <Container className={styles.containerStyles}>
             <h3>ZESPOŁY</h3>
