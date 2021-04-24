@@ -150,7 +150,7 @@ export default function SignIn(props: LogInProps) {
                                 </Alert>
                             </Snackbar>
                             <Grid container>
-                                <Grid item xs>
+                                <Grid item xs className={style.gridPassword}>
                                     <Link
                                         href="/resetpassword"
                                         variant="body2"
