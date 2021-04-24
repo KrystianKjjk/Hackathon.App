@@ -10,9 +10,6 @@ import UserProfile from "../UserProfile";
 const UserRouting = () => {
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/home">
                 <UserProfile />
             </PrivateRoute>
@@ -31,9 +28,6 @@ const UserRouting = () => {
             <PrivateRoute path="/ranking">
                 <Ranking />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
         </Switch>
     );
 };

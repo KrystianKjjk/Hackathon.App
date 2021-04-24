@@ -10,9 +10,6 @@ import UserProfile from "../UserProfile";
 const AdminRouting = () => {
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/myprofil">
                 <UserProfile />
             </PrivateRoute>
@@ -28,9 +25,6 @@ const AdminRouting = () => {
             <PrivateRoute path="/home">
                 <UserProfile />
             </PrivateRoute>
-            <Route path="*">
-                <NotFoundPage />
-            </Route>
         </Switch>
     );
 };

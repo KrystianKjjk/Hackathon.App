@@ -10,7 +10,6 @@ import ResetPassword from "../../Components/ResetPassword/ResetPassword";
 import ResetPasswordFromLink from "../../Components/ResetPassword/ResetPasswordFromLink";
 
 const Routing = () => {
-    const [userInfo, setUserInfo] = useState(getUserFromLocalStorage());
     const [role, setRole] = useState(loggerRole());
     const getRouting = () =>
         role === "Admin" ? (
@@ -23,7 +22,7 @@ const Routing = () => {
         <div>
             <Switch>
                 <Route exact path="/">
-                    <SignIn />
+                    <SignIn setRole={setRole} />
                 </Route>
                 <Route exact path="/login">
                     <SignIn />
