@@ -17,7 +17,6 @@ const Menu: React.FC<MenuProps> = (props) => {
         createStyles({
             root: {
                 width: "20vw",
-                maxWidth: 360,
                 minWidth: 180,
                 marginVertical: "auto",
                 marginTop: "20px",
