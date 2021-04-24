@@ -1,55 +1,48 @@
 import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
-import useConfirmModal from "../../Hooks/useConfirmModal";
 import AdminRouting from "./AdminRouting";
-import SignIn from "../../Components/Login/Login";
+import SignIn from "../Login/LoginWorkaround";
+import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
+import UserRouting from "./UserRouting";
+import Logout from "../../Components/Logout/Logout";
+import ResetPassword from "../../Components/ResetPassword/ResetPassword";
+import ResetPasswordFromLink from "../../Components/ResetPassword/ResetPasswordFromLink";
 
 const Routing = () => {
-    const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
+    const [role, setRole] = useState(loggerRole());
+    const getRouting = () =>
+        role === "Admin" ? (
+            <AdminRouting />
+        ) : role === "User" ? (
+            <UserRouting />
+        ) : null;
 
     return (
         <div>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <SignIn />
-                    </Route>
-                    <Route path="/logOut">
-                        <LogOut />
-                    </Route>
-                    {roleRouting}
-                    <Route path="*">
-                        <NotFoundPage />
-                    </Route>
-                </Switch>
-            </Router>
+            <Switch>
+                <Route exact path="/">
+                    <SignIn setRole={setRole} />
+                </Route>
+                <Route exact path="/login">
+                    <SignIn />
+                </Route>
+                <Route exact path="/logout">
+                    <Logout />
+                </Route>
+                <Route path="/resetpassword">
+                    <ResetPassword />
+                </Route>
+                <Route path="/requestpasswordreset">
+                    <ResetPasswordFromLink />
+                </Route>
+                {getRouting()}
+                <Route path="*">
+                    <NotFoundPage />
+                </Route>
+            </Switch>
         </div>
     );
-};
-
-const LogIn = () => {
-    const [Modal, setModal] = useConfirmModal();
-    return (
-        <div>
-            <button
-                onClick={() =>
-                    setModal({
-                        text: "MODAL!!!",
-                        handleYes: () => console.log("logging"),
-                    })
-                }
-            >
-                {" "}
-                Open Modal
-            </button>
-            {Modal}
-        </div>
-    );
-};
-
-const LogOut = () => {
-    return <div>Logout</div>;
 };
 
 export default Routing;

@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 
 export default class UserController {
   getMe = async (req, res) => {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).select('-password');
     if (!user)
       return res
         .status(404)
@@ -16,7 +16,8 @@ export default class UserController {
   
   getAll = async (req, res, next) => {
     const results = await User.find()
-      .sort({ amount: -1, lastName: 1 });
+      .sort({ amount: -1, lastName: 1 })
+      .select('-password');
   
     res.send({
       users: results,
@@ -26,7 +27,7 @@ export default class UserController {
   getUser = async (req, res, next) => {
     const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
     if (isIdValid) {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id).select('-password');
       if (!user)
         return res
           .status(404)
@@ -103,7 +104,6 @@ export default class UserController {
           (propName === 'isAdmin') &&
           !req.user.isAdmin
         ) {
-          // console.log(req.user, !req.user.isSuperAdmin);
           return res
             .status(403)
             .send({

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "url",
+    baseURL: "https://hackathon-backend-application.herokuapp.com/api/",
     timeout: 15000,
 });
 

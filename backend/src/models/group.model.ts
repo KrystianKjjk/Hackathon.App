@@ -6,6 +6,7 @@ export interface Group {
     scenario: String,
     currentQuest: String,
     messages: String[]
+    isActive: boolean,
 };
 
 const GroupSchema = new mongoose.Schema({
@@ -16,7 +17,11 @@ const GroupSchema = new mongoose.Schema({
     currentQuest: {
         type: String
     },
-    messages: []
+    messages: [],
+    isActive: {
+        type: Boolean,
+        default: true,
+    },
 
 }, {timestamps: true})
 
