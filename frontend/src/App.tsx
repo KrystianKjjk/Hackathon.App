@@ -8,7 +8,7 @@ import CreateTeamsPage from './Pages/CreateTeamsPage/CreateTeamsPage';
 import NavigationView from './Pages/NavigationTemplate/NavigationTemplate'
 
 function App() {
-    return <SignIn />;
+    return <CreateTeamsPage />;
 }
 
 export default App;
