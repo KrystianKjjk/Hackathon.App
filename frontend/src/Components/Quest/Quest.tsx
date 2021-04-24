@@ -61,10 +61,11 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                 data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
                 
         setQuest(data);
+
     }
 
     const untakeDecision = async (decisionIdx: number) => {
-        const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}/quest/${questIndex}/untake/decision/${decisionIdx}`, {
+        await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}/quest/${questIndex}/untake/decision/${decisionIdx}`, {
             method: 'PATCH',
             headers: {
                 Accept: 'application/json',
@@ -72,9 +73,6 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                 'x-auth-token': authToken
               }
         })
-        // console.log(response)
-        const data = await response.json();
-        // console.log(data);
     }
 
     const getMyDecisionIndex = async () => {
@@ -87,17 +85,6 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                     index = i;
             })
         });
-
-        // let newQuest = quest;
-        // newQuest?.decisions.forEach((decision) => {
-        //     decision.users = decision.users.filter((user) => {
-        //         return user._id !== userID;
-        //     })
-        // })
-
-        // setQuest(newQuest);
-
-        // console.log(quest)
 
         return index;
     }
@@ -144,6 +131,7 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                 data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
                 
             setQuest(data);
+
         } catch (error) {
             console.log(error);
         }
@@ -172,7 +160,7 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
             
             <div className={style.optionsContainer}>
             {decisions.map((decision, index) => {
-                return <div key={index} id={`${index}`} className={style.singleOption} onClickCapture={(e) => handleOptionClick(e)}>
+                return <div key={index} id={`${index}`} className={`${style.singleOption}`} onClickCapture={(e) => handleOptionClick(e)}>
                     <p className={style.optionTitle}>{decision.title}</p>
                     <ul className={style.chosenByList}>
                         {decision.users.map((item, index) => {

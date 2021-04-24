@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 .container{
-   width: 50vw;
+   width: 45vw;
    border: 5px solid rgba(214, 194, 194, 0.863);
    background-color: rgba(211, 204, 204, 0.863);
 }
@@ -28,8 +28,8 @@
 }
 
 .optionsContainer{
-    display: flex;
-    gap: 0.7rem;
+    display: grid;
+    grid-auto-rows: 1fr;
     margin: 0 0.4rem 0.4rem;
 }
 
@@ -42,6 +42,7 @@
     background-color: rgba(184, 177, 177, 0.863);
     cursor: pointer;
     transition: all 0.2s ease;
+    
 }
 
 .singleOption:hover{
@@ -59,12 +60,17 @@
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
+    margin: 0;
 }
 
 .chosenByList * {
     margin-right: 0.3rem;
     font-size: 0.95rem;
     font-family: 'Times New Roman', serif;
+}
+
+.prime{
+    border: 2px solid black;
 }
 
 @media (max-width: 768px){
