@@ -47,7 +47,7 @@ const CreateScenario: React.FC<CreateScenarioProps> = () => {
         console.log("CONFIRM ADD SCENARIO ");
         console.log(obj);
         try {
-            const result = await instance.post("scenarios", obj);
+            await instance.post("scenarios", obj);
             setMessage("Zapisano scenariusz");
             setSeverity("success");
         } catch (error) {

@@ -1,7 +1,6 @@
 import { List } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import AddIcon from "@material-ui/icons/Add";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import PeopleIcon from "@material-ui/icons/People";
@@ -15,8 +14,8 @@ import ItemLink from "../ItemLink";
 
 export interface MenuProps {}
 
-const Menu: React.FC<MenuProps> = (props) => {
-    const useStyles = makeStyles((theme: Theme) =>
+const Menu: React.FC<MenuProps> = () => {
+    const useStyles = makeStyles(() =>
         createStyles({
             root: {
                 width: "20vw",
@@ -86,7 +85,6 @@ const Menu: React.FC<MenuProps> = (props) => {
                             icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
                             textColor={"#244E9F"}
-                            
                         />
                     </>
                 );

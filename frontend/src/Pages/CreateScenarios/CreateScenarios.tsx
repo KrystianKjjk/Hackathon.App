@@ -90,7 +90,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 setLoading(false);
             }
         })();
-    }, []);
+    }, [setMessage, setSeverity]);
 
     const showScenario = (scenario: Scenario) => {
         setDisplayedScenario(scenario);

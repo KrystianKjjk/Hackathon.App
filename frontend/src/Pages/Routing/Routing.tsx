@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
-import useConfirmModal from "../../Hooks/useConfirmModal";
-import Quest from "../../Components/Quest";
 import AdminRouting from "./AdminRouting";
 import SignIn from "../Login/LoginWorkaround";
-import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
+import { loggerRole } from "../../app/utils";
 import UserRouting from "./UserRouting";
 import Logout from "../../Components/Logout/Logout";
 import ResetPassword from "../../Components/ResetPassword/ResetPassword";

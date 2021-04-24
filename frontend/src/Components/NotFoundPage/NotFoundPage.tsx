@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-import { Container } from "./NotFoundPage-style";
+import React from "react";
 
 interface NotFoundPageProps {}
 

@@ -2,8 +2,6 @@ import React from "react";
 import { Quest } from "../../Models/Scenario";
 import styled from "styled-components";
 
-import style from "./QuestDetails.module.css";
-
 interface QuestDetailsProps {
     quest: Quest;
 }

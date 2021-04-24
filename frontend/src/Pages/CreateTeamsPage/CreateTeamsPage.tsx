@@ -51,7 +51,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                 setLoading(false);
             }
         })();
-    }, []);
+    }, [setMessage, setSeverity]);
 
     const createNewTeams = () => {
         let leftUsers = users;
@@ -84,7 +84,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
         console.log("JSON", JSON.stringify(req));
         try {
             setLoading(true);
-            const result = await instance.post("/group/batchcreation", req);
+            await instance.post("/group/batchcreation", req);
             setMessage("Przypisano zespoły");
             setSeverity("success");
         } catch (error) {
@@ -100,75 +100,75 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
     if (loading) return <CircularProgress />;
     return (
         <>
-        <Container className={styles.topContainer}>
-            <Header>STWÓRZ ZESPOŁY</Header>
-            <ListContainer className={styles.listContainerStyles}>
-                <div className={styles.userListStyles}>
-                    <AdminUserList users={users} title={"UŻYTKOWNICY"} />
-                </div>
-                <div className={styles.teamListStyles}>
-                    <TeamList teams={newTeams ?? teams} />
-                </div>
-            </ListContainer>
-            <div
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                }}
-            >
-                {createNewTeamsRequest || (
-                    <button
-                        onClick={() => setCreateNewTeamsRequest(true)}
-                        className={styles.buttonCreateTeams1}
-                    >
-                        {" "}
-                        UTWÓRZ NOWE ZESPOŁY
-                    </button>
-                )}
-                {createNewTeamsRequest && (
-                    <>
-                        <Input
-                            value={NumberOfChosenTeams}
-                            className={styles.inputForNewTeam}
-                            onChange={(e) =>
-                                setNumberOfChosenTeams(
-                                    Number.isNaN(
-                                        Number.parseInt(e.target.value)
+            <Container className={styles.topContainer}>
+                <Header>STWÓRZ ZESPOŁY</Header>
+                <ListContainer className={styles.listContainerStyles}>
+                    <div className={styles.userListStyles}>
+                        <AdminUserList users={users} title={"UŻYTKOWNICY"} />
+                    </div>
+                    <div className={styles.teamListStyles}>
+                        <TeamList teams={newTeams ?? teams} />
+                    </div>
+                </ListContainer>
+                <div
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                    }}
+                >
+                    {createNewTeamsRequest || (
+                        <button
+                            onClick={() => setCreateNewTeamsRequest(true)}
+                            className={styles.buttonCreateTeams1}
+                        >
+                            {" "}
+                            UTWÓRZ NOWE ZESPOŁY
+                        </button>
+                    )}
+                    {createNewTeamsRequest && (
+                        <>
+                            <Input
+                                value={NumberOfChosenTeams}
+                                className={styles.inputForNewTeam}
+                                onChange={(e) =>
+                                    setNumberOfChosenTeams(
+                                        Number.isNaN(
+                                            Number.parseInt(e.target.value)
+                                        )
+                                            ? 0
+                                            : Number.parseInt(e.target.value)
                                     )
-                                        ? 0
-                                        : Number.parseInt(e.target.value)
-                                )
-                            }
-                        />
-                        <button
-                            onClick={() => createNewTeams()}
-                            className={styles.buttonCreateTeams}
-                        >
-                            {" "}
-                            Utwórz
-                        </button>
-                        <button
-                            onClick={() => cancelCreateNewTeamRequest()}
-                            className={styles.buttonCreateTeams}
-                        >
-                            {" "}
-                            Anuluj
-                        </button>
-                        {canConfirmNewTeams && (
+                                }
+                            />
                             <button
-                                onClick={() => confirmNewTeam()}
+                                onClick={() => createNewTeams()}
                                 className={styles.buttonCreateTeams}
                             >
                                 {" "}
-                                Zatwierdź nowe zespoły
+                                Utwórz
                             </button>
-                        )}
-                    </>
-                )}
-            </div>
-        </Container>
-        { Snackbar }
+                            <button
+                                onClick={() => cancelCreateNewTeamRequest()}
+                                className={styles.buttonCreateTeams}
+                            >
+                                {" "}
+                                Anuluj
+                            </button>
+                            {canConfirmNewTeams && (
+                                <button
+                                    onClick={() => confirmNewTeam()}
+                                    className={styles.buttonCreateTeams}
+                                >
+                                    {" "}
+                                    Zatwierdź nowe zespoły
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
+            </Container>
+            {Snackbar}
         </>
     );
 };
