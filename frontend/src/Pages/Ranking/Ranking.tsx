@@ -31,7 +31,9 @@ const Ranking: React.FC<RankingProps> = () => {
             data.users = data.users.filter((user: userInterface) => {
                 return user.isAdmin === false;
             });
-            setUsers(data.users);
+            const users = data.users.sort((a:any,b:any) => (a.totalPoints > b.totalPoints)? -1 : 1);
+            console.log(users);
+            setUsers(users);
         } catch(error) {
             console.log(error);
         }
