@@ -16,10 +16,11 @@ const Menu: React.FC<MenuProps> = (props) => {
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
-                width: "23%",
+                width: "24%",
                 maxWidth: 360,
                 minWidth: 180,
-                margin: "auto",
+                marginVertical: "auto",
+                marginTop: "20px",
                 backgroundColor: "transparent",
                 borderRight: "1px solid #666",
                 color: "#fff",
@@ -44,7 +45,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 alignItems: "center",
                 display: "flex",
                 flexDirection: "column",
-                marginBottom: "1em"
+                marginBottom: "1em",
             },
         })
     );
@@ -53,7 +54,6 @@ const Menu: React.FC<MenuProps> = (props) => {
 
     const role = loggerRole();
     const { user } = getUserFromLocalStorage();
-    console.log("info", role);
     const VisibleOptions = () => {
         //@ts-ignore
         switch (role) {
@@ -73,7 +73,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/createScenario"
                             icon={<NotificationsIcon />}
-                            text="CREATOR ZESPOŁÓW"
+                            text="CREATOR SCENARIUSZY"
                         />
                         <ItemLink
                             path="/ranking"
@@ -84,6 +84,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                             path="/logout"
                             icon={<EmojiObjectsIcon />}
                             text="WYLOGUJ SIĘ"
+                            textColor={"rgb(113,13,23"}
                         />
                     </>
                 );
@@ -133,7 +134,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 <div className={classes.userDiv}>
                     <AccountCircleIcon
                         style={{ paddingTop: 20, fontSize: 40 }}
-                    ></AccountCircleIcon>
+                    />
                     <p style={{ fontWeight: 500 }}>
                         {user?.name} {user?.surname}
                     </p>

@@ -2,11 +2,20 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Container } from './UserProfile-style';
 
-const UserProfile: React.FC = ({ user }: any) => {
+interface User {
+  name: String;
+  surname: string;
+  email: String;
+  role: boolean;
+  currentGroup: string;
+  totalPoints: string;
+}
+
+const UserProfile: React.FC<User> = ({ user }: any) => {
   return (
     <Container>
       <Typography variant="h2">Witaj podróżniku</Typography>
-      {user.photo ? (
+      {user.photo.length === 0 ? (
         <img
           src={`data:image/jpeg;base64,${Buffer.from(user.photo).toString(
             'base64'
