@@ -3,7 +3,8 @@ import ListItem from '@material-ui/core/ListItem';
 import { FlexContainer, Container } from './UserDecisionsAdminView-style';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router';
+import styles from './UserDecisions.module.css';
 
 interface UserDecisionsAdminViewProps {
   // id?: string;
@@ -15,7 +16,7 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [scenario, setScenario] = useState<any>('');
 
-  const fetchData = async (id:string) => {
+  const fetchData = async (id: string) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -32,19 +33,17 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
 
   useEffect(() => {
     const id = window.localStorage.getItem('toRoute');
-    console.log(id)
-    if(id){
-fetchData(id);
-    };
+    console.log(id);
+    if (id) {
+      fetchData(id);
+    }
   }, []);
 
   return (
     <>
       <Grid container direction="row">
         <Grid container item justify="center" xs={12} alignContent="center">
-          <Typography variant="h2">
-            {scenario}
-          </Typography>
+          <Typography variant="h2">{scenario}</Typography>
           {usersDecisions.map((quest: any, id: number) => {
             return (
               <Grid
@@ -66,31 +65,51 @@ fetchData(id);
                         </h3>
                         {decisions.risk < 40 ? (
                           <ListItem>
-                            <span style={{ color: 'red', fontWeight: 'bold', padding: '10px' }}>
+                            <span
+                              style={{
+                                color: 'red',
+                                fontWeight: 'bold',
+                                padding: '10px',
+                              }}
+                            >
                               Ryzyko decyzji:
-                            </span> {decisions.risk}
+                            </span>{' '}
+                            {decisions.risk}
                           </ListItem>
                         ) : (
                           <ListItem>
                             <span
-                              style={{ color: '#31c35d', fontWeight: 'bold', padding: '10px'}}
+                              style={{
+                                color: '#31c35d',
+                                fontWeight: 'bold',
+                                padding: '10px',
+                              }}
                             >
                               Ryzyko decyzji:{' '}
                             </span>
                             {decisions.risk}
                           </ListItem>
                         )}
-
+                        <h4>Użytkownicy</h4>
                         <Grid container item justify="center" xs={12}>
                           {decisions.users.map((user: any, id: number) => {
                             return (
                               <Container key={id}>
-                                <h4 key={id}>Użytkownicy</h4>
                                 <ListItem>
-                                  <span style={{padding: '10px'}}>{user.name} {user.surname}</span>
+                                  <span style={{ padding: '10px' }}>
+                                    {user.name} {user.surname}
+                                  </span>
                                 </ListItem>
                                 <ListItem>
-                                  <span style={{fontWeight:'bold', padding: '10px'}}> Id użytkownika: </span> {user._id}
+                                  <span
+                                    style={{
+                                      fontWeight: 'bold',
+                                      padding: '10px',
+                                    }}
+                                  >
+                                    Id użytkownika:
+                                  </span>
+                                  {user._id}
                                 </ListItem>
                               </Container>
                             );
@@ -105,10 +124,15 @@ fetchData(id);
           })}
         </Grid>
       </Grid>
-      <button onClick={() => {
-        history.push("/teamsManagement");
-        window.localStorage.removeItem('toRoute');
-        }}>Powrót do zespołów</button>
+      <button
+        className={styles.buttonCreateScenarios}
+        onClick={() => {
+          history.push('/teamsManagement');
+          window.localStorage.removeItem('toRoute');
+        }}
+      >
+        Powrót do zespołów
+      </button>
     </>
   );
 };
