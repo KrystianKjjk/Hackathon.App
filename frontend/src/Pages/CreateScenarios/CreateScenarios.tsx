@@ -13,9 +13,10 @@ import instance from "../../Api/axiosInstance";
 import styles from "./CreateScenarios.module.css";
 
 import Modal from "react-modal";
-import AdminQuestList from "../../Components/AdminQuestList";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import useSnackbar from "../../Hooks/useSnackbar";
+import { CircularProgress } from "@material-ui/core";
 
 interface CreateScenariosPageProps {}
 
@@ -59,35 +60,20 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const initialScenario = {
         _id: "",
         name: "",
+        description: "",
         image: "",
         quests: [],
     };
     const [newScenario, setNewScenario] = useState<Scenario>(initialScenario);
-    const [canConfirmNewScenarios, setCanConfirmNewScenarios] = useState(false);
-
     const [scenarios, setScenarios] = useState<Scenario[]>([]);
     const [displayedScenario, setDisplayedScenario] = useState<
         Scenario | undefined
     >();
+
+    const [Snackbar, setMessage, setSeverity] = useSnackbar();
+
     const [displayedQuest, setDisplayedQuest] = useState(-1);
-    const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    const cancelCreateNewScenarioRequest = () => {
-        setNewScenario(initialScenario);
-        setCanConfirmNewScenarios(false);
-    };
-
-    const confirmNewScenario = async () => {
-        const req = { newScenario };
-        console.log("confirm new", req);
-        console.log("JSON", JSON.stringify(req));
-        try {
-            const result = await instance.post("/scenarios", req);
-        } catch (error) {
-            console.log("Nie udało się utworzyć scenariusza");
-        }
-    };
 
     useEffect(() => {
         (async () => {
@@ -98,7 +84,8 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 );
                 setScenarios(allScenarios.data);
             } catch (error) {
-                console.log("Nie udało sie pobrać scenariuszy");
+                setMessage("Nie udało się pobrać scenariuszy");
+                setSeverity("error");
             } finally {
                 setLoading(false);
             }
@@ -116,9 +103,11 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const createNewScenario = () => {
         history.push("/scenario/create");
     };
+    if (loading) return <CircularProgress />;
     return (
+        <>
         <Container className={styles.createScenarioContainer}>
-            <Header>STWÓRZ SCENARIUSZ</Header>
+            <Header>SCENARIUSZE</Header>
             {displayedScenario && (
                 <Modal
                     isOpen={!!displayedScenario}
@@ -170,15 +159,6 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         })
                     }
                 />
-                {canConfirmNewScenarios && (
-                    <button
-                        onClick={() => confirmNewScenario()}
-                        className={styles.buttonCreateScenarios}
-                    >
-                        {" "}
-                        Utwórz
-                    </button>
-                )}
             </div>
             <div
                 style={{
@@ -195,6 +175,8 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 </button>
             </div>
         </Container>
+        { Snackbar }
+        </>
     );
 };
 

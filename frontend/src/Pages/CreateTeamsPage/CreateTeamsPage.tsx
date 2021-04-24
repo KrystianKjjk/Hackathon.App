@@ -9,6 +9,7 @@ import Input from "@material-ui/core/Input";
 import instance from "../../Api/axiosInstance";
 import { CircularProgress } from "@material-ui/core";
 import styles from "./CreateTeamsPageProps.module.css";
+import useSnackbar from "../../Hooks/useSnackbar";
 
 interface CreateTeamsPageProps {}
 
@@ -21,6 +22,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
     const [newTeams, setNewTeams] = useState<Team[] | null>(null);
     const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [Snackbar, setMessage, setSeverity] = useSnackbar();
     useEffect(() => {
         (async () => {
             try {
@@ -29,7 +31,8 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
 
                 setUsers(allUsers.data.users);
             } catch (error) {
-                console.log("Nie udało sie pobrać uytkowników");
+                setMessage("Nie udało się pobrać użytkowników");
+                setSeverity("error");
             } finally {
                 setLoading(false);
             }
@@ -42,7 +45,8 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                 console.log("Teams ", allTeams);
                 setTeams(allTeams.data);
             } catch (error) {
-                console.log("Nie udało sie pobrać zespołów");
+                setMessage("Nie udało się pobrać zespołów");
+                setSeverity("error");
             } finally {
                 setLoading(false);
             }
@@ -79,9 +83,15 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
         console.log("confirm new", req);
         console.log("JSON", JSON.stringify(req));
         try {
+            setLoading(true);
             const result = await instance.post("/group/batchcreation", req);
+            setMessage("Przypisano zespoły");
+            setSeverity("success");
         } catch (error) {
-            console.log("Nie udało się przypisać teamów");
+            setMessage("Nie udało się przypisać zespołów");
+            setSeverity("error");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -89,6 +99,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
 
     if (loading) return <CircularProgress />;
     return (
+        <>
         <Container className={styles.topContainer}>
             <Header>STWÓRZ ZESPOŁY</Header>
             <ListContainer className={styles.listContainerStyles}>
@@ -157,6 +168,8 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
                 )}
             </div>
         </Container>
+        { Snackbar }
+        </>
     );
 };
 

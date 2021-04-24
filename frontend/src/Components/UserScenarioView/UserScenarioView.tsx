@@ -14,11 +14,11 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
     const [scenarioDescription, setCurrentScenarioDescription]=useState();
     const [scenarioEndDate, setCurrentScenarioEndDate]=useState();
     const [loading, setLoading]=useState<boolean>(false);
-
+    const id = localStorage.getItem('toRoute');
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://hackathon-backend-application.herokuapp.com/api/scenarios/6083bdd60573f8c882235689');
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${id}`);
             let data = await response.json();
             setCurrentScenarioTitle(data.name);
             setCurrentScenarioDescription(data.description);
@@ -45,7 +45,8 @@ const UserScenarioView: React.FC<UserScenarioViewProps> = () => {
                     justify="center"
                 >
                     <Container >
-                         <Typography className={styleCss.title} variant="h2">{"Aktualny scenariusz: " + scenarioTitle}</Typography>
+                         <Typography className={styleCss.title} variant="h2">{"Aktualny scenariusz: "}</Typography>
+                         <Typography className={styleCss.title} variant="h3">{scenarioTitle}</Typography>
                     </Container>
                 </Grid>
 
