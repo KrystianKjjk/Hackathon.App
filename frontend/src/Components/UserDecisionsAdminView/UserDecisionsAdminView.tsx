@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import { Container, FlexContainer } from './UserDecisionsAdminView-style';
+import { FlexContainer, Container } from './UserDecisionsAdminView-style';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
-interface UserDecisionsAdminViewProps {}
+interface UserDecisionsAdminViewProps {
+    id: string
+}
 
-const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
+const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = ({id}) => {
   const [usersDecisions, setUsersDecisions] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
+
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://hackathon-backend-application.herokuapp.com/api/scenarios/6083bdd60573f8c882235689`
+        `https://hackathon-backend-application.herokuapp.com/api/scenarios/${id}`
       );
       let data = await response.json();
-      console.log(data.quests);
       setUsersDecisions(data.quests);
     } catch (error) {
       console.log(error);
@@ -25,17 +27,18 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
     setLoading(false);
   };
 
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log('calość', usersDecisions);
+
   return (
     <>
       <Grid container direction="row">
         {usersDecisions.map((quest: any, id: number) => {
           return (
-            <Grid container item justify="center" xs={12} alignContent='center'>
+            <Grid container item justify="center" xs={12} alignContent="center">
               <Typography variant="h2" key={id}>
                 <span>Zadanie:</span> {quest.name}
               </Typography>
@@ -46,10 +49,18 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
                       <h3>
                         <span>Ścieżka: </span> {decisions.title}
                       </h3>
-                      <ListItem>
-                        <span>Ryzyko decyzji: </span>
-                        {decisions.risk}
-                      </ListItem>
+                      {decisions.risk < 40 ? (
+                        <ListItem>
+                          <span style={{color: 'red', fontWeight: 'bold'}}>Ryzyko decyzji: </span>
+                          {decisions.risk}
+                        </ListItem>
+                      ) : (
+                        <ListItem>
+                          <span style={{color: '#31c35d',fontWeight: 'bold'}}>Ryzyko decyzji: </span>
+                          {decisions.risk}
+                        </ListItem>
+                      )}
+
                       <ListItem>
                         <span>Kara za podjęcie decyzji:</span>
                         {decisions.punishment}
@@ -61,7 +72,7 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
                       <Grid container item justify="center" xs={12}>
                         {decisions.users.map((user: any, id: number) => {
                           return (
-                            <FlexContainer key={id}>
+                            <Container key={id}>
                               <h4 key={id}>Użytkownicy</h4>
                               <ListItem>
                                 <span>Imie:</span> {user.name}
@@ -72,7 +83,7 @@ const UserDecisionsAdminView: React.FC<UserDecisionsAdminViewProps> = () => {
                               <ListItem>
                                 <span>Id użytkownika: </span> {user._id}
                               </ListItem>
-                            </FlexContainer>
+                            </Container>
                           );
                         })}
                       </Grid>
