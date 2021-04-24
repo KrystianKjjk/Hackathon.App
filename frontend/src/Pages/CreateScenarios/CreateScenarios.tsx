@@ -25,10 +25,10 @@ const customModalStyles = {
         left: "50%",
         right: "auto",
         bottom: "auto",
-        marginRight: "-50%",
+        maxWidth: "90%",
+        marginRight: "-20%",
         transform: "translate(-50%, -50%)",
         justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column" as "column",
         display: "flex",
     },
@@ -38,17 +38,17 @@ const QuestElement = ({ quest }: { quest: Quest }) => {
     return <QuestContainer>{quest.name}</QuestContainer>;
 };
 const QuestContainer = styled.div`
-    background-color: white;
-    margin: auto;
+    background-color: rgba(200, 200, 200, 0.6);
+    margin: 10px;
     padding: 5px;
     border: 2px solid black;
     display: flex;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         font-weight: bold;
         cursor: pointer;
     }
@@ -117,6 +117,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const createNewScenario = () => {
         history.push("/scenario/create");
     };
+    console.log(displayedScenario);
     return (
         <Container className={styles.createScenarioContainer}>
             <Header>SCENARIUSZE</Header>
@@ -128,10 +129,12 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                     contentLabel="Example Modal"
                 >
                     <h3>{displayedScenario?.name}</h3>
-                    <img
-                        alt={"obraz - " + displayedScenario.name}
-                        src={displayedScenario.image}
-                    />
+                    {displayedScenario.image.length > 100 && (
+                        <img
+                            alt={"obraz - " + displayedScenario.name}
+                            src={displayedScenario.image}
+                        />
+                    )}
                     <h4>Questy:</h4>
                     {displayedScenario.quests.map((quest, idx) =>
                         displayedQuest !== idx ? (
@@ -145,7 +148,12 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         )
                     )}
                     <div style={{ marginTop: "20px" }}>
-                        <button onClick={hideScenario}>ZAMKNIJ</button>
+                        <button
+                            className={styles.buttonCreateScenarios1}
+                            onClick={hideScenario}
+                        >
+                            ZAMKNIJ
+                        </button>
                     </div>
                 </Modal>
             )}

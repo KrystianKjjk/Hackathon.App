@@ -1,6 +1,6 @@
 .createScenarioContainer {
-    width: 80vw !important;
-    height: 95vh !important;
+  width: 80vw !important;
+  height: 95vh !important;
 }
 
 .listScenariosStyles {
@@ -8,42 +8,49 @@
 }
 
 .buttonCreateScenarios1 {
-    font-size: 1em;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 0.7em;
-    background-color:  rgba(0, 0, 0, 0.75);
-    color:  #B3ABAB;
-    margin: 0.3em;
-    width: 100% !important;
+  font-size: 1em;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0.7em;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #B3ABAB;
+  margin: 0.3em;
+  width: 90% !important;
+  cursor: pointer;
+
+
+}
+
+.buttonCreateScenarios1:hover {
+  transform: scale(1.03);
 }
 
 .buttonCreateScenarios {
-    font-size: 1em;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 0.7em;
-    background-color:  rgba(0, 0, 0, 0.75);
-    color:  #B3ABAB;
-    margin: 0.3em;
+  font-size: 1em;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0.7em;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #B3ABAB;
+  margin: 0.3em;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

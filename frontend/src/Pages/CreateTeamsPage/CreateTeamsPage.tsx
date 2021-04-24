@@ -38,7 +38,7 @@ const CreateTeamsPage: React.FC<CreateTeamsPageProps> = () => {
         (async () => {
             try {
                 setLoading(true);
-                const allTeams = await instance.get<Team[]>("/group");
+                const allTeams = await instance.get<Team[]>("group/active");
                 console.log("Teams ", allTeams);
                 setTeams(allTeams.data);
             } catch (error) {
