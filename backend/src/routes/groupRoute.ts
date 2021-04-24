@@ -6,6 +6,7 @@ const groupRoutes = (groupController: GroupController, router: express.Router) =
 
     return () => {
         router.route("/group").get(groupController.getAll);
+        router.route("/group/active").get(groupController.getAllActive);
         router.route("/group/:id").get(groupController.getById);
         router.route("/group").post(groupController.create);
         router.route("/group/deactivate").patch(groupController.deactivateAll);
@@ -13,7 +14,6 @@ const groupRoutes = (groupController: GroupController, router: express.Router) =
         router.route("/group/:id").delete(groupController.delete);
         router.route("/group/me/:id").get(groupController.getByUserId);
         router.route("/group/batchcreation").post(groupController.createMany);
-        router.route("/group/active").get(groupController.getAllActive);
         
         return router;
     }
