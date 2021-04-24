@@ -9,10 +9,10 @@ export default class ScenarioService {
   private groupRepository: GroupRepository;
   private userModel: mongoose.Model<IUser & mongoose.Document>;;
 
-  constructor(scenarioRepository: Repository, groupRepository: GroupRepository){
+  constructor(scenarioRepository: Repository, groupRepository: GroupRepository, userModel){
     this.scenarioRepository = scenarioRepository;
     this.groupRepository = groupRepository;
-    
+    this.userModel = userModel;
   }
 
   getAll = async (): Promise<(Scenario & mongoose.Document<Scenario>)[]> => {
@@ -66,7 +66,7 @@ export default class ScenarioService {
     const team = await this.groupRepository.getByUserId(userId);
     if (team.users.length === decision.users.length){
       const users = team.users.map(user => user._id);
-      this._countPoints(team.users.map(user => user._id ), decision);
+      this._countPoints(users, decision);
     }
     
     return scenario;
