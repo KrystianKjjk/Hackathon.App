@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import StyledTextField from '../StyledTextField'
-import HeaderRegistration from '../HeaderRegistration';
 import BaseService from '../../app/baseService';
 import MuiAlert, { AlertProps }  from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
@@ -83,7 +82,6 @@ export default function ResetPasswordFromLink() {
   return (
     !beenSent ? (
       <div>
-        <HeaderRegistration />
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
@@ -139,7 +137,6 @@ export default function ResetPasswordFromLink() {
     :
     (
       <div>
-        <HeaderRegistration />
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <div className={classes.paper}>

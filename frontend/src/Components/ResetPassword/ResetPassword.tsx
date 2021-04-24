@@ -8,8 +8,8 @@ import {
   FormHelperText
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import StyledTextField from '../StyledTextField'
-import BaseService from '../../App/
+import StyledTextField from '../StyledTextField';
+import BaseService from '../../app/baseService';
 import MuiAlert, { AlertProps }  from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 
@@ -75,7 +75,6 @@ export default function ResetPassword() {
   return (
     !beenSent ? (
       <div>
-        <HeaderRegistration />
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
@@ -120,7 +119,6 @@ export default function ResetPassword() {
     :
     (
       <div>
-        <HeaderRegistration />
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <div className={classes.paper}>
