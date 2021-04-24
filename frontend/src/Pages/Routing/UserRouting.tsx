@@ -8,6 +8,7 @@ import SignIn from "../Login/Login";
 import UserProfile from "../UserProfile";
 
 const UserRouting = () => {
+
     return (
         <Switch>
             <PrivateRoute path="/home">
@@ -20,7 +21,7 @@ const UserRouting = () => {
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/myteam">
-                <Ranking />
+                <UserList />
             </PrivateRoute>
             <PrivateRoute path="/quest">
                 <Ranking />
