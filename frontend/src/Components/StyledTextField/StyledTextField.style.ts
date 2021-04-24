@@ -5,7 +5,9 @@ export default makeStyles((theme) => ({
     color : '#FFF !important'
   },
 
-  cssFocused: { },
+  cssFocused: {
+    color : '#FFF !important'
+  },
 
   notchedOutline: {
     borderWidth: '1px',
