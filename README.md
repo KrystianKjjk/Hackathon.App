@@ -19,8 +19,8 @@ Operator aplikacji (pracodawca, szkoła) zyskuje dużo wartościowych informacji
 Aplikacja w pozwala administratorowi na zarządzanie aplikacją - tworzenie grup, scenariuszy, podgląd raknikgu graczy.
 
 Login i hasło do przykładowego konta:
-Login: filiptest@sharklasers.com
-Hasło: Test123-
+*Login: filiptest@sharklasers.com
+*Hasło: Test123-
 
-Login: admin@admin.com
-Hasło: Admin123
+*Login: admin@admin.com
+*Hasło: Admin123
