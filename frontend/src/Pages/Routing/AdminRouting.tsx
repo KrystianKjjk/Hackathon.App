@@ -1,12 +1,12 @@
 import React from "react";
-import { Route } from "react-router";
+import PrivateRoute from "../../Components/PrivateRoute";
 
 const AdminRouting = () => {
     return (
         <>
-            <Route path="/home">
+            <PrivateRoute path="/home">
                 <LogOut />
-            </Route>
+            </PrivateRoute>
         </>
     );
 };

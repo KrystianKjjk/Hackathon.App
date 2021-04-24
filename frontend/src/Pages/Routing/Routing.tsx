@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFoundPage from "../../Components/NotFoundPage";
-import useConfirmModal from "../../Hooks/useConfirmModal";
 import AdminRouting from "./AdminRouting";
 import Ranking from "../../Components/Ranking";
 import SignIn from "../../Components/Login/Login";
 
 const Routing = () => {
+    const user = {};
     const [roleRouting, setRoleRouting] = useState(<AdminRouting />);
 
     return (
@@ -14,12 +14,22 @@ const Routing = () => {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <LogIn />
+                        <SignIn />
                     </Route>
                     <Route path="/logOut">
-                        <LogOut />
+                        <SignIn />
                     </Route>
                     {roleRouting}
+                    {user && (
+                        <>
+                            <Route path="/myprofil">
+                                <Ranking />
+                            </Route>
+                            <Route path="/ranking">
+                                <Ranking />
+                            </Route>
+                        </>
+                    )}
                     <Route path="*">
                         <NotFoundPage />
                     </Route>
@@ -27,14 +37,6 @@ const Routing = () => {
             </Router>
         </div>
     );
-};
-
-const LogIn = () => {
-    return <Ranking />
-};
-
-const LogOut = () => {
-    return <div>Logout</div>;
 };
 
 export default Routing;

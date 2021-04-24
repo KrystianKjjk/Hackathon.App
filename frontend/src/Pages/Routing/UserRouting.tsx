@@ -1,12 +1,12 @@
 import React from "react";
-import { Route } from "react-router";
-import UserList from '../../Components/UserList'
+import UserList from "../../Components/UserList";
+import PrivateRoute from "../../Components/PrivateRoute";
 const UserRouting = () => {
     return (
         <>
-            <Route path="/home">
+            <PrivateRoute path="/home">
                 <LogOut />
-            </Route>
+            </PrivateRoute>
         </>
     );
 };
