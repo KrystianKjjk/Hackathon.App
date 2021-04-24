@@ -1,9 +1,12 @@
 import * as http from 'http'
 import app from './app'
-import socket from 'socket.io'
+import { Server, Socket } from 'socket.io'
 
 const port = process.env.PORT || 3000;
 const server = http.createServer(app);
-// const io = socket(server);
+const io = new Server(server, {});
 
+io.on("connection", (socket: Socket) => {
+    
+});
 server.listen(port, () => console.log(`Listening on port ${port}...`));
