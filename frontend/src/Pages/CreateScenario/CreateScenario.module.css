@@ -1,6 +1,6 @@
 .createScenarioContainer {
-    width: 80vw !important;
-    height: 95vh !important;
+  width: 80vw !important;
+  height: 95vh !important;
 }
 
 .listScenariosStyles {
@@ -8,14 +8,19 @@
 }
 
 .buttonSingleScenario {
-    font-size: 1em;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 0.7em;
-    background-color:  rgba(0, 0, 0, 0.75);
-    color:  #B3ABAB;
-    margin: 0.3em;
-    width: 40% !important;
+  font-size: 1em;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0.7em;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #B3ABAB;
+  margin: 0.3em;
+  width: 40% !important;
+}
+
+.inputDescription {
+  min-height: 0px !important;
+  padding: 5px !important;
 }
 
 .inputScenario label:focus {
@@ -24,25 +29,25 @@
 
 .inputScenario div::after {
   color: black;
-  border-bottom: 1px solid black !important; 
+  border-bottom: 1px solid black !important;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
