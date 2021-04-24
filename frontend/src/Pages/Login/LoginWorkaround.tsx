@@ -1,8 +1,8 @@
 import React from "react";
-import LogIn from './Login'
+import LogIn from "./Login";
 
-export default function SignIn() {
-    return <LogIn/>
+export default function SignIn(props: any) {
+    return <LogIn {...props} />;
 }
 
-export{}
+export {};

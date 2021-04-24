@@ -17,9 +17,11 @@ import BaseService from "../../app/baseService";
 import axios from "axios";
 import style from "./Login.module.css";
 import StyledTextField from "../../Components/StyledTextField";
+import { loggerRole } from "../../app/utils";
 
 export interface LogInProps {
     onLogin?: Function;
+    setRole?: Function;
 }
 
 function Alert(props: AlertProps) {
@@ -63,6 +65,8 @@ export default function SignIn(props: LogInProps) {
         localStorage.setItem("id", userId);
         localStorage.setItem("isAdmin", isAdmin);
         localStorage.setItem("user", user);
+
+        props.setRole && props.setRole(loggerRole());
     };
 
     const handleSignInClick = async () => {

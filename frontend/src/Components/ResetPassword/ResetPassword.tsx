@@ -102,6 +102,7 @@ export default function ResetPassword() {
                 className={classes.submit}
                 data-testid="rp-button"
                 onClick={handleSubmit}
+                style={{backgroundColor: "rgb(1, 79, 51)"}}
               >
                 Send
           </Button>

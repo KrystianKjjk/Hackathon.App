@@ -6,18 +6,13 @@ import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
 import CreateScenariosPage from "../CreateScenarios";
+import UserProfile from "../UserProfile";
 
 const AdminRouting = () => {
     return (
         <Switch>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
-            <Route path="/logOut">
-                <SignIn />
-            </Route>
             <PrivateRoute path="/myprofil">
-                <Ranking />
+                <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/teamsManagement">
                 <CreateTeamsPage />
@@ -29,7 +24,7 @@ const AdminRouting = () => {
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <LogOut />
+                <UserProfile />
             </PrivateRoute>
             <Route path="/scenario/create">
                 <CreateScenariosPage />
