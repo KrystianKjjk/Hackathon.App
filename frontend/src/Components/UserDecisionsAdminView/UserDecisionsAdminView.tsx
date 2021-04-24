@@ -66,15 +66,14 @@ fetchData(id);
                         </h3>
                         {decisions.risk < 40 ? (
                           <ListItem>
-                            <span style={{ color: 'red', fontWeight: 'bold' }}>
-                              Ryzyko decyzji:{' '}
-                            </span>
-                            {decisions.risk}
+                            <span style={{ color: 'red', fontWeight: 'bold', padding: '10px' }}>
+                              Ryzyko decyzji:
+                            </span> {decisions.risk}
                           </ListItem>
                         ) : (
                           <ListItem>
                             <span
-                              style={{ color: '#31c35d', fontWeight: 'bold' }}
+                              style={{ color: '#31c35d', fontWeight: 'bold', padding: '10px'}}
                             >
                               Ryzyko decyzji:{' '}
                             </span>
@@ -88,10 +87,10 @@ fetchData(id);
                               <Container key={id}>
                                 <h4 key={id}>Użytkownicy</h4>
                                 <ListItem>
-                                  {user.name} {user.surname}
+                                  <span style={{padding: '10px'}}>{user.name} {user.surname}</span>
                                 </ListItem>
                                 <ListItem>
-                                  <span>Id użytkownika: </span> {user._id}
+                                  <span style={{fontWeight:'bold', padding: '10px'}}> Id użytkownika: </span> {user._id}
                                 </ListItem>
                               </Container>
                             );

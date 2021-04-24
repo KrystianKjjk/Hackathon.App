@@ -21,7 +21,7 @@ const TeamList: React.FC<TeamListProps> = ({ teams }) => {
               key={team._id}
               className={styles.teamContainerStyles}
               onClick={() => {
-                window.localStorage.setItem('toRoute', team._id);
+                window.localStorage.setItem('toRoute', '6083bc2495cea2c66ac8c220');
                 history.push("/decisions");
               }}
             >

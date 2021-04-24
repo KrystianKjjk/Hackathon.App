@@ -6,6 +6,8 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
     font-size: 1.25em;
+    border-top: 2px solid black;
+    margin: 1em;
 `;
 
 export const FlexContainer = styled.div`
