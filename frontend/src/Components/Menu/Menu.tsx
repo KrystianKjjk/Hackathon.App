@@ -96,12 +96,12 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/myprofil"
                             icon={<PersonIcon />}
-                            text="TWÓj PROFIL"
+                            text="TWÓJ PROFIL"
                         />
                         <ItemLink
                             path="/myteam"
                             icon={<PeopleIcon />}
-                            text="TWÓJA DRUŻYNA"
+                            text="TWOJA DRUŻYNA"
                         />
                         <ItemLink
                             path="/scenario"
@@ -122,6 +122,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                             path="/logout"
                             icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
+                            textColor={"#244E9F"}
                         />
                     </>
                 );

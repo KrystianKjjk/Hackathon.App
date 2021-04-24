@@ -5,7 +5,7 @@ export const Container = styled.div``;
 export const Input = styled(MaterialText)`
     width: 90%;
     min-height: 150px;
-    background-color: rgba(200, 200, 200, 0.6);
+    background-color: rgba(0, 0, 0, 0.56);
     margin: 20px;
     box-sizing: border-box;
     text-decoration: none;
