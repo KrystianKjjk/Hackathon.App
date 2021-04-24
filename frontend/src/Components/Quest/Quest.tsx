@@ -155,8 +155,7 @@ const Quest: React.FC<QuestProps> = () => {
             console.log(data);
             setDescription(data.description);
             data = data.quests[questIndex];
-            if(!data.image)
-                data.image = 'https://cdn.pixabay.com/photo/2015/07/02/10/22/stone-arch-828730_1280.jpg';
+            data.image = 'https://cdn.pixabay.com/photo/2015/07/02/10/22/stone-arch-828730_1280.jpg';
                 
             setQuest(data);
 
@@ -183,7 +182,8 @@ const Quest: React.FC<QuestProps> = () => {
         return <p>brak questu</p>
     }
 
-    const { image, decisions } = quest!;
+    let { image, decisions } = quest!;
+    image = 'https://cdn.pixabay.com/photo/2015/07/02/10/22/stone-arch-828730_1280.jpg';
     return (
         <div className={style.container}>
             <div className={style.imgContainer}>
