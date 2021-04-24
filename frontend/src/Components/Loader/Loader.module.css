@@ -566,13 +566,13 @@ body {
     transform: translateY(0);
  }
   10% {
-    transform: translateY(-172px) translatex(10px) rotate(-10deg);
+    transform: translateY(-100x) translatex(10px) rotate(-10deg);
  }
   55% {
-    transform: translateY(-172px) translatex(10px) rotate(-365deg);
+    transform: translateY(-100px) translatex(10px) rotate(-180deg);
  }
   58% {
-    transform: translateY(-172px) translatex(10px) rotate(-365deg);
+    transform: translateY(-100px) translatex(10px) rotate(-180deg);
  }
   63% {
     transform: rotate(-360deg);
