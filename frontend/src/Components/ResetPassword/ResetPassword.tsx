@@ -3,16 +3,14 @@ import {
   Button, 
   CssBaseline,
   Typography,
-  Container,
-  Snackbar,  
-  FormHelperText
+  Container
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import StyledTextField from '../StyledTextField';
 import BaseService from '../../app/baseService';
-import MuiAlert, { AlertProps }  from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import styleResetPage from './ResetPassword.module.css';
+import useSnackbar from '../../Hooks/useSnackbar';
 
 export interface ResetPasswordProps {
 
@@ -37,16 +35,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 export default function ResetPassword() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [beenSent, setBeenSent] = useState(false);
-  const [openError, setOpenError] = useState(false);
-  const [error, setError] = useState('');
+  const [ErrorSnackbar, setError] = useSnackbar();
 
   const handleSubmit = async () => {
     const service = new BaseService();
@@ -56,17 +49,10 @@ export default function ResetPassword() {
     }
     catch (error) {
       setError("Incorrect email!");
-      setOpenError(true);
       console.log(error);
     };
   };
 
-  const handleCloseError = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenError(false);
-  };
 
   const history = useHistory();
   const routeChange = () => {
@@ -110,11 +96,7 @@ export default function ResetPassword() {
           </Button>
             </div>
           </div>
-          <Snackbar open={openError} autoHideDuration={6000} onClose={handleCloseError} data-testid='li-snack'>
-            <Alert onClose={handleCloseError} severity="error">
-              {error && <FormHelperText >{error}</FormHelperText>}
-            </Alert>
-          </Snackbar>
+          { ErrorSnackbar }
 
         </Container>
       </div>
