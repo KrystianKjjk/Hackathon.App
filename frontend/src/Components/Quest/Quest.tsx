@@ -10,37 +10,22 @@ interface QuestProps {
 interface QuestInterface {
     image?: string,
     name: string,
+    description: string,
     decisions: Array<{title: string, risk?: number, punishment?: number, prize?: number, users: any[]}>
 }
 
-const testQuestObject = {
-    image: "https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg",
-    name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sequi alias natus blanditiis reiciendis velit ad harum repudiandae vitae esse. Czy chcesz zaprzyjaźnić się z wilkiem?",
-    decisions: [
-        {
-            title: "Chcę",
-            users: ["Karol", "Piotr"]
-        },
-        {
-            title: "Nie chcę",
-            users: ["Ania"]
-        },
-        {
-            title: "Muszę spytać mentora",
-            users: ["Patryk"]
-        }
-    ]
-}
 
-const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgzNGM5MDAzYTI1OTdlOWMwMjdiYjkiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYxOTI0ODExMiwiZXhwIjoxNjE5MjUxNzEyfQ.tEX2d_ra7hYS2LdZFeNNMc8xUCosNtMbNA3A1ly16Ts';
+
+const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgzNGM0YmJiZjQwMzAwNDI3MWRmOGYiLCJlbWFpbCI6ImZpbGlwdGVzdEBzaGFya2xhc2Vycy5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjE5MjUxOTE5LCJleHAiOjE2MTkyNTU1MTl9.kibUqgzhSbOtoyJoP3Fh216QE276BbiEzzaTD2qvjK4';
 
 const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
 
     const [quest, setQuest] = useState<QuestInterface | null>(null);
+    const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(true);
 
     const handleOptionClick = (e: React.MouseEvent) => {
-        // e.preventDefault();
+        e.preventDefault();
         const target: any = e.currentTarget;
         let decisionIdx = target.id;
         decisionIdx = parseInt(decisionIdx);
@@ -53,7 +38,9 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
     
         if(checkIfUserHasTakenDecisionYet(userID)){
             console.log('Trzeba \'untake\' decision')
-            untakeDecision(decisionIdx);
+            const myDecisionIndex = await getMyDecisionIndex();
+            console.log(myDecisionIndex);
+            await untakeDecision(myDecisionIndex);
         }
 
         const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}/quest/${questIndex}/take/decision/${decisionIdx}`, {
@@ -64,9 +51,10 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                 'x-auth-token': authToken
               }
         })
-        console.log(response)
+
+        // console.log(response)
         const data = await response.json();
-        console.log(data)
+        // console.log(data);
     }
 
     const untakeDecision = async (decisionIdx: number) => {
@@ -78,9 +66,34 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
                 'x-auth-token': authToken
               }
         })
-        console.log(response)
+        // console.log(response)
         const data = await response.json();
-        console.log(data)
+        // console.log(data);
+    }
+
+    const getMyDecisionIndex = async () => {
+        const userID = await getUserId();
+        let index = -1;
+
+        quest?.decisions.forEach((decision, i) => {
+            decision.users.forEach((user) => {
+                if(user._id === userID)
+                    index = i;
+            })
+        });
+
+        // let newQuest = quest;
+        // newQuest?.decisions.forEach((decision) => {
+        //     decision.users = decision.users.filter((user) => {
+        //         return user._id !== userID;
+        //     })
+        // })
+
+        // setQuest(newQuest);
+
+        // console.log(quest)
+
+        return index;
     }
 
     const checkIfUserHasTakenDecisionYet = (userID: string) => {
@@ -119,6 +132,7 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
             console.log(response);
             let data = await response.json();
             console.log(data);
+            setDescription(data.description);
             data = data.quests[questIndex];
             if(!data.image)
                 data.image = 'https://cdn.pixabay.com/photo/2016/11/22/19/36/arctic-wolf-1850247_1280.jpg';
@@ -140,13 +154,13 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
         return <p>loading</p>
     }
 
-    const { image, name:instruction, decisions } = quest!;
+    const { image, decisions } = quest!;
     return (
         <div className={style.container}>
             <div className={style.imgContainer}>
                 <img src={image} alt="" />
-                <p className={style.instruction}>
-                    {instruction}
+                <p className={style.description}>
+                    {description}
                 </p>
             </div>
             
