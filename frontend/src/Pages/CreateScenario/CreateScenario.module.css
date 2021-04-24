@@ -15,12 +15,22 @@
   background-color: rgba(0, 0, 0, 0.75);
   color: #B3ABAB;
   margin: 0.3em;
-  width: 40% !important;
+  width: 40%;
+  cursor: pointer;
+}
+
+.buttonSingleScenario:hover {
+  transform: scale(1.03);
 }
 
 .inputDescription {
   min-height: 0px !important;
   padding: 5px !important;
+}
+
+.cancelButton {
+  width: 10%;
+  left: 5%;
 }
 
 .inputScenario label:focus {

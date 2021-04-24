@@ -1,6 +1,5 @@
-import { Button, Container, Input } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import React, { useState } from "react";
-import User from "../../Models/User";
 import StyledTextField from "../StyledTextField";
 import styles from "./CreateDecision.module.css";
 

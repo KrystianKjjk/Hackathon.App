@@ -14,17 +14,13 @@ const AdminQuestList: React.FC<QuestListProps> = ({ quests, title }) => {
         <Container className={styles.questsContainerStyles}>
             <h3>{title}</h3>
             {quests.map((quest) => (
-                <QuestElement key={quest.id} quest={quest}/>
+                <QuestElement key={quest.id} quest={quest} />
             ))}
         </Container>
     );
 };
 const QuestElement = ({ quest }: { quest: Quest }) => {
-    return (
-        <QuestContainer>
-            {quest.name}
-        </QuestContainer>
-    );
+    return <QuestContainer>{quest.name}</QuestContainer>;
 };
 const QuestContainer = styled.div`
     background-color: white;

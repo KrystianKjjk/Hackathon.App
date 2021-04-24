@@ -2,11 +2,10 @@ import React from "react";
 import PrivateRoute from "../../Components/PrivateRoute";
 import Ranking from "../Ranking";
 import { Route, Switch } from "react-router-dom";
-import SignIn from "../Login/Login";
 import NotFoundPage from "../../Components/NotFoundPage";
 import CreateTeamsPage from "../CreateTeamsPage";
 import CreateScenariosPage from "../CreateScenarios";
-import UserProfile from "../UserProfile";
+import UserDecisionsAdminView from "../../Components/UserDecisionsAdminView/UserDecisionsAdminView";
 import CreateScenario from "../CreateScenario";
 import AdminProfile from "../AdminProfile";
 
@@ -30,6 +29,9 @@ const AdminRouting = () => {
             </PrivateRoute>
             <PrivateRoute path="/home">
                 <AdminProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/decisions">
+                <UserDecisionsAdminView />
             </PrivateRoute>
             <Route path="*">
                 <NotFoundPage />
