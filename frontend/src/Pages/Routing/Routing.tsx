@@ -7,6 +7,7 @@ import PrivateRoute from "../../Components/PrivateRoute";
 import SignIn from "../Login/LoginWorkaround";
 import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import UserRouting from "./UserRouting";
+import LogOut from '../../Components/LogOut/LogOut'
 
 const Routing = () => {
     const userInfo = getUserFromLocalStorage();
@@ -24,10 +25,14 @@ const Routing = () => {
                 <Route exact path="/login">
                     <SignIn />
                 </Route>
-                {getRouting()}
+                <Route path="/logout">
+                    <LogOut />
+                </Route>
+                {getRouting()}                
                 <Route path="*">
                     <NotFoundPage />
                 </Route>
+                
             </Switch>
         </div>
     );
