@@ -69,6 +69,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const [displayedScenario, setDisplayedScenario] = useState<
         Scenario | undefined
     >();
+    const [displayedQuest, setDisplayedQuest] = useState(-1);
     const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -107,6 +108,11 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
     const showScenario = (scenario: Scenario) => {
         setDisplayedScenario(scenario);
     };
+
+    const hideScenario = () => {
+        setDisplayedScenario(undefined);
+        setDisplayedQuest(-1);
+    };
     const createNewScenario = () => {
         history.push("/scenario/create");
     };
@@ -116,7 +122,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
             {displayedScenario && (
                 <Modal
                     isOpen={!!displayedScenario}
-                    onRequestClose={() => setDisplayedScenario(undefined)}
+                    onRequestClose={hideScenario}
                     style={customModalStyles}
                     contentLabel="Example Modal"
                 >
@@ -126,13 +132,19 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                         src={displayedScenario.image}
                     />
                     <h4>Questy:</h4>
-                    {displayedScenario.quests.map((quest) => (
-                        <QuestElement key={quest.id} quest={quest} />
-                    ))}
-                    <div>
-                        <button onClick={() => setDisplayedScenario(undefined)}>
-                            ZAMKNIJ
-                        </button>
+                    {displayedScenario.quests.map((quest, idx) =>
+                        displayedQuest !== idx ? (
+                            <span onClick={() => setDisplayedQuest(idx)}>
+                                <QuestElement key={idx} quest={quest} />
+                            </span>
+                        ) : (
+                            <span onClick={() => setDisplayedQuest(-1)}>
+                                <QuestDetails quest={quest} />
+                            </span>
+                        )
+                    )}
+                    <div style={{ marginTop: "20px" }}>
+                        <button onClick={hideScenario}>ZAMKNIJ</button>
                     </div>
                 </Modal>
             )}

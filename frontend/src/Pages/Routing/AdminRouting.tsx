@@ -29,7 +29,7 @@ const AdminRouting = () => {
                 <Ranking />
             </PrivateRoute>
             <PrivateRoute path="/home">
-                <UserProfile />
+                <AdminProfile />
             </PrivateRoute>
             <Route path="*">
                 <NotFoundPage />
