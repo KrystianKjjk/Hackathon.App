@@ -22,13 +22,11 @@ export default class MessagesController{
       
       sendMessage = async (req, res, next) => {
         const { gid, name, text, uid, date } = req.body;
-        console.log(req.body);
       
         // Find group
         let group;
         try {
           group = await GroupSchema.findById(gid);
-          console.log(group);
         } catch (error) {
           return next(new Error('[ERROR][MESSAGES] Could not find group by id: ' + error));
         }
@@ -54,8 +52,6 @@ export default class MessagesController{
           group,
           date
         });
-
-        console.log(newMessage)
       
         // Transaction
         try {
