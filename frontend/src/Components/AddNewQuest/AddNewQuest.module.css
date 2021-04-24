@@ -1,0 +1,29 @@
+.container{
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+}
+
+.header{ 
+    color:white;
+    font-size:36px;
+}
+
+.input >div::before{
+    border-bottom: none;
+}
+
+.input {
+    margin-bottom: 0.5em;
+}
+
+
+.buttonSingleScenario {
+    font-size: 0.7em;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 0.7em;
+    background-color:  rgba(0, 0, 0, 0.85) !important;
+    color:  #B3ABAB !important;
+    margin: 0.3em !important;
+    width: 40% !important;
+}
