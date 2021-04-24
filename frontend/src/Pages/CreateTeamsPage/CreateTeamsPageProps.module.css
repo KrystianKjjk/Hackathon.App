@@ -52,3 +52,9 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+  .inputForNewTeam {
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 0.2em;
+  }
