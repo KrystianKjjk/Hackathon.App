@@ -119,8 +119,12 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
                 <img alt={"obraz - " + displayedScenario.name} src={displayedScenario.image}/>
                 <h4>Questy:</h4>
                 {displayedScenario.quests.map((quest, idx) => displayedQuest !== idx ? (
-                    <QuestElement key={idx} quest={quest}/>):
-                    (<QuestDetails quest={quest} />)
+                    <span onClick={() => setDisplayedQuest(idx)}> 
+                        <QuestElement key={idx} quest={quest}/>
+                    </span>):
+                    (<span onClick={() => setDisplayedQuest(-1)}> 
+                        <QuestDetails quest={quest} />
+                    </span>)
                 )}
                 <div>
                     <button onClick={() => setDisplayedScenario(undefined)}>ZAMKNIJ</button>
