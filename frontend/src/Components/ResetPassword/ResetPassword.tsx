@@ -39,16 +39,19 @@ export default function ResetPassword() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [beenSent, setBeenSent] = useState(false);
-  const [ErrorSnackbar, setError] = useSnackbar();
+  const [Snackbar, setMessage, setSeverity] = useSnackbar();
 
   const handleSubmit = async () => {
     const service = new BaseService();
     try {
       await service.post('users/requestpasswordreset', { email })
       setBeenSent(true);
+      setSeverity("success");
+      setMessage("Success!");
     }
     catch (error) {
-      setError("Incorrect email!");
+      setSeverity("error");
+      setMessage("Incorrect email!");
       console.log(error);
     };
   };
@@ -61,7 +64,8 @@ export default function ResetPassword() {
   }
 
   return (
-    !beenSent ? (
+    <>
+    {!beenSent ? (
       <div className={styleResetPage.backgroundPasswordReset}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -96,7 +100,6 @@ export default function ResetPassword() {
           </Button>
             </div>
           </div>
-          { ErrorSnackbar }
 
         </Container>
       </div>
@@ -108,7 +111,7 @@ export default function ResetPassword() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5" style={{color: "black"}}> 
-              Email z linkiem do resetu hasła został wysłany :)
+              {'Email z linkiem do resetu hasła został wysłany :)'}
         </Typography>
               <Button
                 type="submit"
@@ -125,6 +128,8 @@ export default function ResetPassword() {
             </div>  
         </Container>
       </div>
-    )
+    )}
+    { Snackbar }
+    </>
   );
 }

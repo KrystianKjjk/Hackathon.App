@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Container, Input } from "./AddNewQuest-style";
 import { Quest } from "../../Models/Quest";
 import { Decision } from "../../Models/Decision";
 import Decisions from "../Decisions/Decisions";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import styles from "./AddNewQuest.module.css"
 
@@ -13,12 +12,11 @@ interface AddNewQuestProps {
     addQuest: (quest: Quest) => void;
     closeModal: () => void;
 }
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
 const AddNewQuest: React.FC<AddNewQuestProps> = ({ addQuest, closeModal }) => {
     const [QuizDescription, setQuizDescription] = useState("");
     const [photo, setPhoto] = useState<string | null>(null);
+    
     const [decisions, setDecisions] = useState<Decision[]>([]);
     const addPhoto = () => {
         setPhoto("NowyObrazek.jpg");
