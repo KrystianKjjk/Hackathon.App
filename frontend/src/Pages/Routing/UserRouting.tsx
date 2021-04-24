@@ -9,8 +9,27 @@ import SignIn from "../Login/Login";
 import UserProfile from "../UserProfile";
 import Quest from "../../Components/Quest/Quest";
 
-const UserRouting = () => {
+const getScenarioAndQuest = async () => {
+    const id = localStorage.getItem('id');
 
+    let data;
+    try {
+        const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group/me/${id}`);
+        data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+
+    if(data){
+        return [data.scenario, data.currentQuest];
+    }
+    else{
+        return null;
+    }
+}
+
+const UserRouting = () => {
     return (
         <Switch>
             <PrivateRoute path="/home">
@@ -26,7 +45,7 @@ const UserRouting = () => {
                 <UserList />
             </PrivateRoute>
             <PrivateRoute path="/quest">
-                <Quest scenarioID="6083bdd60573f8c882235689" questIndex={0}/>
+                <Quest />
             </PrivateRoute>
             <PrivateRoute path="/ranking">
                 <Ranking />
@@ -34,19 +53,6 @@ const UserRouting = () => {
         </Switch>
     );
 };
-
-const getScenarioAndQuest = async () => {
-    const id = localStorage.getItem('id');
-
-    // const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group/me/${id}`);
-    const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group`);
-    const data = await response.json();
-    console.log(data);
-
-    
-}
-
-getScenarioAndQuest();
 
 export default UserRouting;
 

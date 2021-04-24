@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import style from './Quest.module.css'
 
 interface QuestProps {
-    scenarioID: string,
-    questIndex: number
+
 }
 
 interface QuestInterface {
@@ -19,11 +18,14 @@ interface QuestInterface {
 // const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgzNGM0YmJiZjQwMzAwNDI3MWRmOGYiLCJlbWFpbCI6ImZpbGlwdGVzdEBzaGFya2xhc2Vycy5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjE5MjU1ODYxLCJleHAiOjE2MTkyNTk0NjF9.Eir5zmsT34orJE_h0O5yHdVD8PDv7AooFokBcrgVNkg';
 const authToken = localStorage.getItem('token') || '';
 
-const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
+const Quest: React.FC<QuestProps> = () => {
 
     const [quest, setQuest] = useState<QuestInterface | null>(null);
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(true);
+    
+    const [scenarioID, setScenarioID] = useState('');
+    const [questIndex, setQuestIndex] = useState(-1);
 
     const handleOptionClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -116,12 +118,37 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
         return data._id;
     }
 
-    const fetchData = async () => {
-        setLoading(true);
+    useEffect(() => {
+        getScenarioAndQuest();
+    }, [])
+
+    const getScenarioAndQuest = async () => {
+        const id = localStorage.getItem('id');
+        let data;
         try {
-            const r = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/`);
-            const d = await r.json();
-            console.log(d);
+            const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/group/me/${id}`);
+            data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+
+        if(data !== null){
+            if(data.scenario)
+                setScenarioID(data.scenario);    
+        
+            if(data.currentQuest)
+                setQuestIndex(data.currentQuest);
+        }
+    }
+
+    const fetchData = async () => {
+        if(scenarioID.length > 0 && questIndex > -1){
+            setLoading(true);
+        try {
+            // const r = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/`);
+            // const d = await r.json();
+            // console.log(d);
             const response = await fetch(`https://hackathon-backend-application.herokuapp.com/api/scenarios/${scenarioID}`);
             console.log(response);
             let data = await response.json();
@@ -136,17 +163,24 @@ const Quest: React.FC<QuestProps> = ({ scenarioID, questIndex }) => {
         } catch (error) {
             console.log(error);
         }
-        setLoading(false);
+            setLoading(false);
+        }
+        else{
+            setLoading(false);
+        }
+
     }
 
     useEffect(() => {
-        
         fetchData();
-        
-    }, []);
+    }, [scenarioID, questIndex])
 
     if(loading){
         return <p>loading</p>
+    }
+
+    if(!quest){
+        return <p>brak questu</p>
     }
 
     const { image, decisions } = quest!;
