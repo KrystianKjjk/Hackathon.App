@@ -12,6 +12,7 @@ import StyledTextField from '../StyledTextField';
 import BaseService from '../../app/baseService';
 import MuiAlert, { AlertProps }  from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
+import styleResetPage from './ResetPassword.module.css';
 
 export interface ResetPasswordProps {
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: '#FFF'
   },
   
   form: {
@@ -74,13 +76,13 @@ export default function ResetPassword() {
 
   return (
     !beenSent ? (
-      <div>
+      <div className={styleResetPage.backgroundPasswordReset}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
               Zresetuj hasło
-        </Typography>
+            </Typography>
             <div className={classes.form}
             >
               <StyledTextField
