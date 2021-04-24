@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, ListContainer, Header } from "../CreateTeamsPage/CreateTeamsPage-style";
 
-import { Scenario, Quest, Decision } from "../../Models/Scenario";
+import { Scenario, Quest } from "../../Models/Scenario";
 import Input from "@material-ui/core/Input";
 import ScenarioList from "../../Components/ScenarioList";
+import QuestDetails from "../../Components/QuestDetails/QuestDetails";
 import instance from "../../Api/axiosInstance";
 import styles from './CreateScenarios.module.css';
 
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Modal from "react-modal";
-import AdminQuestList from '../../Components/AdminQuestList';
 import styled from "styled-components";
 
 interface CreateScenariosPageProps {}
@@ -67,6 +66,7 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
 
     const [scenarios, setScenarios] = useState<Scenario[]>([]);
     const [displayedScenario, setDisplayedScenario] = useState<Scenario | undefined>();
+    const [displayedQuest, setDisplayedQuest] = useState(-1);
     const [canConfirmNewTeams, setCanConfirmNewTeams] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -105,24 +105,34 @@ const CreateScenariosPage: React.FC<CreateScenariosPageProps> = () => {
         setDisplayedScenario(scenario);
     }
 
+    const hideScenario = () => {
+        setDisplayedScenario(undefined);
+        setDisplayedQuest(-1);
+    }
+
     return (
         <Container>
             <Header>STWÓRZ SCENARIUSZ</Header>
             { displayedScenario && 
             <Modal
                 isOpen={!!displayedScenario}
-                onRequestClose={() => setDisplayedScenario(undefined)}
+                onRequestClose={hideScenario}
                 style={customModalStyles}
                 contentLabel="Example Modal"
             >
                 <h3>{displayedScenario?.name}</h3>
                 <img alt={"obraz - " + displayedScenario.name} src={displayedScenario.image}/>
                 <h4>Questy:</h4>
-                {displayedScenario.quests.map((quest) => (
-                    <QuestElement key={quest.id} quest={quest}/>
-                ))}
+                {displayedScenario.quests.map((quest, idx) => displayedQuest !== idx ? (
+                    <span onClick={() => setDisplayedQuest(idx)}> 
+                        <QuestElement key={idx} quest={quest}/>
+                    </span>):
+                    (<span onClick={() => setDisplayedQuest(-1)}> 
+                        <QuestDetails quest={quest} />
+                    </span>)
+                )}
                 <div>
-                    <button onClick={() => setDisplayedScenario(undefined)}>ZAMKNIJ</button>
+                    <button onClick={hideScenario}>ZAMKNIJ</button>
                 </div>
             </Modal> }
             <ListContainer className={styles.listContainerStyles}>
