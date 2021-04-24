@@ -8,6 +8,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import PersonIcon from '@material-ui/icons/Person';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import React from "react";
 import { getUserFromLocalStorage, loggerRole } from "../../app/utils";
 import ItemLink from "../ItemLink";
@@ -82,7 +83,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         />
                         <ItemLink
                             path="/logout"
-                            icon={<EmojiObjectsIcon />}
+                            icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
                             textColor={"rgb(113,13,23"}
                         />
@@ -118,7 +119,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         />
                         <ItemLink
                             path="/logout"
-                            icon={<EmojiObjectsIcon />}
+                            icon={<ExitToAppIcon />}
                             text="WYLOGUJ SIĘ"
                         />
                     </>
