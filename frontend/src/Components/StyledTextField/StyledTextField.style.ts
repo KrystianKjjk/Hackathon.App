@@ -15,8 +15,9 @@ export default makeStyles((theme) => ({
   },
 
   outlinedInput: {
+    color : '#FFF !important',
     '&$cssFocused $notchedOutline': {
-      border: '1px solid #FFF'
+      border: '1px solid #FFF',
     },
   },
 }));
