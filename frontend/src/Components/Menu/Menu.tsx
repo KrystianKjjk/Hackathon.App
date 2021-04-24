@@ -71,7 +71,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                             text="CREATOR ZESPOŁÓW"
                         />
                         <ItemLink
-                            path="/createScenario"
+                            path="/scenario"
                             icon={<NotificationsIcon />}
                             text="SCENARIUSZE"
                         />
