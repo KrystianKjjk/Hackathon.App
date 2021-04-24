@@ -64,7 +64,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                         <ItemLink
                             path="/myprofil"
                             icon={<PersonIcon />}
-                            text="TWOJ PROFIL"
+                            text="TWÓJ PROFIL"
                         />
                         <ItemLink
                             path="/teamsManagement"
