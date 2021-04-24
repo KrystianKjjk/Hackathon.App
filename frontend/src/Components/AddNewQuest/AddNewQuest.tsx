@@ -27,6 +27,7 @@ const AddNewQuest: React.FC<AddNewQuestProps> = ({ addQuest, closeModal }) => {
             image: photo ?? "",
             decisions,
         });
+        closeModal();
     };
     const addNewDecisions = (decision: Decision) =>
         setDecisions([...decisions, decision]);
