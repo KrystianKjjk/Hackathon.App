@@ -16,13 +16,11 @@ interface Decision {
     users: String[];
 }
 
-
 const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState("");
     const [risk, setRisk] = useState(0);
     const [prize, setPrize] = useState(0);
     const [punishment, setPunishment] = useState(0);
-
 
     const handleSubmit = async () => {
         const decision: Decision = {
@@ -30,61 +28,60 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
             risk: risk,
             prize: prize,
             punishment: punishment,
-            users: []
-        }
+            users: [],
+        };
         onSubmit(decision);
         return decision;
     };
 
-
     return (
         <Container className={styles.createDecisionContainer}>
-            <h3>
-                Dodaj decyzję!
-            </h3>
+            <h3>Dodaj decyzję!</h3>
             <div className={styles.inputContainer}>
                 <StyledTextField
                     value={title}
-                    onChange={e => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)}
                     name="title"
                     type="string"
                     label="Nazwa"
                     required={true}
-                    />
+                    color="primary"
+                />
             </div>
             <div className={styles.numberContainer}>
                 <div className={styles.number}>
                     <StyledTextField
                         value={risk}
-                        onChange={e => setRisk(parseInt(e.target.value))}
+                        onChange={(e) => setRisk(parseInt(e.target.value))}
                         name="title"
                         type="number"
                         label="Ryzyko"
                         required={true}
-                        />
+                    />
                 </div>
                 <div className={styles.number}>
                     <StyledTextField
                         value={prize}
-                        onChange={e => setPrize(parseInt(e.target.value))}
+                        onChange={(e) => setPrize(parseInt(e.target.value))}
                         name="title"
                         type="number"
                         label="Nagroda"
                         required={true}
-                        />
+                    />
                 </div>
                 <div className={styles.number}>
                     <StyledTextField
                         value={punishment}
-                        onChange={e => setPunishment(parseInt(e.target.value))}
+                        onChange={(e) =>
+                            setPunishment(parseInt(e.target.value))
+                        }
                         name="title"
                         type="number"
                         label="Kara"
                         required={true}
-                        />
+                    />
                 </div>
             </div>
-           
 
             <Button
                 type="submit"
@@ -94,14 +91,10 @@ const CreateDecision: React.FC<CreateDecisionProps> = ({ onSubmit }) => {
                 className={styles.submit}
                 data-testid="rp-button"
                 onClick={handleSubmit}
-
                 style={{ backgroundColor: "rgb(1, 79, 51)" }}
             >
                 Dodaj
-          </Button>
-
-
-
+            </Button>
         </Container>
     );
 };
