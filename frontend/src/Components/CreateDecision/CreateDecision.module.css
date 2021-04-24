@@ -23,3 +23,14 @@
     width: 30%;
     margin: 0;
 }
+
+.buttonSingleScenario {
+    font-size: 1em;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 0.7em;
+    background-color:  rgba(0, 0, 0, 0.75) !important;
+    color:  #B3ABAB !important;
+    margin: 0.3em;
+    width: 40% !important;
+}

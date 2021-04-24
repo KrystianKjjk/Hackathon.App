@@ -89,5 +89,6 @@ const customStyles = {
         alignItems: "center",
         display: "flex",
         height: "80%",
+        backgroundColor: "transparent"
     },
 };
